@@ -1,9 +1,10 @@
 
 AngelScript のユーザーマニュアル (angelscript-2.38.0-doxygen/source 以下) を日本語に翻訳し、zenn の記事にしたいです。
 
-angelscript-2.38.0-doxygen/source 以下のファイルをそれぞれ分かりやすい日本語に翻訳し、マークダウンファイルを記述してください。もちろんファイル名や変数名などは英語のままで良いです。
+angelscript-2.38.0-doxygen/source 以下のファイルをそれぞれ分かりやすい日本語に翻訳し、マークダウンファイルを記述してください。もちろんファイル名や変数名などは英語のままで良いです。angelscript-2.38.0-doxygen/source/doc_main.h から進めていくと良さそうです。
 
 zenn 記法に従って構成する必要があり、それぞれのファイルは config.yaml で管理されます。
+ドキュメント名は `番号_document.md` のようにする必要があります。
 
 各マークダウンの先頭には
 ```
