@@ -1,0 +1,8 @@
+title: "AngelScript リファレンス (和訳)"
+summary: "AngelScript の公式ドキュメントの日本語訳です。"
+topics: ["C++", "Lua", "C"]
+published: false
+price: 0
+chapters:
+  - 01_introduction
+  - 02_todo
