@@ -25,7 +25,7 @@ title: "標準ライブラリ (Standard library)"
 
 socket オブジェクトは TCP を使用してクライアント・サーバー接続を確立するために使用できます。ソケットはキューとバッファを使用して動作するため、シングルスレッドのスクリプトでもリモートシステムと正常に通信できます。
 
-```angelscript
+```cs
 // 接続の受け入れを開始します
 socket server;
 server.listen(39000);
@@ -85,14 +85,14 @@ if( client !is null )
 
 配列変数は、`array` 識別子の後に山括弧の中に要素の型を付けて宣言することができます：
 
-```angelscript
+```cs
 array<int> a, b, c;
 array<Foo@> d;
 ```
 
 配列を宣言する際に長さをコンストラクタのパラメータとして渡すことで配列の初期サイズを定義することができます。要素は初期化リストを指定することで個別に初期化することもできます：
 
-```angelscript
+```cs
 array<int> a;           // 長さゼロの整数配列
 array<int> b(3);        // 3つの要素を持つ整数配列
 array<int> c(3, 1);     // 3つの要素を持ち、すべてデフォルトで1が設定された整数配列
@@ -101,7 +101,7 @@ array<int> d = {5,6,7}; // 特定の値を持つ3つの要素の整数配列
 
 多次元配列は配列の配列としてサポートされています：
 
-```angelscript
+```cs
 array<array<int>> a;                     // 整数の配列の空の配列
 array<array<int>> b = {{1,2},{3,4}}      // 値が初期化された2x2配列
 array<array<int>> c(10, array<int>(10)); // 非初期化の値を持つ10x10の整数配列
@@ -109,13 +109,13 @@ array<array<int>> c(10, array<int>(10)); // 非初期化の値を持つ10x10の�
 
 配列の各要素はインデックス演算子でアクセスされます。インデックスはゼロベースです（有効なインデックスの範囲は 0 から length - 1）：
 
-```angelscript
+```cs
 a[0] = some_value;
 ```
 
 配列はコンテナとして `foreach` ループをサポートしています：
 
-```angelscript
+```cs
 array<int> arr = {1,2,3,4,5,6};
 int sum = 0;
 
@@ -158,7 +158,7 @@ foreach( auto value, auto index : arr ) // インデックス変数が不要な�
 
 コールバックを使用したソートの例：
 
-```angelscript
+```cs
 array<int> arr = {3,2,1};
 arr.sort(function(a,b) { return a < b; });
 ```
@@ -171,7 +171,7 @@ arr.sort(function(a,b) { return a < b; });
 
 辞書はキーと値のペアを格納し、キーは文字列で、値は任意の型にすることができます：
 
-```angelscript
+```cs
 obj object;
 obj @handle;
 
@@ -192,7 +192,7 @@ if( dict.exists('one') )
 
 辞書の値はインデックス演算子を使用してアクセスまたは追加することもできます：
 
-```angelscript
+```cs
 // 整数値の読み取りと変更
 int val = int(dict['value']);
 dict['value'] = val + 1;
@@ -200,7 +200,7 @@ dict['value'] = val + 1;
 
 辞書は `foreach` ループをサポートしています：
 
-```angelscript
+```cs
 dictionary dict = {{'a',1},{'b',2},{'c',3}};
 int sum = 0;
 
@@ -275,7 +275,7 @@ foreach( auto value, auto key : dict ) // キー変数が不要な場合は省�
 
 `format` 関数の使用例：
 
-```angelscript
+```cs
 string result = format('{} {} {}', 123, true, 'hello');
 ```
 
@@ -300,7 +300,7 @@ string result = format('{} {} {}', 123, true, 'hello');
 
 `ref` 型は汎用オブジェクトハンドルのように機能します。通常、ハンドルは特定の型またはそれに関連する型のオブジェクトのみを参照できますが、すべてのオブジェクト型が関連しているわけではなく、そこで `ref` が役立ちます。完全に汎用であるため、任意のオブジェクト型（参照型である限り）を参照できます。
 
-```angelscript
+```cs
 // 2つの関連しない型
 class car {}
 class banana {}
@@ -329,7 +329,7 @@ void func(ref @handle)
 
 オブジェクトハンドルはそれが参照するオブジェクトを、ハンドル自体が存在する限り生かし続けます。`weakref` オブジェクトは、オブジェクトへの参照が必要だがオブジェクトを生かし続けるべきではない場合に、ハンドルの代わりに使用できます。
 
-```angelscript
+```cs
 class MyClass {}
 MyClass @obj1 = MyClass();
 
@@ -395,7 +395,7 @@ datetime の演算子：`=`（代入）、`-`（差、秒数として）、`+`/`
 file は、アプリケーションが [そのサポートを登録](./doc_addon) した場合にのみスクリプトで使用可能です。
 :::
 
-```angelscript
+```cs
 file f;
 // 'read' モードでファイルを開きます
 if( f.open("file.txt", "r") >= 0 ) 

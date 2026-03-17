@@ -18,3 +18,4 @@ title: "ページタイトル"
 
 画像は ../images/angelscript-docs-ja に保存してください。ただし、記事から参照する時は ![](/images/angelscript-docs-ja/logo.png) のように表記してください。
 
+コードブロックで angelscript を指定しても認識しないので、代わりに cs を指定してください。

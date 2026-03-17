@@ -10,7 +10,7 @@ title: "共有スクリプトエンティティ (Shared script entities)"
 
 共有エンティティを宣言するには、通常の宣言の前に `shared` キーワードを付けるだけです：
 
-```angelscript
+```cs
 shared class Foo
 {
   void MethodInFoo(int b) { bar = b; }
@@ -32,7 +32,7 @@ shared void GlobalFunc() {}
 
 共有エンティティを外部として宣言するには、宣言の前に `external` キーワードを追加し、エンティティを一意に識別するシグネチャの後にステートメントを `;` で終了します：
 
-```angelscript
+```cs
 external shared class Foo;
 external shared void GlobalFunc();
 ```

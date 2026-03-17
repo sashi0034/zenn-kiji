@@ -8,7 +8,7 @@ title: "関数の宣言 (Function declaration)"
 
 関数は常に関数本体と共に宣言されます。コンパイラはどこで宣言されているかに関わらず関数をグローバルに認識できるため、関数プロトタイプを宣言する必要はありません。
 
-```angelscript
+```cs
 // シンプルな関数宣言
 int AFunction(int a, int b)
 {
@@ -33,7 +33,7 @@ AngelScript では、パラメータ参照の意図、つまり入力用、出�
 
 参照が入力と出力の両方を意図する場合、`&inout` または単に `&` と宣言されます。この場合、参照は実際の値を指します。参照は関数の実行全体を通じて有効のままであることを保証するため、ヒープ上にある必要があります。そのため、ハンドルを持つことができる [参照型](./doc_script_datatypes#オブジェクト-objects) のみを inout 参照として渡すことができます。
 
-```angelscript
+```cs
 void Function(const int &in a, int &out b, Object &c)
 {
   // 出力参照に出力値を代入します
@@ -48,7 +48,7 @@ void Function(const int &in a, int &out b, Object &c)
 
 関数は参照を返すこともでき、呼び出し元が参照先の値を変更できるようになります。参照を返す関数を宣言するには、戻り値の型と関数名の間に `&` 記号を含めます。参照が読み取り専用であるべき（つまりそれが指す値を変更できないようにする）場合は、型の前に `const` を追加します。
 
-```angelscript
+```cs
 int property;
 int &Function()
 {
@@ -92,7 +92,7 @@ void main()
 13. オブジェクトへの変換
 14. 可変引数型
 
-```angelscript
+```cs
 void Function(int a, float b, string c) {}
 void Function(string a, int b, float c) {}
 void Function(float a, string b, int c) {}
@@ -113,7 +113,7 @@ void main()
 
 関数の宣言でデフォルト引数を定義することで、コンパイラが自動的にデフォルト引数を補完するため、スクリプトは関数を呼び出す際にこれらの値を指定する必要がありません。
 
-```angelscript
+```cs
 void Function(int a, int b = 1, string c = "")
 {
   // 関数内では引数は通常通り動作します
@@ -135,7 +135,7 @@ void main()
 
 特殊な `void` 式をデフォルト引数として使用して、オプションの出力パラメータを作成することができます：
 
-```angelscript
+```cs
 void func(int &out output = void) { output = 42; }
 ```
 
@@ -143,7 +143,7 @@ void func(int &out output = void) { output = 42; }
 
 無名関数（ラムダとも呼ばれる）は、[関数ハンドル](./doc_script_datatypes#関数ハンドル-function-handles) と共に使用するためにローカルで宣言される関数です。
 
-```angelscript
+```cs
 funcdef bool CMP(int first, int second);
 
 void main()
@@ -166,7 +166,7 @@ bool func(int a, int b, CMP @f)
 
 無名関数に対して複数の一致する使い方がある場合、曖昧さを解消できるよう、パラメータ型を明示的に指定する必要があります：
 
-```angelscript
+```cs
 funcdef void A(int);
 funcdef void B(float);
 void func(A@) {}

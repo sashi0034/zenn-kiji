@@ -8,7 +8,7 @@ title: "ミックスインクラス (Mixin class)"
 
 ミックスインクラスがクラス宣言にインクルードされると、ミックスインクラスで宣言されたプロパティとメソッドは自動的にクラスに複製されます。
 
-```angelscript
+```cs
 // ミックスインクラスを宣言します
 mixin class MyMixin
 {
@@ -32,7 +32,7 @@ class MyClass : MyMixin
 
 ミックスインクラスからインクルードされたクラスのメソッドは、それをインクルードしたクラスのコンテキストでコンパイルされます。そのため、ミックスインクラスをインクルードするクラスがそれらを提供する場合、ミックスインクラスのメソッドはミックスインクラス内で宣言されていないプロパティや他のメソッドを参照することが可能です。
 
-```angelscript
+```cs
 mixin class MyMixin
 {
   void MethodA() { print("Default behaviour"); } 
@@ -51,7 +51,7 @@ class MyClass : MyMixin
 
 ミックスインクラスのメソッドは、インクルードされたメソッドが派生クラスに直接実装されたかのように、基底クラスから継承されたメソッドをオーバーライドします。一方、ミックスインクラスのプロパティは、プロパティが既に基底クラスから継承されている場合はインクルードされません。
 
-```angelscript
+```cs
 class MyBase
 {
   void MethodA() { print("Base behaviour"); }
@@ -75,7 +75,7 @@ class MyClass : MyBase, MyMixin
 
 ミックスインクラスは他のクラスから継承することができません。
 
-```angelscript
+```cs
 interface I 
 {
   void a();

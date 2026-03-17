@@ -138,7 +138,7 @@ void RegisterFooScripted(asIScriptEngine *engine)
 
 このスクリプトセクションは、`FooScripted` クラスから派生できる必要のあるすべてのモジュールにおいて、アプリケーションによって自動的にインクルードされるのが望ましいです。
 
-```angelscript
+```cs
   // スクリプト側
   shared abstract class FooScripted
   {
@@ -185,7 +185,7 @@ void RegisterFooScripted(asIScriptEngine *engine)
 
 これで、スクリプトクラスは `FooScripted` クラスから派生し、通常通り親クラスのプロパティやメソッドにアクセスできるようになります。
 
-```angelscript
+```cs
   // アプリケーションクラスから派生したスクリプトクラスを実装します
   class FooDerived : FooScripted
   {

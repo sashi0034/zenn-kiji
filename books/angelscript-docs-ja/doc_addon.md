@@ -126,7 +126,7 @@ typedef int(*PRAGMACALLBACK_t)(const std::string &pragmaText, CScriptBuilder &bu
 
 ### インクルードディレクティブ
 
-```angelscript
+```cs
 #include "commonfuncs.as"
 
 void main()
@@ -142,7 +142,7 @@ void main()
 
 これは、例えばクライアント/サーバーアプリケーションのように、スクリプトが異なるバイナリ間で共有される場合に特に有用です。
 
-```angelscript
+```cs
 class CObject
 {
   void Process()
@@ -164,7 +164,7 @@ class CObject
 
 メタデータはスクリプトのクラス、インターフェース、関数、グローバル変数の宣言の前に追加できます。メタデータはビルダークラスによってスクリプトから削除され、型ID、関数ID、または変数インデックスによるビルド後の検索のために保存されます。
 
-```angelscript
+```cs
 [factory func = CreateOgre]
 class COgre
 {
@@ -675,7 +675,7 @@ public:
 
 ### スクリプトインターフェース
 
-```angelscript
+```cs
 class grid<T>
 {
   grid();
@@ -705,7 +705,7 @@ class grid<T>
 
 ### スクリプトでの使用例
 
-```angelscript
+```cs
 // 5x5 のマップを初期化します
 grid<int> map = {{1,0,1,1,1},
                  {0,0,1,0,0},
@@ -760,7 +760,7 @@ public:
 
 ### スクリプトインターフェース
 
-```angelscript
+```cs
 class any
 {
   any();
@@ -794,7 +794,7 @@ class any
 
 ### スクリプトでの使用例
 
-```angelscript
+```cs
 int value;
 obj object;
 obj @handle;
@@ -1101,7 +1101,7 @@ public:
 
 ### スクリプトインターフェース
 
-```angelscript
+```cs
 // 三角関数
 float cos(float rad);   // コサイン（ラジアン入力）
 float sin(float rad);   // サイン（ラジアン入力）
@@ -1157,7 +1157,7 @@ float を IEEE 754 表現へまたは表現から変換します。2進表現で
 
 ### complex 型
 
-```angelscript
+```cs
 // この型は実部と虚部を持つ複素数を表します
 class complex
 {

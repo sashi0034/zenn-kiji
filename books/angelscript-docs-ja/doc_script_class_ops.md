@@ -67,7 +67,7 @@ title: "演算子オーバーロード (Operator overloads)"
 
 代入式 `a op b` は `a.opfunc(b)` として書き換えられ、最良の一致となるメソッドが使用されます。代入演算子は例えば次のように実装できます：
 
-```angelscript
+```cs
 obj &opAssign(const obj &inout other)
 {
   // 適切な代入を行います
@@ -84,7 +84,7 @@ obj &opAssign(const obj &inout other)
 
 自動生成された `opAssign` が望ましくない場合は、削除済みとしてフラグを立てることで明示的に除外できます：
 
-```angelscript
+```cs
 class MyClass
 {
   MyClass &opAssign(const MyClass &inout) delete;
@@ -120,7 +120,7 @@ class MyClass
 
 インデックス演算子は [プロパティアクセサー](./doc_script_class_prop) と同様の形式でも実装できます。get アクセサーは `get_opIndex` という名前で、インデックスのための1つのパラメータを持ちます。set アクセサーは `set_opIndex` という名前で、インデックス用の最初のパラメータと新しい値のための2番目のパラメータを持ちます。
 
-```angelscript
+```cs
 class MyObj
 {
   float get_opIndex(int idx) const property { return 0; }
@@ -147,7 +147,7 @@ class MyObj
 
 暗黙の変換では、コンパイラは一致する引数を取る対象型の変換コンストラクタを探し（`explicit` としてフラグが立っていないものを）、見つからなければ対象型を返すソース型の `opImplConv` を呼び出そうとします。
 
-```angelscript
+```cs
 class MyObj
 {
   double myValue;
@@ -181,7 +181,7 @@ class MyObj
 
 コンパイラが `foreach` ループをコンパイルしようとする時、コンテナ型に対してメソッドのセットを使用します：
 
-```angelscript
+```cs
 foreach( auto val, auto key : expr )
 {
   ...
@@ -190,7 +190,7 @@ foreach( auto val, auto key : expr )
 
 上記は次のように書かれたかのようにコンパイルされます：
 
-```angelscript
+```cs
 for( auto @container = expr, auto @it = container.opForBegin(); !container.opForEnd(it); @it = container.opForNext(it) )
 {
   auto val = container.opForValue0(it);
