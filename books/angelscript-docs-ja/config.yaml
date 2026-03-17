@@ -55,6 +55,7 @@ chapters:
   - doc_samples
   - doc_using_script_class
   - doc_versions
+  - doc_script_bnf
   - doc_script_datatypes
   - doc_script_global
   - doc_script_function

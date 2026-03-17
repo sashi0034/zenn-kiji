@@ -2,59 +2,59 @@
 title: "シリアライゼーション (Serialization)"
 ---
 
-スクリプトをシリアライズ (保存/直列化) するためには、アプリケーションはスクリプトに関連するすべての変数とオブジェクトをイテレート (反復/巡回) し、後で復元できるようにそれらのコンテンツを保存できなければなりません。単純な値についてはこれは簡単ですが、オブジェクトやハンドルにおいては、オブジェクト間の参照や、スクリプトで定義されたクラスおよびアプリケーションで登録された型の内部構造を追跡する必要があるため、より複雑になります。
+スクリプトをシリアライズするために、アプリケーションはスクリプトに関連するすべての変数やオブジェクトを反復処理し、後で復元できる方法でその内容を保存できる必要があります。単純な値については簡単ですが、オブジェクトやハンドルの場合は、オブジェクト間の参照や、スクリプトで定義されたクラスとアプリケーションで登録された型の両方の構造を追跡する必要があるため、より複雑になります。
 
-変数とオブジェクトメンバーのイテレートについては [リフレクション (reflection)](./doc_adv_reflection) に関する記事ですでに説明されているため、この記事では値の保存と復元に焦点を当てます。
+変数やオブジェクトのメンバーを反復処理する方法については、[リフレクション](./doc_adv_reflection)の記事ですでに説明されているため、この記事では値の保存と復元に焦点を当てます。
 
-シリアライゼーションの実装例としては、[Serializer アドオン](./doc_addon_serializer) のソースコードを参照してください。
+シリアライゼーションのサンプル実装については、[CSerializer アドオン](./doc_addon)のソースコードを参照してください。
 
-参照: [ホットリロードスクリプト](./doc_adv_dynamic_build_hot)
+参照: [ホットリロード](./doc_adv_dynamic_build#ホットリロード)
 
-## モジュールのシリアライゼーション (Serialization of modules)
+## モジュールのシリアライゼーション
 
-スクリプトモジュールをシリアライズするには、すべてのグローバル変数を列挙し、[それぞれをシリアライズ](./doc_serialization_vars) する必要があります。
+スクリプトモジュールをシリアライズするには、すべてのグローバル変数を列挙し、[それぞれをシリアライズ](#グローバル変数のシリアライゼーション)する必要があります。
 
-モジュールをデシリアライズ (復元/逆直列化) する時は、[ソーススクリプト](./doc_compile_script) から、または [事前コンパイル済みバイトコードのロード](./doc_adv_precompile) によって通常通りコンパイルを行いますが、その前に [エンジンプロパティ asEP_INIT_GLOBAL_VARS_AFTER_BUILD をオフにする](#asIScriptEngine::SetEngineProperty) ことでグローバル変数の初期化をオフにしておく必要があります。
+モジュールをデシリアライズするときは、まず[ソーススクリプト](./doc_compile_script)から、または[プリコンパイルされたバイトコードのロード](./doc_adv_precompile)によって通常通りコンパイルしますが、その前に `asIScriptEngine::SetEngineProperty` でエンジンプロパティ `asEP_INIT_GLOBAL_VARS_AFTER_BUILD` をオフにして、グローバル変数の初期化をオフにする必要があります。
 
-## グローバル変数のシリアライゼーション (Serialization of global variables)
+## グローバル変数のシリアライゼーション
 
-グローバル変数をシリアライズするには、その変数のキーとして使用するための名前と名前空間が必要で、次にその変数の型 ID とアドレスが必要になります。これらは [asIScriptModule::GetGlobalVar](#asIScriptModule::GetGlobalVar) と [asIScriptModule::GetAddressOfGlobalVar](#asIScriptModule::GetAddressOfGlobalVar) メソッドで取得できます。もし型 ID がプリミティブ型のものなら、値はそのまま保存できます。もしそれがハンドルや参照の場合は、参照自体とそれが指す対象のオブジェクトをシリアライズする必要があります。もし型 ID がオブジェクト型の場合、[オブジェクトをシリアライズ](./doc_serialization_objects) してそのコンテンツを保存します。
+グローバル変数をシリアライズするには、変数のキーとして使用する名前と名前空間、および変数の型IDとアドレスが必要です。これらは `asIScriptModule::GetGlobalVar` および `asIScriptModule::GetAddressOfGlobalVar` メソッドで取得できます。型IDがプリミティブ型の場合は、値をそのまま保存できます。ハンドルまたは参照の場合は、参照自体とそれが参照するオブジェクトをシリアライズする必要があります。型IDがオブジェクト型の場合は、[オブジェクト](#オブジェクトのシリアライゼーション)とその内容をシリアライズします。
 
-グローバル変数をデシリアライズするには、名前と名前空間を使用してそれを検索し、次に `GetAddressOfGlobalVar` を使用して、シリアライズされたコンテンツで復元する必要があるメモリのアドレスを取得します。
+グローバル変数をデシリアライズするには、名前と名前空間を使用して変数を検索し、`GetAddressOfGlobalVar` を使用して、シリアライズされた内容で復元する必要があるメモリのアドレスを取得します。
 
-## オブジェクトのシリアライゼーション (Serialization of objects)
+## オブジェクトのシリアライゼーション
 
-スクリプトオブジェクトをシリアライズするには、[asIScriptObject](#asIScriptObject) インターフェースを使用してメンバーをイテレートし、コンテンツを保存します。オブジェクトは他のオブジェクトへの参照や、時には自分自身への参照を保持する可能性があることを忘れないでください。そのため、すでにシリアライズされたオブジェクトインスタンスを追跡し、同じオブジェクトが再び現れた場合には単に参照を保存することが重要です。
+スクリプトオブジェクトをシリアライズするには、`asIScriptObject` インターフェースを使用してメンバーを反復処理し、内容を保存します。オブジェクトは他のオブジェクトへの参照、さらには自分自身への参照を保持できるため、すでにシリアライズされたオブジェクトインスタンスを追跡し、同じオブジェクトが再び現れた場合は参照だけを保存することが重要です。
 
-スクリプトオブジェクトをデシリアライズする際は、コンストラクタが実行されないように [asIScriptEngine::CreateUninitializedScriptObject](#asIScriptEngine::CreateUninitializedScriptObject) を使用して最初にメモリを割り当て、その後メンバーをイテレートしてコンテンツを復元すべきです。
+スクリプトオブジェクトをデシリアライズするときは、まず `asIScriptEngine::CreateUninitializedScriptObject` を使用してメモリを割り当て、コンストラクタが実行されないようにしてから、メンバーを反復処理して内容を復元する必要があります。
 
-アプリケーションで登録された型については、スクリプトエンジンはその型の完全なコンテンツを知らず、それゆえにシリアライゼーションのためのインターフェースを提供できないため、あなた自身の実装を提供する必要があります。
+アプリケーション登録型については、スクリプトエンジンが型の完全な内容を知らず、シリアライゼーション用のインターフェースを提供できないため、独自のガードを実装する必要があります。
 
-## コンテキストのシリアライゼーション (Serialization of contexts)
+## コンテキストのシリアライゼーション
 
-スクリプトコンテキストのシリアライゼーションには、すべての関数呼び出し、ローカル変数、レジスタなどを含む完全なコールスタックの保存が含まれます。これを行うには [asIScriptContext](#asIScriptContext) インターフェースを使用します。
+スクリプトコンテキストのシリアライゼーションには、すべての関数呼び出し、ローカル変数、レジスタなどを含む完全なコールスタックの保存が含まれます。これを行うには、`asIScriptContext` インターフェースを使用します。
 
- - コールスタックのサイズを取得するには [GetCallstackSize](#asIScriptContext::GetCallstackSize) を使用します
- - コールスタックの各エントリについて、以下を行います：
-   - レジスタ（プログラムポインタ、スタックポインタなど）を保存するために [GetCallStateRegisters](#asIScriptContext::GetCallStateRegisters) を使用します
-   - 名前のない一時変数を含むすべてのローカル変数を保存するために [GetVarCount](#asIScriptContext::GetVarCount)、[GetVar](#asIScriptContext::GetVar)、および [GetAddressOfVar](#asIScriptContext::GetAddressOfVar) を使用します
-   - その後の関数呼び出しのためにスタックにプッシュされた値を保存するために [GetArgsOnStackCount](#asIScriptContext::GetArgsOnStackCount) と [GetArgOnStack](#asIScriptContext::GetArgOnStack) を使用します
- - 追加のコンテキストレジスタを保存するために [GetStateRegisters](#asIScriptContext::GetStateRegisters) を使用します
- 
+- `GetCallstackSize` を使用してコールスタックのサイズを取得します
+- 各コールスタックエントリに対して以下を行います：
+    - `GetCallStateRegisters` を使用して、プログラムポインタ、スタックポインタなどのレジスタを保存します
+    - `GetVarCount`、`GetVar`、`GetAddressOfVar` を使用して、名前のない一時変数を含むすべてのローカル変数を保存します
+    - `GetArgsOnStackCount` および `GetArgOnStack` を使用して、後続の関数呼び出しのためにスタックにプッシュされた値を保存します
+- `GetStateRegisters` を使用して追加のコンテキストレジスタを保存します
+
 コンテキストをデシリアライズするには、以下の手順に従います：
 
- - デシリアライゼーションが実行されることをコンテキストに伝えるために [StartDeserialization](#asIScriptContext::StartDeserialization) を呼び出します
- - 事前に保存されたコールスタックの各エントリについて、以下を行います：
-   - コールスタック・エントリのための領域を予約するために [PushFunction](#asIScriptContext::PushFunction) を呼び出します
-   - レジスタを復元するために [SetCallStateRegisters](#asIScriptContext::SetCallStateRegisters) を呼び出します
-   - すべてのローカル変数を復元するために [GetVar](#asIScriptContext::GetVar) と [GetAddressOfVar](#asIScriptContext::GetAddressOfVar) を使用します
-   - スタックにプッシュされた値を復元するために [GetArgOnStack](#asIScriptContext::GetArgOnStack) を使用します
- - 追加のコンテキストレジスタを復元するために [SetStateRegisters](#asIScriptContext::SetStateRegisters) を呼び出します
- - シリアライゼーションを完了させ、実行の再開を許可するために [FinishDeserialization](#asIScriptContext::FinishDeserialization) を呼び出します
+- `StartDeserialization` を呼び出して、デシリアライズが行われることをコンテキストに伝えます
+- 以前に保存された各コールスタックエントリに対して以下を行います：
+    - `PushFunction` を呼び出して、コールスタックエントリ用のスペースを予約します
+    - `SetCallStateRegisters` を呼び出してレジスタを復元します
+    - `GetVar` および `GetAddressOfVar` を使用して、すべてのローカル変数を復元します
+    - `GetArgOnStack` を使用して、スタックにプッシュされた値を復元します
+- `SetStateRegisters` を呼び出して、追加のコンテキストレジスタを復元します
+- `FinishDeserialization` を呼び出してシリアライゼーションを完了し、実行の再開を許可します
 
-### 制限事項 (Limitations)
+### 制限事項
 
-以下は、コンテキストのシリアライゼーションに関するいくつかの制限事項です：
+コンテキストのシリアライゼーションにはいくつかの制限があります：
 
- - シリアライゼーションはプラットフォーム依存です。つまり、32ビットプラットフォームでコンテキストをシリアライズし、それを64ビットプラットフォームでデシリアライズすることはできません。逆もまた同様です
- - 変更されたスクリプトの [ホットリロード](./doc_adv_dynamic_build_hot) 後にコンテキストをデシリアライズしようとすると動作が未定義となり、ほぼ確実にクラッシュを引き起こします
+- シリアライゼーションはプラットフォームに依存します。つまり、32ビットプラットフォームでコンテキストをシリアライズし、それを64ビットプラットフォームでデシリアライズすること（またはその逆）はできません。
+- [ホットリロード](./doc_adv_dynamic_build#ホットリロード)でスクリプトが変更された後にコンテキストをデシリアライズしようとすると、動作は未定義になり、ほとんどの場合クラッシュします。
