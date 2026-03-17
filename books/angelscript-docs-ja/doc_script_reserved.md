@@ -64,3 +64,7 @@ _Abc123
 ```
 
 スペース (32)、タブ (9)、キャリッジリターン (13)、ラインフィード (10)、および UTF8 バイトオーダーマーク (U+FEFF) はすべてホワイトスペースとして認識されます。
+
+---
+
+原文: https://www.angelcode.com/angelscript/sdk/docs/manual/doc_script_reserved.html

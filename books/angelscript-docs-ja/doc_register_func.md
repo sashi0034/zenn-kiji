@@ -110,3 +110,7 @@ engine->RegisterObjectMethod("D", "void SomeMethodA()", asFUNCTION(D_SomeMethodA
 ```
 
 仮想継承を持つクラスが多数ある場合は、すべてのプロキシ関数を手動で記述しなくても済むように、テンプレートのプロキシ関数を書くことを検討すると良いでしょう。
+
+---
+
+原文: https://www.angelcode.com/angelscript/sdk/docs/manual/doc_register_func.html

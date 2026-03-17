@@ -178,3 +178,7 @@ void main()
   func(function(int a) {});
 }
 ```
+
+---
+
+原文: https://www.angelcode.com/angelscript/sdk/docs/manual/doc_script_function.html

@@ -164,3 +164,7 @@ r = engine->RegisterObjectBehaviour("myTemplate<float>", asBEHAVE_FACTORY, "myTe
 // グローバルなテンプレート関数を登録する
 r = engine->RegisterGlobalFunction("T Test<T, U>(T t, U u)", asFUNCTION(ScriptTestGen), asCALL_GENERIC); assert( r >= 0 );
 ```
+
+---
+
+原文: https://www.angelcode.com/angelscript/sdk/docs/manual/doc_adv_template.html

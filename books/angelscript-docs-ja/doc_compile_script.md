@@ -76,3 +76,7 @@ void LoadScriptFile(const char *fileName, string &script)
 AngelScript はファイル自体をロードしないため、スクリプト内から他のファイルをインクルードするための組み込みサポートもありません。しかし、アドオンディレクトリを見ると、このサポートおよびそれ以上の機能を提供する [CScriptBuilder](./doc_addon_build) クラスがあります。これはファイルのロード、前処理パスの実行、そしてモジュールのビルドを行うためのヘルパークラスです。スクリプトビルダーの使用例は [Hello World](./doc_hello_world) で確認できます。
 
 参照: [事前コンパイル済みバイトコード](./doc_adv_precompile)
+
+---
+
+原文: https://www.angelcode.com/angelscript/sdk/docs/manual/doc_compile_script.html

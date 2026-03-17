@@ -284,3 +284,7 @@ class MyDerived : MyBase
 :::message
 コンストラクタや初期化がクラスのメソッドを呼び出す場合に注意してください。クラスのメソッドは派生クラスでオーバーライドできるため、基底クラスが派生クラスのメンバーが初期化される前に誤ってアクセスしてしまう可能性があります。
 :::
+
+---
+
+原文: https://www.angelcode.com/angelscript/sdk/docs/manual/doc_script_class.html

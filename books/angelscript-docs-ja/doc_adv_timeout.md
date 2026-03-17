@@ -88,3 +88,7 @@ int ExecuteScriptWithTimeOut(asIScriptContext *ctx)
 ```
 
 この方法によるアプローチは、AngelScript ライブラリが [マルチスレッドのサポート](./doc_adv_multithread) なしでビルドされている場合でも安全に機能することに注目してください。
+
+---
+
+原文: https://www.angelcode.com/angelscript/sdk/docs/manual/doc_adv_timeout.html

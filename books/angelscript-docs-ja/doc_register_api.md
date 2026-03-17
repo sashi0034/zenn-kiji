@@ -17,3 +17,7 @@ C++ における文字列型にはデファクトスタンダードがないた�
 コールバックルーチンの実装など、スクリプトからアプリケーションへ関数ポインタを渡すことを許可したい場合は、[関数定義 (Function definitions)](#asIScriptEngine::RegisterFuncdef) を登録できます。
 
 スクリプトの可読性を向上させるために、[列挙型 (Enumeration types)](#asIScriptEngine::RegisterEnum) や [型定義 (typedefs)](#asIScriptEngine::RegisterTypedef) を登録することも可能です。
+
+---
+
+原文: https://www.angelcode.com/angelscript/sdk/docs/manual/doc_register_api.html

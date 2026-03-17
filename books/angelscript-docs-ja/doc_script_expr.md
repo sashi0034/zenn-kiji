@@ -299,3 +299,7 @@ funcExpectsAnArrayOfInts({1,2,3,4});
 ```angelscript
 funcExpectsAnArray(array<int> = {1,2,3,4});
 ```
+
+---
+
+原文: https://www.angelcode.com/angelscript/sdk/docs/manual/doc_script_expr.html

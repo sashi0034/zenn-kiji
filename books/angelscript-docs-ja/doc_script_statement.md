@@ -235,3 +235,7 @@ void main()
 ```
 
 参照: [グローバルの 'using namespace'](./doc_script_global)
+
+---
+
+原文: https://www.angelcode.com/angelscript/sdk/docs/manual/doc_script_statements.html

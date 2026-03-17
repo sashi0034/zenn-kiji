@@ -47,3 +47,7 @@ void MyGenericFunction(asIScriptGeneric *gen)
 戻り値の型がハンドルである場合、`GetAddressOfReturnLocation` は null ポインタを保持する場所を参照するため、関数が null を返す場合は何もしなくて構いません。プリミティブの場合、それは未定義の値になるため、値が重要であればそれを設定しなければなりません。呼び出し元の関数によってすでに事前割り当てされた場所で返される値型のオブジェクトの場合、[SetException](#asIScriptContext::SetException) で例外が設定されていない限り、関数はその場所で戻り値を初期化しなければなりません。
 
 関数が `@+` を返すように登録されている場合、ネイティブな呼び出し規約のために行われるのと同様に、スクリプトエンジンは [自動的に参照カウントをインクリメント](./doc_obj_handle_4) します。
+
+---
+
+原文: https://www.angelcode.com/angelscript/sdk/docs/manual/doc_generic.html

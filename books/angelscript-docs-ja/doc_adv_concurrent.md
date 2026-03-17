@@ -83,3 +83,7 @@ void RemoveTimeoutForContext()
 マルチスレッドのルーチンはターゲットシステムに大きく依存して異なるのが一般的であることに注意してください。上記のコードは Windows 向けであり、他のシステムで動作させるためには適応が必要になる可能性が高いです。
 
 参照: [Context manager アドオン](./doc_addon_ctxmgr)、[Concurrent scripts サンプル](./doc_samples_concurrent)、[コルーチン](./doc_adv_coroutine)
+
+---
+
+原文: https://www.angelcode.com/angelscript/sdk/docs/manual/doc_adv_concurrent.html

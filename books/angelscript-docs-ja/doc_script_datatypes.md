@@ -248,3 +248,7 @@ auto@ b = getObject();  // より明示的にしたい場合は @auto も使用�
 ```
 
 オートハンドルはクラスメンバーの宣言には使用できません。解決がコンストラクタに依存するためです。
+
+---
+
+原文: https://www.angelcode.com/angelscript/sdk/docs/manual/doc_script_datatypes.html

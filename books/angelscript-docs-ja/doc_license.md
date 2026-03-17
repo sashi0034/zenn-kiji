@@ -16,3 +16,7 @@ Copyright &copy; 2003-2025 Andreas J&ouml;nsson
 2. ソースを改変したバージョンには、その旨が明確に表記されていなければならず、オリジナルソフトウェアであると偽ってはなりません。
 
 3. これらの表示については、いかなるソースの頒布においても削除および改変してはなりません。
+
+---
+
+原文: https://www.angelcode.com/angelscript/sdk/docs/manual/doc_license.html

@@ -75,3 +75,7 @@ obj *ChooseObj(obj *a, obj *b)
 ```
 
 自動ハンドルは [ジェネリック呼び出し規約](./doc_generic) でも同様に機能します。
+
+---
+
+原文: https://www.angelcode.com/angelscript/sdk/docs/manual/doc_obj_handle.html

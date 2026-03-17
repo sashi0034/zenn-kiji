@@ -129,3 +129,7 @@ void main()
 ```
 
 複合代入は現在インデックス付きプロパティでは動作しません。
+
+---
+
+原文: https://www.angelcode.com/angelscript/sdk/docs/manual/doc_script_class_prop.html

@@ -84,3 +84,7 @@ title: "バージョン (Versions)"
 
 ### 2025年 - foreach、可変長引数、およびテンプレート関数
 バージョン 2.38.0 では、foreach ループ、可変長引数、およびテンプレート関数のサポートが実装されました。
+
+---
+
+原文: https://www.angelcode.com/angelscript/sdk/docs/manual/doc_versions.html

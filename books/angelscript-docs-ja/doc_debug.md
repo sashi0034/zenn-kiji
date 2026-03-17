@@ -131,3 +131,7 @@ void PrintVariables(asIScriptContext *ctx, asUINT stackLevel)
 ## 内部的に実行されたスクリプトのデバッグ (Debugging internally executed scripts)
 
 いくつかのスクリプトの実行はアプリケーションによって明示的に開始されるわけではありません。例えば、ガベージコレクターがオブジェクトを破棄する際に呼び出されるグローバル変数の初期化やスクリプトクラスのデストラクタの呼び出しなどです。もしこれらの実行をデバッグしたい場合は、アプリケーションは [SetContextCallbacks](#asIScriptEngine::SetContextCallbacks) メソッドの呼び出しでコンテキストのコールバック関数を設定しなければなりません。エンジンは内部でスクリプトを実行するたびにこれらのコールバックを呼び出し、アプリケーションにそのためのコンテキストを要求します。アプリケーションは、エンジンに提供するコンテキストに対してデバッガをアタッチ（接続）することができます。
+
+---
+
+原文: https://www.angelcode.com/angelscript/sdk/docs/manual/doc_debug.html

@@ -148,3 +148,7 @@ iOS および Android 用に Marmalade で AngelScript をコンパイルする�
 これに基づくと、実行速度に最適化した場合、エンジンと VM は約 300KB の容量を占め、コンパイラはさらに 350KB、アドオンはさらに 150KB を追加すると結論づけることができます。
 
 > **Note**: これらのテストは、MSVC 2012 およびライブラリのバージョン 2.30.2 で実施されました。
+
+---
+
+原文: https://www.angelcode.com/angelscript/sdk/docs/manual/doc_compile_lib.html

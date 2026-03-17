@@ -97,3 +97,7 @@ AngelScript の開発は2003年2月に始まり、2003年3月28日に最も基�
 - [予約語](./doc_script_reserved)
 - [言語の文法 (EBNF)](./doc_script_bnf)
 - [標準ライブラリ](./doc_script_stdlib)
+
+---
+
+原文: https://www.angelcode.com/angelscript/sdk/docs/manual/index.html

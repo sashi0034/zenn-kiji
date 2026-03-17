@@ -246,3 +246,7 @@ void Foo(asIScriptEngine *engine)
   obj->Release();
 }
 ```
+
+---
+
+原文: https://www.angelcode.com/angelscript/sdk/docs/manual/doc_adv_inheritappclass.html

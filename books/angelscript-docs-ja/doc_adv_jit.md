@@ -116,3 +116,7 @@ int CJITCompiler::CompileFunction(asIScriptFunction *func, asJITFunction *output
  - `asBC_SWORDARG2`
 
 各 [バイトコード命令](./doc_adv_jit_1) が何を行うかは別ページで説明されていますが、各バイトコード命令の正確な実装は VM の実装、つまり `asCScriptContext::ExecuteNext` メソッドから最もよく判断できます。
+
+---
+
+原文: https://www.angelcode.com/angelscript/sdk/docs/manual/doc_adv_jit.html

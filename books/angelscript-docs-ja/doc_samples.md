@@ -150,3 +150,7 @@ Debugging, waiting for commands. Type 'h' for help.
  - スクリプトビルダー
  - ハンドル
  - 共有スクリプトエンティティ
+
+---
+
+原文: https://www.angelcode.com/angelscript/sdk/docs/manual/doc_samples.html

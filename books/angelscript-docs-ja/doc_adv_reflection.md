@@ -35,3 +35,7 @@ title: "リフレクション (Reflection)"
 上記のメソッドの多くは、それぞれの変数、プロパティ、または関数の引数の型を記述する、型ID (type id) と呼ばれる戻り値を返します。多くの場合、型IDは直接ビットフィールドとして検査され、その型が何であるかに関する必要な情報を取得できます。下位ビットは単なるシーケンス番号であり、最初の12個の番号が組み込みのプリミティブ型を表し、それ以上のものはアプリケーションが登録した型またはスクリプトが宣言した型のいずれかを表します。上位ビットは、その型がプリミティブ、オブジェクト、またはハンドルのいずれを表すかを示します。型IDに必要な検証を行うには [asETypeIdFlags](#asETypeIdFlags) のフラグを使用してください。
 
 オブジェクト型を表す型IDの場合、その型が何であるかのさらに詳しい情報を得るために、[asITypeInfo](#asITypeInfo) インスタンスを取得する必要があるかもしれません。型ID から [asITypeInfo](#asITypeInfo) へ変換するには、[GetTypeInfoById](#asIScriptEngine::GetTypeInfoById) メソッドが使用されます。
+
+---
+
+原文: https://www.angelcode.com/angelscript/sdk/docs/manual/doc_adv_reflection.html

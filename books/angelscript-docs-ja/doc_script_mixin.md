@@ -98,3 +98,7 @@ class C : M
   void b() { print("hello from b"); }
 }
 ```
+
+---
+
+原文: https://www.angelcode.com/angelscript/sdk/docs/manual/doc_script_mixin.html

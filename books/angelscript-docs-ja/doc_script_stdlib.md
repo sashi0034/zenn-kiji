@@ -491,3 +491,7 @@ filesystem は、アプリケーションが [そのサポートを登録](./doc
 **`int exec(const string &in cmd)`**  
 **`int exec(const string &in cmd, string &out output)`**  
 システムコマンドを実行します。エラー時は -1 を返すか例外が発生します。成功時はシステムコマンドの終了コードを返します。2番目のバリアントは stdout を文字列にキャプチャできます。
+
+---
+
+原文: https://www.angelcode.com/angelscript/sdk/docs/manual/doc_script_stdlib.html

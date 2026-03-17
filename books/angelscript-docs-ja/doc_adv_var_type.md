@@ -63,3 +63,7 @@ void func_g(asIScriptGeneric *gen)
 ```
 
 参照: [文字列アドオン](./doc_addon_std_string) における `format` と `scan` の実装。
+
+---
+
+原文: https://www.angelcode.com/angelscript/sdk/docs/manual/doc_adv_var_type.html

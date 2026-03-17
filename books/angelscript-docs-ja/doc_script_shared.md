@@ -44,3 +44,7 @@ external shared void GlobalFunc();
 現在は [クラス](./doc_script_class)、[インターフェース](./doc_script_global)、[関数](./doc_script_function)、[列挙型](./doc_script_global)、および [funcdefs](./doc_script_datatypes) エンティティのみが共有できます。
 
 将来のバージョンでは [グローバル変数](./doc_script_global) も共有できるようになる可能性があります。
+
+---
+
+原文: https://www.angelcode.com/angelscript/sdk/docs/manual/doc_script_shared.html

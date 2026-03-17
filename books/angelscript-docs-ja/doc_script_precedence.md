@@ -41,3 +41,7 @@ title: "演算子の優先順位 (Operator precedence)"
 | `or \|\|` | 論理 OR |
 | `?:` | 条件 |
 | `= += -= *= /= %= **= &= \|= ^= <<= >>= >>>=` | 代入と複合代入 |
+
+---
+
+原文: https://www.angelcode.com/angelscript/sdk/docs/manual/doc_script_precedence.html

@@ -50,3 +50,7 @@ int CompileScript(asIScriptEngine *engine, const char *script, int type)
  - [型の個々のメソッド](#asIScriptEngine::RegisterObjectMethod)
  - [型の個々のプロパティ](#asIScriptEngine::RegisterObjectProperty)
  - [個々のオブジェクトの振る舞い (behaviours)](#asIScriptEngine::RegisterObjectBehaviour)
+
+---
+
+原文: https://www.angelcode.com/angelscript/sdk/docs/manual/doc_adv_access_mask.html

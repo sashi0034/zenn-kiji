@@ -17,3 +17,7 @@ AngelScript は設定グループ (configuration groups) の概念をサポー�
  - [ガベージコレクター](./doc_gc) のフルサイクルを実行して、残留しているオブジェクトを破棄する
  - このグループを使ってコンパイルされた可能性のあるすべてのモジュールを [破棄 (Discard)](#asIScriptEngine::DiscardModule) する
  - 他のグループがこのグループのエンティティを使用していないかを再確認する
+
+---
+
+原文: https://www.angelcode.com/angelscript/sdk/docs/manual/doc_adv_dynamic_config.html

@@ -54,3 +54,7 @@ engine->SetTranslateAppExceptionCallback(asFUNCTION(TranslateException), 0, asCA
 ## longjmp
 
 一部のアプリケーションはエラー処理のために `longjmp` を使用します。以前に保存された状態へと `longjmp` を実行する際、コードには状態が保存された「後」のすべての出来事に対するクリーンアップを実行する機会がありません。そのため、関数の中から `longjmp` を実行し得るような関数をアプリケーションが登録してはなりません。そのようなことをすれば、仮想マシンが未定義の（予測不可能な）状態に陥る可能性があるためです。
+
+---
+
+原文: https://www.angelcode.com/angelscript/sdk/docs/manual/doc_cpp_exceptions.html

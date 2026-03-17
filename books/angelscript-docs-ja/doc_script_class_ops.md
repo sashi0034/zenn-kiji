@@ -204,3 +204,7 @@ for( auto @container = expr, auto @it = container.opForBegin(); !container.opFor
 コンテナが単一の値のみをサポートする場合は `opForValue` 演算子を使用できますが、そうでない場合は複数の番号付き `opForValue#` 演算子を使用しなければなりません。
 
 参照: [ステートメント](./doc_script_statement)
+
+---
+
+原文: https://www.angelcode.com/angelscript/sdk/docs/manual/doc_script_class_ops.html

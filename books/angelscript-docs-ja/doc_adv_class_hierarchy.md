@@ -108,3 +108,7 @@ void RegisterTypes(asIScriptEngine *engine)
   RegisterDerivedMembers<derived>(engine, "derived");
 }
 ```
+
+---
+
+原文: https://www.angelcode.com/angelscript/sdk/docs/manual/doc_adv_class_hierarchy.html

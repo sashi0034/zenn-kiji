@@ -86,3 +86,7 @@ void Execute()
 ```
 
 参照: [Context manager アドオン](./doc_addon_ctxmgr)、[Co-routines サンプル](./doc_samples_corout)、[並行スクリプト](./doc_adv_concurrent)
+
+---
+
+原文: https://www.angelcode.com/angelscript/sdk/docs/manual/doc_adv_coroutine.html

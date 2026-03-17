@@ -61,3 +61,7 @@ engine->SetEngineProperty(asEP_USE_CHARACTER_LITERALS, true);
 ```
 
 この場合、`asEP_SCRIPT_SCANNER` プロパティが重要になります。ASCII 文字は 0 から 255 の間の値しか表現できませんが、Unicode 文字は 0 から 1,114,111 の間の値を表現できるためです。
+
+---
+
+原文: https://www.angelcode.com/angelscript/sdk/docs/manual/doc_strings.html

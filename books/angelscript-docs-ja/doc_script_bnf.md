@@ -73,3 +73,7 @@ BITS          ::= '0'[bBoOdDxX][0-9A-Fa-f]+         // 単一トークン: 2進�
 COMMENT       ::= ('//'[^\#x0A]*) | ('/*'[^*]*'*/')  // 単一トークン: // で始まって改行で終わるか、/* で始まって */ で終わります
 WHITESPACE    ::= [ \#x09\#x0A\#x0D]+                  // 単一トークン: スペース、タブ、キャリッジリターン、ラインフィード、および UTF8 バイトオーダーマーク
 ```
+
+---
+
+原文: https://www.angelcode.com/angelscript/sdk/docs/manual/doc_script_bnf.html

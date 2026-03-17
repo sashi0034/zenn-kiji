@@ -1283,3 +1283,7 @@ public:
 ```
 
 スクリプトインターフェースについては [標準ライブラリ](./doc_script_stdlib) を参照してください。
+
+---
+
+原文: https://www.angelcode.com/angelscript/sdk/docs/manual/doc_addon.html

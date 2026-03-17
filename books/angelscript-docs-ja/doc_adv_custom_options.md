@@ -157,3 +157,7 @@ JITコンパイルが適切に機能するためには、バイトコード実�
 
 [asEP_NO_DEBUG_OUTPUT](#asEP_NO_DEBUG_OUTPUT)
 ライブラリが `AS_DEBUG` でビルドされた時、デフォルトで `AS_DEBUG` フォルダへデバッグ出力が書き込まれます。このエンジンプロパティをオンにすることで、このデバッグ出力を無効にすることができます。
+
+---
+
+原文: https://www.angelcode.com/angelscript/sdk/docs/manual/doc_adv_custom_options.html

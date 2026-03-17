@@ -105,3 +105,7 @@ title: "関数定義とスクリプトのコールバック関数 (Funcdefs and 
 :::message
 デリゲートは `asIScriptFunction` インターフェースを使用しますが、実際の関数ではありません。このため、デリゲートはどのモジュールにも所有されません（つまり [GetModule](#asIScriptFunction::GetModule) は常に null を返します）。同様に、特定の関数 ID も持ちません（つまり [GetId](#asIScriptFunction::GetId) は 0 を返します）。
 :::
+
+---
+
+原文: https://www.angelcode.com/angelscript/sdk/docs/manual/doc_callbacks.html

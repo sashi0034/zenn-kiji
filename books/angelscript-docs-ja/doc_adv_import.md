@@ -11,3 +11,7 @@ title: "関数のインポート (Import functions)"
 よりきめ細かな制御を行いたい場合、アプリケーションは [GetImportedFunctionCount](#asIScriptModule::GetImportedFunctionCount)、[GetImportedFunctionDeclaration](#asIScriptModule::GetImportedFunctionDeclaration)、[GetImportedFunctionSourceModule](#asIScriptModule::GetImportedFunctionSourceModule)、[GetFunctionByDecl](#asIScriptModule::GetFunctionByDecl)、および [BindImportedFunction](#asIScriptModule::BindImportedFunction) の各メソッドを使用して、インポートされた関数を1つずつ列挙してバインドし、もしアプリケーションが許可していない関数をスクリプトがインポートしようとした場合にはエラーを発生させるべきです。
 
 関数のインポート機能が共有エンティティ (`shared`) よりも優れているもう1つの利点は、提供元 (sourcing) のモジュールを変更する必要がある場合に、インポートされた関数のバインドを解除し、その後別のスクリプトモジュールに再バインドできることです。バインドされた関数のバインドを解除するには、[UnbindAllImportedFunctions](#asIScriptModule::UnbindAllImportedFunctions) または [UnbindImportedFunction](#asIScriptModule::UnbindImportedFunction) メソッドを使用します。
+
+---
+
+原文: https://www.angelcode.com/angelscript/sdk/docs/manual/doc_adv_import.html

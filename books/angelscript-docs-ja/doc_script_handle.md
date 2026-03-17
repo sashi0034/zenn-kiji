@@ -128,3 +128,7 @@ const obj @ const d = obj(); // 変更不可能なオブジェクトへの読み
 ```
 
 読み取り専用ハンドルは宣言時にのみ初期化できます。
+
+---
+
+原文: https://www.angelcode.com/angelscript/sdk/docs/manual/doc_script_handle.html

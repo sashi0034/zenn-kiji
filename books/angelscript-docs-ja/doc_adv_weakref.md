@@ -79,3 +79,7 @@ engine->RegisterObjectBehaviour("MyClass", asBEHAVE_GET_WEAKREF_FLAG, "int &f()"
 ```
 
 スクリプト言語自体には、弱参照用の組み込みの構文はありません。その代わりに、スクリプト内でこのサポートを提供したいアプリケーションのために、これを提供する標準の [weakref アドオン](./doc_addon_weakref) が実装されています。
+
+---
+
+原文: https://www.angelcode.com/angelscript/sdk/docs/manual/doc_adv_weakref.html

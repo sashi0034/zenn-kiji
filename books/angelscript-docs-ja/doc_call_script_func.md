@@ -155,3 +155,7 @@ void PrintExceptionInfo(asIScriptContext *ctx)
 希望する場合は、[SetExceptionCallback](#asIScriptContext::SetExceptionCallback) を使用して、例外が発生した瞬間（[Execute](#asIScriptContext::Execute) メソッドが戻る前）に呼び出されるコールバック関数を登録することも可能です。例外コールバックはその後、[WillExceptionBeCaught](#asIScriptContext::WillExceptionBeCaught) を使用して、例外が [スクリプト内でキャッチされる](./try_catch) のか、それとも実行を中断させるのかを判断することができます。
 
 参照: コールスタックの調査については [デバッグ](./doc_debug) を、例外情報を取得するためのヘルパー関数については [GetExceptionInfo アドオン](./doc_addon_helpers) を参照してください。
+
+---
+
+原文: https://www.angelcode.com/angelscript/sdk/docs/manual/doc_call_script_func.html

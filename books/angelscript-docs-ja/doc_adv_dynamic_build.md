@@ -53,3 +53,7 @@ title: "動的なビルド (Dynamic compilations)"
  - [スクリプトコンテキストをシリアライズ](./doc_serialization_contexts) することは可能ですが、コンテキストのコールスタック上の関数が変更されている場合、プログラムの（プログラムカウンタ的な）位置を確実に復元することはできません。そのため、ホットリロード時にはコンテキストを中止させて長時間実行スクリプトを再起動できるようにアプリケーションを設計するか、または複数のフレームにまたがって実行されるスクリプトを完全に避け、ホットリロード時にアクティブなコンテキストが全くないようにすることを推奨します。
 
 参照: [Serializer アドオン](./doc_addon_serializer)、[シリアライゼーション](./doc_serialization)
+
+---
+
+原文: https://www.angelcode.com/angelscript/sdk/docs/manual/doc_adv_dynamic_build.html

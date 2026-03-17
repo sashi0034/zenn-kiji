@@ -41,3 +41,7 @@ void RegisterProperties(asIScriptEngine *engine)
 > **Note**: 仮想プロパティの動作は、プロパティ設定 [asEP_PROPERTY_ACCESSOR_MODE](./doc_adv_custom_options_lang_mod) を用いてカスタマイズすることができます。
 
 参照: [型の登録](./doc_register_type)
+
+---
+
+原文: https://www.angelcode.com/angelscript/sdk/docs/manual/doc_register_prop.html

@@ -85,3 +85,7 @@ AngelScript は常にポインタの有効性を保証する必要があるた�
 | `const &inout` | 参照されるオブジェクトは読み取り専用になります。 |
 
 もしアプリケーションが C++ と同様に機能するパラメータ参照を望む場合は、[エンジンプロパティを設定する](./doc_adv_custom_options) ことで許可できます。
+
+---
+
+原文: https://www.angelcode.com/angelscript/sdk/docs/manual/doc_as_vs_cpp_types.html

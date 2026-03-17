@@ -126,3 +126,7 @@ engine->RegisterInterface("IMyObj");
 // インターフェースへのハンドルを返す関数を登録します
 engine->RegisterGlobalFunction("IMyObj @ReturnMyObj()", asFUNCTION(ReturnMyObj), asCALL_CDECL);
 ```
+
+---
+
+原文: https://www.angelcode.com/angelscript/sdk/docs/manual/doc_using_script_class.html

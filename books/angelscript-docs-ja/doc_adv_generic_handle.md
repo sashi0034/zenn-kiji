@@ -21,3 +21,7 @@ AngelScript には、すべてのオブジェクト型に共通の分母（基�
 これが非常に便利な型でありながらカスタマイズの必要性がほとんどないため、この実装を備えた標準アドオンが SDK に同梱されています。
 
 参照: [ハンドルアドオン](./doc_addon_handle)
+
+---
+
+原文: https://www.angelcode.com/angelscript/sdk/docs/manual/doc_adv_generic_handle.html

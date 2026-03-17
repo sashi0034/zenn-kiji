@@ -490,3 +490,7 @@ void MyStruct_set_array(unsigned int idx, int value, MyStruct *o)
 r = engine->RegisterObjectMethod("mytype", "int get_array(uint) property", asFUNCTION(MyStruct_get_array), asCALL_CDECL_OBJLAST); assert( r >= 0 );
 r = engine->RegisterObjectMethod("mytype", "void set_array(uint, int) property", asFUNCTION(MyStruct_set_array), asCALL_CDECL_OBJLAST); assert( r >= 0 );
 ```
+
+---
+
+原文: https://www.angelcode.com/angelscript/sdk/docs/manual/doc_register_type.html

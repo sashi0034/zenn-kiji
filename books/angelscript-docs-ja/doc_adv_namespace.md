@@ -46,3 +46,7 @@ void FindFuncInNamespace(asIScriptModule *module)
   assert( funcA == funcB );
 }
 ```
+
+---
+
+原文: https://www.angelcode.com/angelscript/sdk/docs/manual/doc_adv_namespace.html

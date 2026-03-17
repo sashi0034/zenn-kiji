@@ -178,3 +178,7 @@ void main()
 `using namespace` がグローバルに、または名前空間内で使用される場合、指定された名前空間のシンボルはその外包名前空間全体で可視になります。
 
 参照: [ステートメント 'using namespace'](./doc_script_statement)
+
+---
+
+原文: https://www.angelcode.com/angelscript/sdk/docs/manual/doc_script_global.html

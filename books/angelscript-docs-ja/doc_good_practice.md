@@ -28,3 +28,7 @@ r = engine->RegisterGlobalFunction("void func()", asFUNCTION(func), asCALL_CDECL
 VM（仮想マシン）は、スクリプト内で発生したあらゆる例外に関する詳細情報を提供することができます。例えば、どの関数のコードの何行目で問題が発生したかなどです。必要であれば、コールスタックや、さらにはローカル変数を列挙することも可能です。
 
 詳細は [スクリプト関数の呼び出しについて](./doc_call_script_4) を参照してください。
+
+---
+
+原文: https://www.angelcode.com/angelscript/sdk/docs/manual/doc_good_practice.html

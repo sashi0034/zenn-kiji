@@ -153,3 +153,7 @@ void CGCRef2::ReleaseAllReferences(asIScriptEngine *engine)
 ADDREF と RELEASE の振る舞いをスレッドセーフにするのは、[asAtomicInc](#asAtomicInc) と [asAtomicDec](#asAtomicDec) を使用することで簡単に実現できます。オブジェクトの内容のメモリレイアウトが変更されない（例えば静的なコンテナである）場合、ENUMREFS はすでにスレッドセーフです。しかし、動的配列やハッシュマップのようにメモリレイアウトが変更され得る場合は、ENUMREFS の内容に対する反復処理（イテレーション）の途中でメモリが変更された場合に備えて、壊れないように反復処理を保護しなければなりません。
 
 参照: [ガベージコレクション (Garbage collection)](./doc_gc_threads)
+
+---
+
+原文: https://www.angelcode.com/angelscript/sdk/docs/manual/doc_gc_object.html
