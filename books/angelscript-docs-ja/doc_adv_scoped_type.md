@@ -49,7 +49,7 @@ r = engine->RegisterGlobalFunction("scoped @Foo(const scoped &in)", asFUNCTION(F
 
 スコープ付きの型は実際にはハンドルをサポートしていませんが、この関数がハンドルによってスコープ付きの値を返すように登録されている点に注目してください。これは、AngelScript が受け取った値の処理を終えた後に、返されたインスタンスに対して Release を呼び出すようにするために行われます。
 
-参照: [参照型の登録](./doc_reg_basicref)
+参照: [参照型の登録](./doc_register_type#参照型の登録-registering-a-reference-type)
 
 ---
 

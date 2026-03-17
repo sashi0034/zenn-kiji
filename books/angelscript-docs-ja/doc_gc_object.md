@@ -11,7 +11,7 @@ r = engine->RegisterObjectType("ref_type", 0, asOBJ_REF | asOBJ_GC); assert( r >
 
 ガベージコレクション対応型と非対応型の違いは、`addref` と `release` の振る舞い、クラスコンストラクタ、そして追加のサポート用の振る舞いにあります。
 
-ガベージコレクション対応オブジェクトの例については、[辞書 (dictionary)](./doc_addon_dict) アドオンを参照してください。
+ガベージコレクション対応オブジェクトの例については、[辞書 (dictionary)](./doc_addon#dictionary-オブジェクト) アドオンを参照してください。
 
 ## GC サポート用の振る舞い (GC support behaviours)
 
@@ -124,7 +124,7 @@ r = engine->RegisterObjectBehaviour("ref", asBEHAVE_RELEASEREFS, "void f(int&in)
 
 値型については、`asBEHAVE_ENUMREFS` と `asBEHAVE_RELEASEREFS` のみを登録する必要があります。これらは参照型の場合と同じように動作します。つまり、`asBEHAVE_ENUMREFS` は保持しているすべての参照についてエンジンの `GCEnumCallback` を呼び出すべきであり、`asBEHAVE_RELEASEREFS` は保持しているすべての参照をクリアするべきです。
 
-GCの振る舞いを持つ値型をメンバとして含む参照型は、自身の `asBEHAVE_ENUMREFS` と `asBEHAVE_RELEASEREFS` の呼び出しを、メンバである値型へ転送（forward）するように適応させる必要があります。この転送は、それぞれエンジンの [ForwardGCEnumReferences](#asIScriptEngine::ForwardGCEnumReferences) または [ForwardGCReleaseReferences](#asIScriptEngine::ForwardGCReleaseReferences) を呼び出すことによって行われます。
+GCの振る舞いを持つ値型をメンバとして含む参照型は、自身の `asBEHAVE_ENUMREFS` と `asBEHAVE_RELEASEREFS` の呼び出しを、メンバである値型へ転送（forward）するように適応させる必要があります。この転送は、それぞれエンジンの `ForwardGCEnumReferences` または `ForwardGCReleaseReferences` を呼び出すことによって行われます。
 
 ```cpp
 void CGCRef2::EnumReferences(asIScriptEngine *engine)
@@ -144,15 +144,15 @@ void CGCRef2::ReleaseAllReferences(asIScriptEngine *engine)
 }
 ```
 
-参照: GCの振る舞いを持つ値型の例としての [handle アドオン](./doc_addon_handle)、およびGCの振る舞いを持つ値型を含むことができる参照型の例としての [dictionary アドオン](./doc_addon_dict)。
+参照: GCの振る舞いを持つ値型の例としての [handle アドオン](./doc_addon#handle-オブジェクト)、およびGCの振る舞いを持つ値型を含むことができる参照型の例としての [dictionary アドオン](./doc_addon#dictionary-オブジェクト)。
 
 ## ガベージコレクション対応オブジェクトとマルチスレッド (Garbage collected objects and multi-threading)
 
-もしあなたが [自動ガベージコレクション](./doc_adv_custom_options_engine) を有効にした状態で複数のスレッドからスクリプトを実行する予定がある場合、またはバックグラウンドスレッドから手動でガベージコレクターを実行する予定がある場合は、ガベージコレクターをサポートするオブジェクト型の振る舞い（behaviours）が**スレッドセーフ**であることを保証しなければなりません。特に ADDREF、RELEASE、そして ENUMREFS の振る舞いは、複数のスレッドから同時に呼び出される確率が高くなります。RELEASEREFS の振る舞いは、ガベージコレクターがそのオブジェクトが既にデッドであると判断した時にのみ呼び出されるため、複数のスレッドによって呼び出されないことが保証されています。その他の GETREFCOUNT、SETGCFLAG、および GETGCFLAG は、ガベージコレクターがその情報を単にヒントとして使用するだけなので、さほど敏感ではありません。
+もしあなたが [自動ガベージコレクション](./doc_adv_custom_options#エンジンの振る舞い-engine-behaviours) を有効にした状態で複数のスレッドからスクリプトを実行する予定がある場合、またはバックグラウンドスレッドから手動でガベージコレクターを実行する予定がある場合は、ガベージコレクターをサポートするオブジェクト型の振る舞い（behaviours）が**スレッドセーフ**であることを保証しなければなりません。特に ADDREF、RELEASE、そして ENUMREFS の振る舞いは、複数のスレッドから同時に呼び出される確率が高くなります。RELEASEREFS の振る舞いは、ガベージコレクターがそのオブジェクトが既にデッドであると判断した時にのみ呼び出されるため、複数のスレッドによって呼び出されないことが保証されています。その他の GETREFCOUNT、SETGCFLAG、および GETGCFLAG は、ガベージコレクターがその情報を単にヒントとして使用するだけなので、さほど敏感ではありません。
 
-ADDREF と RELEASE の振る舞いをスレッドセーフにするのは、[asAtomicInc](#asAtomicInc) と [asAtomicDec](#asAtomicDec) を使用することで簡単に実現できます。オブジェクトの内容のメモリレイアウトが変更されない（例えば静的なコンテナである）場合、ENUMREFS はすでにスレッドセーフです。しかし、動的配列やハッシュマップのようにメモリレイアウトが変更され得る場合は、ENUMREFS の内容に対する反復処理（イテレーション）の途中でメモリが変更された場合に備えて、壊れないように反復処理を保護しなければなりません。
+ADDREF と RELEASE の振る舞いをスレッドセーフにするのは、`asAtomicInc` と `asAtomicDec` を使用することで簡単に実現できます。オブジェクトの内容のメモリレイアウトが変更されない（例えば静的なコンテナである）場合、ENUMREFS はすでにスレッドセーフです。しかし、動的配列やハッシュマップのようにメモリレイアウトが変更され得る場合は、ENUMREFS の内容に対する反復処理（イテレーション）の途中でメモリが変更された場合に備えて、壊れないように反復処理を保護しなければなりません。
 
-参照: [ガベージコレクション (Garbage collection)](./doc_gc_threads)
+参照: [ガベージコレクション (Garbage collection)](./doc_gc#ガベージコレクションとマルチスレッド-garbage-collection-and-multi-threading)
 
 ---
 

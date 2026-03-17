@@ -8,9 +8,9 @@ AngelScript から最大限のパフォーマンスを引き出すためのい�
 
 関数の宣言や名前による検索はかなり時間がかかるため、呼び出される関数ごとに1回以上行うべきではありません。使用する可能性のある型についても同様です。
 
-また、可能な限り、ID の代わりに実際の [asIScriptFunction](#asIScriptFunction) や [asITypeInfo](#asITypeInfo) のポインタを使用するようにしてください。これにより、エンジンが ID を実際のオブジェクトに変換する手間を省くことができます。
+また、可能な限り、ID の代わりに実際の `asIScriptFunction` や `asITypeInfo` のポインタを使用するようにしてください。これにより、エンジンが ID を実際のオブジェクトに変換する手間を省くことができます。
 
-キャッシュされた情報を保存するために、様々なエンジンインターフェースのユーザーデータ (user data) を利用することができます。例えば、よく使用されるクラスメソッドを含む構造体を、[asITypeInfo](#asITypeInfo) インターフェースの [ユーザーデータ](#asITypeInfo::SetUserData) として保存します。このようにすれば、関数を呼び出す必要がある時に素早くアクセスすることができます。
+キャッシュされた情報を保存するために、様々なエンジンインターフェースのユーザーデータ (user data) を利用することができます。例えば、よく使用されるクラスメソッドを含む構造体を、`asITypeInfo` インターフェースの `SetUserData` として保存します。このようにすれば、関数を呼び出す必要がある時に素早くアクセスすることができます。
 
 ## コンテキストオブジェクトの再利用 (Reuse the context object)
 
@@ -20,9 +20,9 @@ AngelScript から最大限のパフォーマンスを引き出すためのい�
 
 理想的には、アプリケーションは割り当てられたコンテキストオブジェクトのシンプルなメモリプールを保持し、プール内に空きオブジェクトがない場合にのみ新しいオブジェクトが割り当てられるようにします。
 
-エンジンの [コンテキストコールバック](#asIScriptEngine::SetContextCallbacks) を使用することで、このコンテキストプールはエンジンの内部呼び出しやアドオンからの使用のためにも自動的に利用可能になります。
+エンジンの `SetContextCallbacks` を使用することで、このコンテキストプールはエンジンの内部呼び出しやアドオンからの使用のためにも自動的に利用可能になります。
 
-プールからコンテキストを使用したいコードは、[CreateContext](#asIScriptEngine::CreateContext) メソッドの代わりに、[RequestContext](#asIScriptEngine::RequestContext) と [ReturnContext](#asIScriptEngine::ReturnContext) メソッドを使用するべきです。
+プールからコンテキストを使用したいコードは、`CreateContext` メソッドの代わりに、`RequestContext` と `ReturnContext` メソッドを使用するべきです。
 
 以下は、コンテキストプールの簡単な実装例です。
 
@@ -99,7 +99,7 @@ engine->SetEngineProperty(asEP_BUILD_WITHOUT_LINE_CUES, true);
 
 ガベージコレクションは長時間実行されるアプリケーションにおいて重要ですが、自動ガベージコレクションをオフにし、その後制御された方法で手動でガベージコレクターを実行させることに関心があるかもしれません。ガベージコレクターはインクリメンタル（段階的）であるため実行中に長時間の停止は見られないはずですが、他のことのために必要かもしれない CPU サイクルを消費します。
 
-自動ガベージコレクターをオフにするには、エンジンプロパティ [asEP_AUTO_GARBAGE_COLLECT](#asEP_AUTO_GARBAGE_COLLECT) を `false` に設定します。
+自動ガベージコレクターをオフにするには、エンジンプロパティ `asEP_AUTO_GARBAGE_COLLECT` を `false` に設定します。
 
 ```cpp
 engine->SetEngineProperty(asEP_AUTO_GARBAGE_COLLECT, false);
@@ -111,7 +111,7 @@ engine->SetEngineProperty(asEP_AUTO_GARBAGE_COLLECT, false);
 
 もし非常に頻繁に呼び出される特定の関数がある場合、ネイティブ呼び出し規約 (native calling convention) で関数をバインドする場合と、ジェネリック呼び出し規約 (generic calling convention) の場合のパフォーマンスを比較する価値があるかもしれません。どちらが常に速いと一般化して言うことはできず、関数のシグネチャやプラットフォームの ABI の複雑さに依存して変化します。
 
-参照: [ジェネリック関数](./doc_generic)、[関数の登録 - 呼び出し規約](./doc_register_func_2)
+参照: [ジェネリック関数](./doc_generic)、[関数の登録 - 呼び出し規約](./doc_register_func#呼び出し規約-calling-conventions)
 
 ---
 

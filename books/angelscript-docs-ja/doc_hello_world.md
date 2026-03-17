@@ -133,7 +133,7 @@ void print(string &msg)
 }
 ```
 
-参照: [メッセージコールバック](./doc_compile_script_msg)、[スクリプトビルダー](./doc_addon_build)、[標準文字列](./doc_addon_std_string)、[サンプル](./doc_samples)
+参照: [メッセージコールバック](./doc_compile_script#メッセージコールバック-message-callback)、[スクリプトビルダー](./doc_addon#スクリプトビルダー)、[標準文字列](./doc_addon#string-オブジェクト)、[サンプル](./doc_samples)
 
 ---
 

@@ -54,7 +54,7 @@ GC には新世代 (new generation) と旧世代 (old generation) の概念も�
 
 一部のアプリケーションは標準の C/C++ ライブラリが提供しないようなメモリヒープへの追加の制御を必要とします。これは、メモリが限られており、断片化や多数の小さな割り当てによるスペースの無駄を許容できないコンソール向けビデオゲームではよくあることです。AngelScript はこのようなアプリケーションもサポートしており、ライブラリにカスタムのメモリ割り当てルーティンを登録することが可能で、AngelScript が使用するメモリを正確にアプリケーションが制御できるようにします。
 
-参照: [asSetGlobalMemoryFunctions](#asSetGlobalMemoryFunctions)
+参照: `asSetGlobalMemoryFunctions`
 
 ---
 

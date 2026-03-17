@@ -35,16 +35,16 @@ void func_g(asIScriptGeneric *gen)
 
 可変型はスクリプト内では利用できないため、アプリケーション側の関数の登録にのみ使用することができます。
 
-使用例については [any アドオン](./doc_addon_any) および [辞書アドオン](./doc_addon_dict) を参照してください。型IDの解釈方法に関する情報については [型ID (type id)](./doc_typeid) を参照してください。
+使用例については [any アドオン](./doc_addon#any-オブジェクト) および [辞書アドオン](./doc_addon#dictionary-オブジェクト) を参照してください。型IDの解釈方法に関する情報については [AngelScript の理解](./doc_understanding_as#typeid-の構造) を参照してください。
 
 ### 可変型の変換演算子 (Variable conversion operators)
 
-可変パラメータ型は、[opConv と opCast](./doc_script_class_conv) の演算子オーバーロードの特別バージョンで使用することもできます。これは、任意の型のコンテンツを保持できるようにする必要があるジェネリックなコンテナ型にとって特に有用です。
+可変パラメータ型は、[演算子オーバーロード](./doc_script_class_ops#型変換演算子-type-conversion-operators) の特別バージョンで使用することもできます。これは、任意の型のコンテンツを保持できるようにする必要があるジェネリックなコンテナ型にとって特に有用です。
 
  - `void opCast(?&out)`
  - `void opConv(?&out)`
 
-例については [ハンドルアドオン](./doc_addon_handle) および [辞書アドオン](./doc_addon_dict) を参照してください。
+例については [ハンドルアドオン](./doc_addon#handle-オブジェクト) および [辞書アドオン](./doc_addon#dictionary-オブジェクト) を参照してください。
 
 
 ---
@@ -53,7 +53,7 @@ void func_g(asIScriptGeneric *gen)
 
 可変長引数（可変個引数）を受け取る関数もエンジンに登録することができますが、その関数は [ジェネリック呼び出し規約](./doc_generic) で実装されていなければなりません。
 
-関数が可変長引数を受け取るように登録されている場合、コンパイラは関数に渡された引数の数を保持する隠し引数をスタックにさらに一つ積みます。これは `asIScriptGeneric` インターフェースが引数の数を知るために使用されます。アプリケーションはこの隠し引数を明示的に読み取る必要はなく、通常通り [GetArgCount](#asIScriptGeneric::GetArgCount) メソッドを使用するだけで構いません。可変長部分に渡されるすべての引数の型は同一となります（アプリケーションが登録した型です）。
+関数が可変長引数を受け取るように登録されている場合、コンパイラは関数に渡された引数の数を保持する隠し引数をスタックにさらに一つ積みます。これは `asIScriptGeneric` インターフェースが引数の数を知るために使用されます。アプリケーションはこの隠し引数を明示的に読み取る必要はなく、通常通り `GetArgCount` メソッドを使用するだけで構いません。可変長部分に渡されるすべての引数の型は同一となります（アプリケーションが登録した型です）。
 
 この引数の一般的な構成としては、[可変パラメータ型](#可変パラメータ型-the-variable-parameter-type) のリストを入力として受け取るための `const ?&in ...`、または様々な型の引数を出力として受け取るための `?&out ...` があります。しかし単にそれだけが必要なのであれば、特定の単一の型（例：`int ...`）を指定しても完全に問題ありません。
 
@@ -62,7 +62,7 @@ void func_g(asIScriptGeneric *gen)
     r = engine->RegisterGlobalFunction("uint scan(const string&in str, ?&out ...)", asFUNCTION(StringScan), asCALL_GENERIC); assert(r >= 0);
 ```
 
-参照: [文字列アドオン](./doc_addon_std_string) における `format` と `scan` の実装。
+参照: [文字列アドオン](./doc_addon#string-オブジェクト) における `format` と `scan` の実装。
 
 ---
 

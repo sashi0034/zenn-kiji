@@ -12,9 +12,9 @@ AngelScript のテンプレート型は、C++ のテンプレートと似た働�
 
 ### テンプレート型の登録 (Registering the template type)
 
-テンプレート型は、[参照型](./doc_reg_basicref) または [値型](./doc_register_val_type) のいずれにもなり得ます。どちらもいくつか違いはあるものの、似たような方法で登録されます。
+テンプレート型は、[参照型](./doc_register_type#参照型の登録-registering-a-reference-type) または [値型](./doc_register_type#値型の登録-registering-a-value-type) のいずれにもなり得ます。どちらもいくつか違いはあるものの、似たような方法で登録されます。
 
-型の名前は、テンプレート型の名前に続けてサブタイプの名前を山括弧（アングルブラケット `< >`）で囲んだものになります。複数のサブタイプをコンマ（`,`）区切りで指定することもできます。AngelScript に対してこれがテンプレート型であることを伝えるため、型フラグ [asOBJ_TEMPLATE](#asOBJ_TEMPLATE) を使用しなければなりません。
+型の名前は、テンプレート型の名前に続けてサブタイプの名前を山括弧（アングルブラケット `< >`）で囲んだものになります。複数のサブタイプをコンマ（`,`）区切りで指定することもできます。AngelScript に対してこれがテンプレート型であることを伝えるため、型フラグ `asOBJ_TEMPLATE` を使用しなければなりません。
 
 ```cpp
 // テンプレート型をガベージコレクション対応の参照型として登録する
@@ -26,9 +26,9 @@ r = engine->RegisterObjectType("myValueTemplate<class T>", sizeof(MyValueTempl),
 
 テンプレート型は必ずしも [ガベージコレクション対応](./doc_gc_object) である必要はありませんが、どのようなサブタイプでインスタンス化されるかわからないため、通常はガベージコレクションのサポートを実装しておくのが最善です。
 
-テンプレート型の振る舞い（behaviours）、メソッド、およびプロパティを登録する際、型は山括弧内に名前とサブタイプを指定して識別されますが、`class` トークンは除外します。例えば `<tt>myTemplate&lt;T&gt;</tt>` のようになります。サブタイプは、`RegisterObjectType` の呼び出しで宣言された通りのサブタイプ名だけで識別されます。
+テンプレート型の振る舞い（behaviours）、メソッド、およびプロパティを登録する際、型は山括弧内に名前とサブタイプを指定して識別されますが、`class` トークンは除外します。例えば `myTemplate<T>` のようになります。サブタイプは、`RegisterObjectType` の呼び出しで宣言された通りのサブタイプ名だけで識別されます。
 
-テンプレート型のファクトリやコンストラクタの振る舞いも異なります。どのサブタイプでインスタンス化されているかを実装側が知るため、ファクトリやコンストラクタは隠しパラメータとして最初の引数にテンプレートインスタンスの [asITypeInfo](#asITypeInfo) を受け取ります。ファクトリやコンストラクタを登録する際、この隠しパラメータは宣言に反映され、例えば `int &in` のように記述されます。
+テンプレート型のファクトリやコンストラクタの振る舞いも異なります。どのサブタイプでインスタンス化されているかを実装側が知るため、ファクトリやコンストラクタは隠しパラメータとして最初の引数にテンプレートインスタンスの `asITypeInfo` を受け取ります。ファクトリやコンストラクタを登録する際、この隠しパラメータは宣言に反映され、例えば `int &in` のように記述されます。
 
 ```cpp
 // ファクトリの振る舞いを登録する
@@ -52,7 +52,7 @@ r = engine->RegisterObjectBehaviour("myValueTemplate<T>", asBEHAVE_LIST_CONSTRUC
 
 オブジェクトプロパティについても同様です。テンプレートは他のクラスと同様にプロパティを持つことができますが、登録時にはサブタイプのサイズがわからないため、プロパティ自体がテンプレートのサブタイプであってはなりません。
 
-参照: [配列アドオン](./doc_addon_array)
+参照: [配列アドオン](./doc_addon#array-テンプレートオブジェクト)
 
 #### テンプレートインスタンスのサブタイプ置換について (On subtype replacement for template instances)
 
@@ -100,11 +100,11 @@ r = engine->RegisterObjectMethod("myTemplate<T>", "void doCallback(const callbac
 
 コールバック自体は、[コールバック (Callbacks)](./doc_callbacks) の項で説明されている通り、通常通り使用されます。
 
-参照: [スクリプト配列アドオン](./doc_addon_array) の `sort` メソッド
+参照: [配列アドオン](./doc_addon#array-テンプレートオブジェクト) の `sort` メソッド
 
 ### コンパイル時のテンプレートインスタンス化の検証 (Validating template instantiations at compile time)
 
-無効なテンプレートのインスタンス化に対する不要な実行時の検証を避けるため、アプリケーションは優先的に [asBEHAVE_TEMPLATE_CALLBACK](#asBEHAVE_TEMPLATE_CALLBACK) の振る舞いを登録すべきです。これは、スクリプトエンジンが新しいテンプレートインスタンスの型を生成するたびに呼び出される特別な振る舞いの関数です。コールバック関数は必要な検証を実行し、その型が処理可能であるかどうかを確認し、処理できない場合はエンジンにそのインスタンス機能がサポートされていないことを伝えることができます。
+無効なテンプレートのインスタンス化に対する不要な実行時の検証を避けるため、アプリケーションは優先的に `asBEHAVE_TEMPLATE_CALLBACK` の振る舞いを登録すべきです。これは、スクリプトエンジンが新しいテンプレートインスタンスの型を生成するたびに呼び出される特別な振る舞いの関数です。コールバック関数は必要な検証を実行し、その型が処理可能であるかどうかを確認し、処理できない場合はエンジンにそのインスタンス機能がサポートされていないことを伝えることができます。
 
 コールバック関数は `asITypeInfo` のポインタを受け取り、真偽値（boolean）を返すグローバル関数でなければなりません。テンプレートインスタンスが有効である場合、戻り値は `true` であるべきです。
 
@@ -158,7 +158,7 @@ r = engine->RegisterObjectBehaviour("myTemplate<float>", asBEHAVE_FACTORY, "myTe
 
 テンプレート関数は [ジェネリック呼び出し規約](./doc_generic) を用いて実装することができ、エンジンに対して [グローバル関数](#asIScriptEngine::RegisterGlobalFunction) または [クラスメソッド](#asIScriptEngine::RegisterObjectMethod) として登録できます。
 
-テンプレート関数が呼び出されると、関数は [GetArgTypeId](#asIScriptGeneric::GetArgTypeId)、もしくは [GetSubTypeId](#asIScriptFunction::GetSubTypeId) を使用して引数の型を決定することができます。
+テンプレート関数が呼び出されると、関数は `GetArgTypeId`、もしくは `GetSubTypeId` を使用して引数の型を決定することができます。
 
 ```cpp
 // グローバルなテンプレート関数を登録する

@@ -21,7 +21,7 @@ if( r == asEXECUTION_EXCEPTION )
 }
 ```
 
-デフォルトでは、VM は異なる種類の例外を見分ける手段を持たず、それらすべてに対して単なる標準の例外文字列を出力します。もし望むなら、例外の種類からより情報量の多い例外文字列への変換を提供する [コールバックをエンジンに登録](./doc_addon_helpers) ことができます。
+デフォルトでは、VM は異なる種類の例外を見分ける手段を持たず、それらすべてに対して単なる標準の例外文字列を出力します。もし望むなら、例外の種類からより情報量の多い例外文字列への変換を提供する [コールバックをエンジンに登録](./doc_addon#ヘルパー関数-scripthelper) ことができます。
 
 ```cpp
 void TranslateException(asIScriptContext *ctx, void* /*userParam*/)
@@ -47,7 +47,7 @@ void TranslateException(asIScriptContext *ctx, void* /*userParam*/)
 engine->SetTranslateAppExceptionCallback(asFUNCTION(TranslateException), 0, asCALL_CDECL);
 ```
 
-参照: ヘルパー関数 [GetExceptionInfo](./doc_addon_helpers)
+参照: ヘルパー関数 [GetExceptionInfo](./doc_addon#ヘルパー関数-scripthelper)
 
 > **Note**: 例外をキャッチする機能は、ライブラリを `AS_NO_EXCEPTIONS` を定義してコンパイルすることで無効化させることができます。これを行った場合、アプリケーションは例外をスローする可能性のある関数を一切登録すべきではありません。例外が発生した場合、最終的な結果が未定義（undefined）となってしまうためです。
 

@@ -143,7 +143,7 @@ class MyObj
 | `type(expr)` | コンストラクタ、opConv、opImplConv |
 | `cast<type>(expr)` | opCast、opImplCast |
 
-式 `type(expr)` がコンパイルされ、型が式の型の引数を取る [変換コンストラクタ](./doc_script_class) を持っていない場合、コンパイラは `expr.opConv()` として書き換えようとします。コンパイラは望む型を返す `opConv` を選択します。
+式 `type(expr)` がコンパイルされ、型が式の型の引数を取る [変換コンストラクタ](./doc_script_class#コンストラクタ-class-constructors) を持っていない場合、コンパイラは `expr.opConv()` として書き換えようとします。コンパイラは望む型を返す `opConv` を選択します。
 
 暗黙の変換では、コンパイラは一致する引数を取る対象型の変換コンストラクタを探し（`explicit` としてフラグが立っていないものを）、見つからなければ対象型を返すソース型の `opImplConv` を呼び出そうとします。
 
@@ -168,7 +168,7 @@ class MyObj
 
 参照キャストが望ましい場合（つまり同じオブジェクトインスタンスへの異なる型のハンドル）は、代わりに `opCast` メソッドを実装すべきです。
 
-参照: [型変換](./doc_script_expr)、[アプリケーションクラスの継承](./doc_adv_inheritappclass)
+参照: [型変換](./doc_script_expr#型変換-type-conversions)、[アプリケーションクラスの継承](./doc_adv_inheritappclass)
 
 ## foreach ループ演算子 (Foreach loop operators)
 
@@ -203,7 +203,7 @@ for( auto @container = expr, auto @it = container.opForBegin(); !container.opFor
 
 コンテナが単一の値のみをサポートする場合は `opForValue` 演算子を使用できますが、そうでない場合は複数の番号付き `opForValue#` 演算子を使用しなければなりません。
 
-参照: [ステートメント](./doc_script_statement)
+参照: [ステートメント](./doc_script_statement#ループ-loops-while-do-while-for-foreach)
 
 ---
 

@@ -4,11 +4,11 @@ title: "名前空間の使用 (Using namespaces)"
 
 名前空間 (Namespaces) は、関連する関数やその他のエンティティをまとめてグループ化するために使用されます。そうすることで、たまたま同じ名前を使用しているが他には無関係な他のエンティティとの潜在的な衝突（コンフリクト）を避けることができます。
 
-名前空間はアプリケーションが登録するインターフェースだけでなく、[スクリプト](./doc_global_namespace) でも使用することができます。
+名前空間はアプリケーションが登録するインターフェースだけでなく、[スクリプト](./doc_script_global#名前空間-namespaces) でも使用することができます。
 
 ## 名前空間を用いたインターフェースの登録 (Registering the interface with namespaces)
 
-特定の名前空間に関数やその他のエンティティを登録するには、アプリケーションはまず [SetDefaultNamespace](#asIScriptEngine::SetDefaultNamespace) メソッドを呼び出して希望する名前空間を定義すべきです。その後は、[インターフェースの登録に関する章](./doc_register_api_topic) で説明されている通常の手順に従って登録を行います。
+特定の名前空間に関数やその他のエンティティを登録するには、アプリケーションはまず `SetDefaultNamespace` メソッドを呼び出して希望する名前空間を定義すべきです。その後は、[インターフェースの登録に関する章](./doc_register_api) で説明されている通常の手順に従って登録を行います。
 
 ```cpp
 void RegisterInNamespace(asIScriptEngine *engine)
@@ -27,7 +27,7 @@ void RegisterInNamespace(asIScriptEngine *engine)
 
 ## 名前空間内のエンティティの検索 (Finding entities in namespaces)
 
-名前空間は同じシグネチャを持つ複数の宣言を許可するため、エンティティの検索をどの名前空間で行うかを指定する必要があります。これも `SetDefaultNamespace` メソッドを用いて行われます。これは、[エンジン](#asIScriptEngine::SetDefaultNamespace) と [モジュール](#asIScriptModule::SetDefaultNamespace) の両方のインターフェースに適用されます。
+名前空間は同じシグネチャを持つ複数の宣言を許可するため、エンティティの検索をどの名前空間で行うかを指定する必要があります。これも `SetDefaultNamespace` メソッドを用いて行われます。これは、エンジンの `SetDefaultNamespace` と モジュールの `SetDefaultNamespace` の両方のインターフェースに適用されます。
 
 ```cpp
 void FindFuncInNamespace(asIScriptModule *module)

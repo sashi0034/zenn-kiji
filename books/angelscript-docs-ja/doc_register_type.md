@@ -16,14 +16,14 @@ title: "オブジェクト型の登録 (Registering an object type)"
 
 ## 参照型の登録 (Registering a reference type)
 
-基本的な参照型は、[asBEHAVE_FACTORY](#asBEHAVE_FACTORY)、[asBEHAVE_ADDREF](#asBEHAVE_ADDREF)、および [asBEHAVE_RELEASE](#asBEHAVE_RELEASE) の振る舞い (behaviours) とともに登録する必要があります。
+基本的な参照型は、`asBEHAVE_FACTORY`、`asBEHAVE_ADDREF`、および `asBEHAVE_RELEASE` の振る舞い (behaviours) とともに登録する必要があります。
 
 ```cpp
 // 参照型の登録
 r = engine->RegisterObjectType("ref", 0, asOBJ_REF); assert( r >= 0 );
 ```
 
-参照型の例については [any](./doc_addon_any) アドオンを参照してください。
+参照型の例については [any](./doc_addon#any-オブジェクト) アドオンを参照してください。
 
 より高度な型については、[ガベージコレクション対応オブジェクト](./doc_gc_object)、[クラス階層](./doc_adv_class_hierarchy)、[スコープ付きの型](./doc_adv_scoped_type)、そして [単一参照の型](./doc_adv_single_ref_type) を参照してください。
 
@@ -107,7 +107,7 @@ engine->RegisterObjectBehaviour("grid", asBEHAVE_LIST_FACTORY,
 - パターンが値型を期待する場合、バッファにはオブジェクトそのものが含まれます。
 - バッファ内のすべての値は、バッファに配置される値のサイズが32ビット未満でない限り、32ビット境界にアライメントされます。
 
-リストファクトリの実装例については [配列アドオン](./doc_addon_array) と [辞書アドオン](./doc_addon_dict) を参照してください。
+リストファクトリの実装例については [配列アドオン](./doc_addon#array-テンプレートオブジェクト) と [辞書アドオン](./doc_addon#dictionary-オブジェクト) を参照してください。
 
 ### Addref と Release の振る舞い (Addref and release behaviours)
 
@@ -145,7 +145,7 @@ r = engine->RegisterObjectType("ref", 0, asOBJ_REF | asOBJ_NOCOUNT); assert( r >
 
 addref と release の振る舞いがない場合、アプリケーションは、グローバル変数などの場所でスクリプトエンジンから依然として参照されている可能性のあるオブジェクトを誤って破壊しないように注意しなければなりません。
 
-オブジェクトがスクリプトエンジンの存在期間と同じ長さだけ確実に存続し続けない限り、エンジンプロパティ [asEP_DISALLOW_GLOBAL_VARS](#asEP_DISALLOW_GLOBAL_VARS) を用いてグローバル変数を無効にすることを検討した方が良い場合があります。これにより、アプリケーションがオブジェクトへの参照がどこに保持されているかを知るのが非常に容易になります。すべてのグローバル変数を無効にする代替案として、オブジェクト型への参照を保存する可能性のあるグローバル変数のみを選択的に不許可にすることもできます。これは、スクリプトのビルド後に [コンパイルされたグローバル変数を列挙](#asIScriptModule::GetGlobalVarCount) し、ユーザーが含めるべきでない変数を含めていた場合にエラーを出すことによって行うことができます。
+オブジェクトがスクリプトエンジンの存在期間と同じ長さだけ確実に存続し続けない限り、エンジンプロパティ [asEP_DISALLOW_GLOBAL_VARS](./doc_adv_custom_options#言語の変更-language-modifications) を用いてグローバル変数を無効にすることを検討した方が良い場合があります。これにより、アプリケーションがオブジェクトへの参照がどこに保持されているかを知るのが非常に容易になります。すべてのグローバル変数を無効にする代替案として、オブジェクト型への参照を保存する可能性のあるグローバル変数のみを選択的に不許可にすることもできます。これは、スクリプトのビルド後にコンパイルされたグローバル変数を列挙（`GetGlobalVarCount` など）し、ユーザーが含めるべきでない変数を含めていた場合にエラーを出すことによって行うことができます。
 
 ### インスタンス化不可能な参照型の登録 (Registering an uninstantiable reference type)
 
@@ -158,7 +158,7 @@ addref と release の振る舞いがない場合、アプリケーションは�
 ## 値型の登録 (Registering a value type)
 
 値型を登録する際には、AngelScript がその型にどの程度のスペースが必要かを知るために、型のサイズを指定する必要があります。
-型に特別な処理が必要ない場合、すなわち維持する必要があるポインタやその他のリソース参照が含まれていない場合、型はフラグ [asOBJ_POD](#asOBJ_POD) で登録することができます。この場合、AngelScript はデフォルトコンストラクタ、代入の振る舞い、またはデストラクタを必要とせず、組み込みのプリミティブ型と同様にこれらのケースを自動的に処理することができます。
+型に特別な処理が必要ない場合、すなわち維持する必要があるポインタやその他のリソース参照が含まれていない場合、型はフラグ `asOBJ_POD` で登録することができます。この場合、AngelScript はデフォルトコンストラクタ、代入の振る舞い、またはデストラクタを必要とせず、組み込みのプリミティブ型と同様にこれらのケースを自動的に処理することができます。
 
 この型を、ネイティブの呼び出し規約を使用する登録済み関数に対して値渡しや値の戻り値として使用する予定がある場合は、アプリケーションにおける [実際の型の実装方法](#値型とネイティブ呼び出し規約-value-types-and-native-calling-conventions) を AngelScript に通知する必要があります。ただし、ジェネリック呼び出し規約のみを使用する計画がある場合、またはこれらの型を値渡ししない場合は、それについて心配する必要はありません。
 
@@ -170,7 +170,7 @@ r = engine->RegisterObjectType("pod", sizeof(pod), asOBJ_VALUE | asOBJ_POD); ass
 r = engine->RegisterObjectType("val", sizeof(val), asOBJ_VALUE); assert( r >= 0 );
 ```
 
-値型の例については、[標準文字列](./doc_addon_std_string) や、[数学アドオンにおける complex 型](./doc_addon_math) を参照してください。
+値型の例については、[標準文字列](./doc_addon#string-オブジェクト) や、[数学アドオン](./doc_addon#math-関数) を参照してください。
 値型のより具体的な例については、[ジェネリックなハンドル型](./doc_adv_generic_handle) を参照してください。
 型が他の型のメンバである時に循環参照を形成する可能性がある場合の対応については、[ガベージコレクション対応オブジェクト](./doc_gc_object) を参照してください。
 
@@ -230,14 +230,14 @@ r = engine->RegisterObjectType("complex", sizeof(complex), asOBJ_VALUE | asGetTy
 
 | フラグ | 説明 |
 | --- | --- |
-| [asOBJ_APP_CLASS](#asOBJ_APP_CLASS) | C++の型はクラス、構造体、または共用体である |
-| [asOBJ_APP_CLASS_CONSTRUCTOR](#asOBJ_APP_CLASS_CONSTRUCTOR) | C++の型はデフォルトコンストラクタを持つ |
-| [asOBJ_APP_CLASS_DESTRUCTOR](#asOBJ_APP_CLASS_DESTRUCTOR) | C++の型はデストラクタを持つ |
-| [asOBJ_APP_CLASS_ASSIGNMENT](#asOBJ_APP_CLASS_ASSIGNMENT) | C++の型はコピー代入演算子を持つ |
-| [asOBJ_APP_CLASS_COPY_CONSTRUCTOR](#asOBJ_APP_CLASS_COPY_CONSTRUCTOR) | C++の型はコピーコンストラクタを持つ |
-| [asOBJ_APP_PRIMITIVE](#asOBJ_APP_PRIMITIVE) | C++の型はC++プリミティブだが、floatやdoubleではない |
-| [asOBJ_APP_FLOAT](#asOBJ_APP_FLOAT) | C++の型はfloatまたはdoubleである |
-| [asOBJ_APP_ARRAY](#asOBJ_APP_ARRAY) | C++の型は配列である |
+| `asOBJ_APP_CLASS` | C++の型はクラス、構造体、または共用体である |
+| `asOBJ_APP_CLASS_CONSTRUCTOR` | C++の型はデフォルトコンストラクタを持つ |
+| `asOBJ_APP_CLASS_DESTRUCTOR` | C++の型はデストラクタを持つ |
+| `asOBJ_APP_CLASS_ASSIGNMENT` | C++の型はコピー代入演算子を持つ |
+| `asOBJ_APP_CLASS_COPY_CONSTRUCTOR` | C++の型はコピーコンストラクタを持つ |
+| `asOBJ_APP_PRIMITIVE` | C++の型はC++プリミティブだが、floatやdoubleではない |
+| `asOBJ_APP_FLOAT` | C++の型はfloatまたはdoubleである |
+| `asOBJ_APP_ARRAY` | C++の型は配列である |
 
 C++ クラス内で `= default` として宣言されている場合は、コンストラクタ、デストラクタ、代入演算子、またはコピーコンストラクタに対するフラグを含めないでください。
 

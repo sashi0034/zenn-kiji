@@ -6,7 +6,7 @@ AngelScript は循環参照を解決するために [ガベージコレクター
 
 AngelScript は、共有真偽値 (shared boolean) を用いて弱参照をサポートしています。オブジェクトへの弱参照を保持したいコードは、そのオブジェクトから共有真偽値である weakref フラグを取得し、オブジェクトへのポインタを使用する前に、オブジェクトがもはや生存していないことを示すためにこのフラグが設定されていないかを確認する必要があります。
 
-スクリプトクラスは、スクリプトライターが何も行わなくても自動的に弱参照をサポートします。一方で、アプリケーションから登録された型の場合は、振る舞い [asBEHAVE_GET_WEAKREF_FLAG](#asBEHAVE_GET_WEAKREF_FLAG) を登録し、オブジェクトの破棄時にフラグを設定するロジックを実装する必要があります。
+スクリプトクラスは、スクリプトライターが何も行わなくても自動的に弱参照をサポートします。一方で、アプリケーションから登録された型の場合は、振る舞い `asBEHAVE_GET_WEAKREF_FLAG` を登録し、オブジェクトの破棄時にフラグを設定するロジックを実装する必要があります。
 
 以下のコードは、スレッドセーフな実装を行う方法を示しています：
 
@@ -78,7 +78,7 @@ engine->RegisterObjectBehaviour("MyClass", asBEHAVE_RELEASE, "void f()", asMETHO
 engine->RegisterObjectBehaviour("MyClass", asBEHAVE_GET_WEAKREF_FLAG, "int &f()", asMETHOD(MyClass, GetWeakRefFlag), asCALL_THISCALL);
 ```
 
-スクリプト言語自体には、弱参照用の組み込みの構文はありません。その代わりに、スクリプト内でこのサポートを提供したいアプリケーションのために、これを提供する標準の [weakref アドオン](./doc_addon_weakref) が実装されています。
+スクリプト言語自体には、弱参照用の組み込みの構文はありません。その代わりに、スクリプト内でこのサポートを提供したいアプリケーションのために、これを提供する標準の [weakref アドオン](./doc_addon#weakref-オブジェクト) が実装されています。
 
 ---
 

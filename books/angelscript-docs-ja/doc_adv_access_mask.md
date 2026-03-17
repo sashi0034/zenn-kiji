@@ -1,5 +1,5 @@
 ---
-title: "アクセスマスクと異なるインターフェースの公開 (Access masks and exposing different interfaces)"
+title: "アクセスマスクと別のインターフェースの公開 (Access masks and exposing different interfaces)"
 ---
 
 アプリケーションは、例えばゲームの各エンティティが特定の関数のセットにのみアクセスできる一方で、GUI スクリプトが全く異なる関数のセットにアクセスできるようにするなど、スクリプトの種類によって異なるインターフェースを公開する必要がある場合があります。
@@ -44,12 +44,12 @@ int CompileScript(asIScriptEngine *engine, const char *script, int type)
 
 アクセスマスクは、アプリケーションインターフェース内の以下のエンティティに対して定義することができます：
 
- - [グローバル関数](#asIScriptEngine::RegisterGlobalFunction)
- - [グローバルプロパティ](#asIScriptEngine::RegisterGlobalProperty)
- - [オブジェクト型](#asIScriptEngine::RegisterObjectType)
- - [型の個々のメソッド](#asIScriptEngine::RegisterObjectMethod)
- - [型の個々のプロパティ](#asIScriptEngine::RegisterObjectProperty)
- - [個々のオブジェクトの振る舞い (behaviours)](#asIScriptEngine::RegisterObjectBehaviour)
+ - [グローバル関数](./doc_register_func)
+ - [グローバルプロパティ](./doc_register_prop)
+ - [オブジェクト型](./doc_register_type)
+ - [型の個々のメソッド](./doc_register_type#オブジェクトメソッドの登録-registering-object-methods)
+ - [型の個々のプロパティ](./doc_register_type#オブジェクトプロパティの登録-registering-object-properties)
+ - [個々のオブジェクトの振る舞い (behaviours)](./doc_register_type#参照型の登録-registering-a-reference-type)
 
 ---
 

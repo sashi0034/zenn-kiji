@@ -38,7 +38,7 @@ void RegisterProperties(asIScriptEngine *engine)
 
 また、[プロパティアクセサ](./doc_script_class_prop) を通じてプロパティを公開することも可能です。これはプロパティ値の取得や設定を行うためのもので、`get_` および `set_` のプレフィックスと、関数デコレータ `property` を持つ関数のペアです。これらの関数は [RegisterGlobalFunction](./doc_register_func) を使用して登録されるべきです。これは、プロパティのオフセットが決定できない場合や、プロパティの型がスクリプトに登録されておらず（例：`char*` から `string` への）何らかの変換が必要な場合に特に有用です。
 
-> **Note**: 仮想プロパティの動作は、プロパティ設定 [asEP_PROPERTY_ACCESSOR_MODE](./doc_adv_custom_options_lang_mod) を用いてカスタマイズすることができます。
+> **Note**: 仮想プロパティの動作は、エンジンプロパティ [asEP_PROPERTY_ACCESSOR_MODE](./doc_adv_custom_options#言語の変更-language-modifications) を用いてカスタマイズすることができます。
 
 参照: [型の登録](./doc_register_type)
 

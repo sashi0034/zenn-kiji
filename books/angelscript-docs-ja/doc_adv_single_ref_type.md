@@ -16,7 +16,7 @@ r = engine->RegisterObjectType("single", 0, asOBJ_REF | asOBJ_NOHANDLE); assert(
 
 この種の型は、オブジェクトへの参照を完全に制御したい場合に最も役立ちます。例えば、スクリプトによって保持されている可能性のある参照について心配することなく、アプリケーションがその型のオブジェクトを破棄して再作成できるようにするためです。これにより、アプリケーションはスクリプトがいつオブジェクトやそのメンバにアクセスできるかを制御可能になります。
 
-参照: [参照型の登録](./doc_reg_basicref)
+参照: [参照型の登録](./doc_register_type#参照型の登録-registering-a-reference-type)
 
 ---
 

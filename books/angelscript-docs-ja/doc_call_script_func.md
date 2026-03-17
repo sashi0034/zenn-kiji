@@ -131,7 +131,7 @@ if( r == asEXECUTION_FINISHED )
 
 スクリプトが不正な操作（例えば null ハンドルに対するメソッド呼び出し）を実行した場合、スクリプトエンジンはスクリプト例外を投げます。仮想マシンはその後実行を中断し、[Execute](#asIScriptContext::Execute) メソッドは [asEXECUTION_EXCEPTION](#asEXECUTION_EXCEPTION) の値を返します。
 
-この時、[asIScriptContext](#asIScriptContext) のメソッドを通じて例外に関する情報を取得することが可能です。例：
+この時、`asIScriptContext` のメソッドを通じて例外に関する情報を取得することが可能です。例：
 
 ```cpp
 void PrintExceptionInfo(asIScriptContext *ctx)
@@ -152,9 +152,9 @@ void PrintExceptionInfo(asIScriptContext *ctx)
 }
 ```
 
-希望する場合は、[SetExceptionCallback](#asIScriptContext::SetExceptionCallback) を使用して、例外が発生した瞬間（[Execute](#asIScriptContext::Execute) メソッドが戻る前）に呼び出されるコールバック関数を登録することも可能です。例外コールバックはその後、[WillExceptionBeCaught](#asIScriptContext::WillExceptionBeCaught) を使用して、例外が [スクリプト内でキャッチされる](./try_catch) のか、それとも実行を中断させるのかを判断することができます。
+希望する場合は、`SetExceptionCallback` を使用して、例外が発生した瞬間（`Execute` メソッドが戻る前）に呼び出されるコールバック関数を登録することも可能です。例外コールバックはその後、`WillExceptionBeCaught` を使用して、例外が [スクリプト内でキャッチされる](./doc_script_statement#try-catch-ブロック-try-catch-blocks) のか、それとも実行を中断させるのかを判断することができます。
 
-参照: コールスタックの調査については [デバッグ](./doc_debug) を、例外情報を取得するためのヘルパー関数については [GetExceptionInfo アドオン](./doc_addon_helpers) を参照してください。
+参照: コールスタックの調査については [デバッグ](./doc_debug) を、例外情報を取得するためのヘルパー関数については [ヘルパーアドオン](./doc_addon#ヘルパー関数-scripthelper) を参照してください。
 
 ---
 
