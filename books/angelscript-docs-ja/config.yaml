@@ -11,10 +11,14 @@ chapters:
   - doc_hello_world
   - doc_good_practice
   - doc_understanding_as
+  - doc_module
+  - doc_as_vs_cpp_types
+  - doc_memory
   - doc_register_api
   - doc_register_func
   - doc_register_prop
   - doc_register_type
+  - doc_obj_handle
   - doc_strings
   - doc_arrays
   - doc_gc_object
@@ -27,6 +31,11 @@ chapters:
   - doc_adv_template
   - doc_adv_weakref
   - doc_cpp_exceptions
+  - doc_compile_script
+  - doc_call_script_func
+  - doc_using_script_class
+  - doc_callbacks
+  - doc_serialization
   - doc_debug
   - doc_adv_timeout
   - doc_gc
@@ -42,19 +51,8 @@ chapters:
   - doc_adv_dynamic_config
   - doc_adv_custom_options
   - doc_adv_reflection
-  - doc_serialization
   - doc_adv_inheritappclass
-  - doc_call_script_func
   - doc_adv_jit
-  - doc_compile_script
-  - doc_callbacks
-  - doc_memory
-  - doc_module
-  - doc_obj_handle
-  - doc_as_vs_cpp_types
-  - doc_samples
-  - doc_using_script_class
-  - doc_versions
   - doc_script_bnf
   - doc_script_datatypes
   - doc_script_global
@@ -70,4 +68,6 @@ chapters:
   - doc_script_reserved
   - doc_script_precedence
   - doc_script_stdlib
+  - doc_samples
+  - doc_versions
   - doc_addon
