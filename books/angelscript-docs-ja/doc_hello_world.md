@@ -138,4 +138,10 @@ void print(string &msg)
 
 ---
 
+訳注: こちらも参考になれば幸いです。
+
+https://zenn.dev/sashi0034/articles/bf06646e0d88ac
+
+---
+
 原文: https://www.angelcode.com/angelscript/sdk/docs/manual/doc_hello_world.html

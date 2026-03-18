@@ -4,7 +4,7 @@ title: "はじめに (Introduction)"
 
 ![](/images/angelscript-docs-ja/aslogo.png)
 
-<center>Version 2.38.0</center>
+`Version 2.38.0`
 
 AngelScript は、アプリケーションへの組み込みを目的とした、[無料かつオープンソース](./doc_license)で柔軟な、クロスプラットフォーム・スクリプティングライブラリです。強力な機能を備えつつも、稀にしか使われない機能による肥大化を避け、使いやすさを最優先に設計されています。
 
@@ -12,9 +12,11 @@ AngelScript の開発は 2003 年 2 月に始まり、同年 3 月 28 日に基�
 
 ライブラリの公式サイトは [http://www.angelcode.com/angelscript](http://www.angelcode.com/angelscript) です。
 
+https://github.com/anjo76/angelscript
+
 ## 開発者マニュアル
 
-- [ライセンス](./doc_license)
+- [ライセンス (原文)](https://www.angelcode.com/angelscript/sdk/docs/manual/doc_license.html)
 - [はじめに](#はじめに-getting-started)
 - [AngelScript の理解](./doc_understanding_as)
 - [アプリケーションインターフェースの登録](#アプリケーションインターフェースの登録)

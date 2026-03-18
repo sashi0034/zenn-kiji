@@ -1,11 +1,11 @@
 title: "AngelScript リファレンス (和訳)"
-summary: "AngelScript の公式ドキュメントの日本語訳です。"
+summary: "AngelScript の公式ドキュメントの日本語訳です。生成AIにざっくり翻訳させたあと、人力で修正を行っています。"
 topics: ["cpp", "lua", "c"]
 published: false
 price: 0
 chapters:
   - doc_main
-  - doc_license
+  # - doc_license
   - doc_overview
   - doc_compile_lib
   - doc_hello_world
