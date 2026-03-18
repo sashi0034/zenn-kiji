@@ -2,32 +2,31 @@
 title: "名前空間の使用 (Using namespaces)"
 ---
 
-名前空間 (Namespaces) は、関連する関数やその他のエンティティをまとめてグループ化するために使用されます。そうすることで、たまたま同じ名前を使用しているが他には無関係な他のエンティティとの潜在的な衝突（コンフリクト）を避けることができます。
+名前空間 (Namespaces) は、関連する関数やエンティティをグループ化するための仕組みです。名前空間を利用することで、同じ名前を持つ無関係なエンティティとの衝突を回避できます。
 
-名前空間はアプリケーションが登録するインターフェースだけでなく、[スクリプト](./doc_script_global#名前空間-namespaces) でも使用することができます。
+名前空間は、アプリケーション側で登録するインターフェースのほか、[スクリプト内](./doc_script_global#名前空間-namespaces)でも定義・利用できます。
 
 ## 名前空間を用いたインターフェースの登録 (Registering the interface with namespaces)
 
-特定の名前空間に関数やその他のエンティティを登録するには、アプリケーションはまず `SetDefaultNamespace` メソッドを呼び出して希望する名前空間を定義すべきです。その後は、[インターフェースの登録に関する章](./doc_register_api) で説明されている通常の手順に従って登録を行います。
+特定の名前空間に関数や型を登録するには、まず `SetDefaultNamespace` メソッドを呼び出して対象の名前空間を指定します。その後の登録は、[API の登録](./doc_register_api)で説明されている通常の手順に従います。
 
 ```cpp
 void RegisterInNamespace(asIScriptEngine *engine)
 {
   int r;
 
-  // 名前空間に型と関数を登録します
+  // 名前空間 "myspace" に型と関数を登録
   r = engine->SetDefaultNamespace("myspace"); assert( r >= 0 );
   r = engine->RegisterObjectType("mytype", 0, asOBJ_REF); assert( r >= 0 );
   r = engine->RegisterGlobalFunction("void myfunc()", asFUNCTION(myfunc), asCALL_CDECL); assert( r >= 0 );
 }
 ```
 
-もし希望するのであれば、スコープトークン (`::`) で区切ることでネストされた（入れ子にされた）名前空間を使用することもできます。例：
-`SetDefaultNamespace("outer::inner");`
+名前空間は、スコープ解決演算子 (`::`) を使って `SetDefaultNamespace("outer::inner");` のようにネスト（入れ子）にすることも可能です。
 
 ## 名前空間内のエンティティの検索 (Finding entities in namespaces)
 
-名前空間は同じシグネチャを持つ複数の宣言を許可するため、エンティティの検索をどの名前空間で行うかを指定する必要があります。これも `SetDefaultNamespace` メソッドを用いて行われます。これは、エンジンの `SetDefaultNamespace` と モジュールの `SetDefaultNamespace` の両方のインターフェースに適用されます。
+名前空間では同じシグネチャを持つ複数の宣言が可能なため、エンティティを検索する際には対象の名前空間を指定する必要があります。これも `SetDefaultNamespace` メソッドで行い、エンジンの `SetDefaultNamespace` とモジュールの `SetDefaultNamespace` の両方のインターフェースに適用されます。
 
 ```cpp
 void FindFuncInNamespace(asIScriptModule *module)

@@ -2,10 +2,10 @@
 title: "スクリプト言語の文法 (Script language grammar)"
 ---
 
-これは拡張バッカス・ナウア表記法 (EBNF) による言語文法です。
+AngelScript の言語文法を、拡張バッカス・ナウア表記法 (EBNF) で記述したものです。
 
 :::tip
-[Railroad Diagram Generator](https://github.com/GuntherRademacher/rr) を使用すると、オンラインでナビゲーション可能な鉄道図（構文図）を生成できます。
+[Railroad Diagram Generator](https://github.com/GuntherRademacher/rr) を使用すると、この構文に基づいた視覚的な鉄道図（構文図）をオンラインで生成・閲覧できます。
 :::
 
 ```ebnf

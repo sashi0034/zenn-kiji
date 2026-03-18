@@ -2,13 +2,13 @@
 title: "関数の登録 (Registering a function)"
 ---
 
-この記事は、AngelScript で関数を登録する方法と、スクリプトが使用するアプリケーションインターフェースを正常に登録するために開発者が把握しておくべき、C++ と AngelScript の間のいくつかの違いについて説明することを目的としています。ここで学ぶ原則は、`RegisterGlobalFunction`、`RegisterObjectMethod`、`RegisterObjectBehaviour` など、いくつかの場所で使用されます。
+本稿では、AngelScript におけるアプリケーション関数の登録方法と、アプリケーションのインターフェースを適切に公開するために開発者が留意すべき C++ と AngelScript の相違点について解説します。ここで説明する原則は、`RegisterGlobalFunction`、`RegisterObjectMethod`、`RegisterObjectBehaviour` など、API の各所で使用されます。
 
 ## アプリケーション関数またはメソッドのアドレスを取得する方法 (How to get the address of the application function or method)
 
-マクロ [asFUNCTION](#asFUNCTION)、[asFUNCTIONPR](#asFUNCTIONPR)、[asMETHOD](#asMETHOD)、および [asMETHODPR](#asMETHODPR) は、関数ポインタを取得してスクリプトエンジンに渡す作業を容易にするために実装されています。
+マクロ [asFUNCTION](#asFUNCTION)、[asFUNCTIONPR](#asFUNCTIONPR)、[asMETHOD](#asMETHOD)、[asMETHODPR](#asMETHODPR) は、C++ の関数ポインタをエンジンが扱える形式で取得し、受け渡しを簡略化するために用意されています。
 
-`asFUNCTION` は関数名をパラメータとして受け取ります。これは、オーバーロードを持たないすべてのグローバル関数で機能します。オーバーロード（すなわち、同じ名前でパラメータが異なる複数の関数）を使用する場合は、代わりに `asFUNCTIONPR` を使用する必要があります。このマクロは関数名、パラメータリスト、および戻り値の型をパラメータとして受け取り、C++ コンパイラがどのアドレスのオーバーロード関数を取得すべきかを正確に解決できるようにします。
+`asFUNCTION` ターゲットとなる関数名を引数に取ります。これは、オーバーロードのないグローバル関数であればそのまま利用できます。もしオーバーロード（同名で引数リストが異なる複数の関数）が存在する場合は、代わりに `asFUNCTIONPR` を使用してください。このマクロには、関数名、引数リスト、および戻り値の型を明示的に指定します。これにより、C++ コンパイラが適切なオーバーロード関数を正確に解決できるようになります。
 
 ```cpp
 // グローバル関数
@@ -21,7 +21,7 @@ void globalFunc2(float);
 r = engine->RegisterGlobalFunction("void globalFunc2(int)", asFUNCTIONPR(globalFunc2, (int), void), asCALL_CDECL); assert( r >= 0 );
 ```
 
-`asMETHOD` と `asMETHODPR` についても同様です。これらと `asFUNCTION`/`asFUNCTIONPR` との違いは、前者がクラス名とパラメータの両方を受け取ることです。
+`asMETHOD` と `asMETHODPR` についても同様です。これらと `asFUNCTION`/`asFUNCTIONPR` との違いは、前者がクラス名もパラメータとして受け取ることです。
 
 ```cpp
 class Object
@@ -48,9 +48,9 @@ r = engine->RegisterObjectMethod("object", "void method2(int, int &out)", asMETH
 r = engine->RegisterObjectMethod("object", "int getAttr(int) const", asMETHODPR(Object, getAttr, (int) const, int), asCALL_THISCALL); assert( r >= 0 );
 ```
 
-> **Note**: `asMETHOD` は、多重継承を持つクラスではうまく機能しません。C++ コンパイラの制限により、一部のコンパイラではメソッドポインタが誤ったベースクラスを参照してしまうことになります。その場合の解決策は `asMETHODPR` マクロを使用することです。
+> **Note**: `asMETHOD` は、多重継承を使用しているクラスでは正しく動作しない場合があります。C++ コンパイラの制限により、メソッドポインタが誤った基底クラスを参照してしまうことがあるためです。この問題を回避するには、`asMETHODPR` マクロを使用してください。
 
-スクリプトから呼び出されるクラスメソッドを、まるでグローバル関数であるかのように登録することが可能です。これは、シングルトンをスクリプトインターフェースに公開する際によく行われます。なぜなら、シングルトンのメソッドは通常のグローバル関数のように見えるためです。これを行う場合、アプリケーションは登録時にオブジェクトへの参照を持っていなければならず、また、スクリプトがそのメソッドを呼び出す可能性がなくなるまで、オブジェクトが生存していることをアプリケーション側で保証する必要があります。
+クラスメソッドを、スクリプトからグローバル関数のように呼び出せる形式で登録することも可能です。これは、シングルトンのインスタンスをスクリプトに公開する際によく利用されます。シングルトンのメソッドが、スクリプトからは通常のグローバル関数のように見えるようになります。この際、登録時にアプリケーション側にインスタンスの参照（ポインタ）が存在している必要があり、スクリプトから呼び出される可能性がある間は、そのオブジェクトが破棄されないようアプリケーション側で保証しなければなりません。
 
 ```cpp
 class MySingleton
@@ -67,15 +67,15 @@ r = engine->RegisterGlobalFunction("void MyGlobalFunc(int, int)", asMETHOD(MySin
 
 ## 呼び出し規約 (Calling convention)
 
-AngelScript は、C++ が使用する最も一般的な呼び出し規約（cdecl、stdcall、および thiscall）を受け入れます。また、ネイティブ呼び出し規約がターゲットプラットフォームでサポートされていない場合などに使用できるジェネリックな呼び出し規約もあります。
+AngelScript は、C++ で一般的に使用される呼び出し規約（cdecl、stdcall、thiscall）をサポートしています。また、プラットフォームがネイティブの呼び出し規約をサポートしていない場合などに利用できる「ジェネリック」な規約も用意されています。
 
-アプリケーション関数がどの呼び出し規約を使用しているかを AngelScript に伝えるために、すべての関数およびビヘイビア（振る舞い）は、[asCALL_CDECL](#asCALL_CDECL)、[asCALL_STDCALL](#asCALL_STDCALL)、[asCALL_THISCALL](#asCALL_THISCALL)、または [asCALL_GENERIC](#asCALL_GENERIC) のフラグを用いて登録する必要があります。クラスメソッドをグローバル関数を通じてシミュレートするために、`asCALL_THISCALL` が受け入れられる場所であればどこでも、特別な規約である [asCALL_CDECL_OBJLAST](#asCALL_CDECL_OBJLAST) と [asCALL_CDECL_OBJFIRST](#asCALL_CDECL_OBJFIRST) を使用することもできます。また、関数オブジェクト (Functor) は、構成 [asCALL_THISCALL_ASGLOBAL](#asCALL_THISCALL_ASGLOBAL) を用いてグローバル関数をエミュレートしたり、構成 [asCALL_THISCALL_OBJFIRST](#asCALL_THISCALL_OBJFIRST) または [asCALL_THISCALL_OBJLAST](#asCALL_THISCALL_OBJLAST) を用いてクラスメソッドをエミュレートすることも可能です。
+関数の登録時には、それがどの呼び出し規約を使用するかを [asCALL_CDECL](#asCALL_CDECL)、[asCALL_STDCALL](#asCALL_STDCALL)、[asCALL_THISCALL](#asCALL_THISCALL)、あるいは [asCALL_GENERIC](#asCALL_GENERIC) フラグで指定する必要があります。また、グローバル関数でクラスメソッドをシミュレートするための [asCALL_CDECL_OBJLAST](#asCALL_CDECL_OBJLAST) や [asCALL_CDECL_OBJFIRST](#asCALL_CDECL_OBJFIRST)、さらにファンクタ（関数オブジェクト）を登録するための [asCALL_THISCALL_ASGLOBAL](#asCALL_THISCALL_ASGLOBAL) といった特殊な指定も可能です。
 
-登録時に誤った呼び出し規約が指定された場合、スクリプトエンジンが関数を呼び出すたびに、アプリケーションがスタック破損でクラッシュする可能性が非常に高くなります。C++ プログラムにおけるすべてのグローバル関数のデフォルト呼び出し規約は cdecl であるため、迷った場合はまず `asCALL_CDECL` で試してみてください。呼び出し規約が cdecl と異なるのは、関数が明示的に別の規約を使用するように宣言されている場合や、コンパイラのオプションでデフォルトを他の規約に設定している場合だけです。
+登録時に誤った呼び出し規約を指定すると、スクリプトからの呼び出し時にスタックが破損（Stack Corruption）し、アプリケーションがほぼ確実にクラッシュします。C++ のグローバル関数は通常 `cdecl` ですが、ビルド設定やプラットフォームによって異なる場合があるため、確信が持てない場合はまず `asCALL_CDECL` を試してください。明示的に別の規約を指定している場合や、コンパイルオプションでデフォルトの規約を変更している場合を除き、通常は `cdecl` となります。
 
-クラスメソッドについては、thiscall 規約しか存在しません（スタティックメソッドは別として、スタティックメソッドは実際にはクラス名前空間内のグローバル関数であるため）。通常のメソッド、仮想メソッド、および多重継承を持つクラスのメソッドはすべて同じ方法（`asCALL_THISCALL`）で登録されます。
+クラスメソッド（非静的メンバ関数）には `thiscall` 規約が使用されます。ただし、静的メソッド（static）は事実上クラスの名前空間内にあるグローバル関数と同じであるため、扱いに注意してください。通常のメソッド、仮想メソッド、および多重継承クラスのメソッドは、すべて同じように `asCALL_THISCALL` で登録します。
 
-仮想継承を持つクラスはネイティブにはサポートされておらず（[後述](#仮想継承はサポートされていません-virtual-inheritance-is-not-supported)）、これらの場合はラッパー関数を作成する必要があります。これらのラッパー関数は手動で実装することもできますし、[アドオン](./doc_addon#自動ラッパー関数-autowrapper) が提供するテンプレートベースの自動ラッパーを使用することもできます。
+仮想継承（Virtual Inheritance）を含むクラスはネイティブにはサポートされておらず（[後述](#仮想継承はサポートされていません-virtual-inheritance-is-not-supported)）、それらの場合はラッパー関数を作成する必要があります。これらのラッパー関数は手動で実装することもできますし、[アドオン](./doc_addon#自動ラッパー関数-autowrapper) が提供するテンプレートベースの自動ラッパーを使用することもできます。
 
 参照: [ジェネリック関数](./doc_generic)
 
