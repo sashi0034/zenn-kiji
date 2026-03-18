@@ -4,18 +4,18 @@ title: "標準ライブラリ (Standard library)"
 
 このページでは AngelScript SDK が提供する標準ライブラリについて説明します。AngelScript を使用するアプリケーションは、標準ライブラリをスクリプトに公開する場合としない場合があります。公開されている API の情報については常にアプリケーションのマニュアルを参照してください。
 
-- [string](./doc_script_stdlib_string)
-- [array - 配列](./doc_script_stdlib_array)
-- [dictionary - 辞書](./doc_script_stdlib_dictionary)
-- [ref - 汎用ハンドル](./doc_script_stdlib_ref)
-- [weakref - 弱参照](./doc_script_stdlib_weakref)
-- [datetime - 日時](./doc_script_stdlib_datetime)
-- [file - ファイル](./doc_script_stdlib_file)
-- [filesystem - ファイルシステム](./doc_script_stdlib_filesystem)
-- [socket - ソケット](./doc_script_stdlib_socket)
-- [例外処理](./doc_script_stdlib_exception)
-- [コルーチン](./doc_script_stdlib_coroutine)
-- [システム関数](./doc_script_stdlib_system)
+- [string](#string-文字列)
+- [array - 配列](#array-配列)
+- [dictionary - 辞書](#dictionary-辞書)
+- [ref - 汎用ハンドル](#ref-汎用ハンドル)
+- [weakref - 弱参照](#weakref-弱参照)
+- [datetime - 日時](#datetime-日時)
+- [file - ファイル](#file-ファイル)
+- [filesystem - ファイルシステム](#filesystem-ファイルシステム)
+- [socket](#socket)
+- [例外処理](#例外処理-exception-handling)
+- [コルーチン](#コルーチン-co-routines)
+- [システム関数](#システム関数-system-functions)
 
 ## socket
 

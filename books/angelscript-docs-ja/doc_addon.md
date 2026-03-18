@@ -199,7 +199,8 @@ COgre @CreateOgre()
 
 コンテキストマネージャークラスはマルチスレッド向けには設計されていないため、アプリケーションが複数のスレッドからスクリプトを実行する場合は注意が必要です。
 
-参照: サンプルの [concurrent](./doc_samples#concurrent-scripts) および [corout](./doc_samples#co-routines)
+参照: サンプルの [Concurrent scripts](#concurrent-scripts並行スクリプト) および [Co-routines](#co-routinesコルーティン)
+(※これらは [サンプル](./doc_samples) ページに記載されています)
 
 ### C++ パブリックインターフェース
 
@@ -253,7 +254,7 @@ public:
 };
 ```
 
-スクリプトインターフェースについては [コルーチン](./doc_script_stdlib#コルーチン-co-routines) を参照してください。
+スクリプトインターフェースについては [標準ライブラリ](./doc_script_stdlib#コルーチン-co-routines) を参照してください。
 
 ---
 
@@ -521,7 +522,7 @@ void RegisterWrapper(asIScriptEngine *engine)
 void RegisterExceptionRoutines(asIScriptEngine *engine);
 ```
 
-スクリプトインターフェースについては [例外処理](./doc_script_stdlib#例外処理-exception-handling) を参照してください。
+スクリプトインターフェースについては [標準ライブラリ](./doc_script_stdlib#例外処理-exception-handling) を参照してください。
 
 ---
 
