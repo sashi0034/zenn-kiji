@@ -132,4 +132,4 @@ engine->RegisterGlobalFunction("IMyObj @ReturnMyObj()", asFUNCTION(ReturnMyObj),
 
 ---
 
-原文: https://www.angelcode.com/angelscript/sdk/docs/manual/doc_using_script_class.html
+原文: https://www.angelcode.com/angelscript/sdk/docs/manual/doc_use_script_class.html
