@@ -28,7 +28,7 @@ title: "動的なビルド (Dynamic compilations)"
 
 参照: [ExecuteString() アドオン](./doc_addon#ヘルパー関数-helper-functions)、[Console サンプル](./doc_samples#console)
 
-## スクリプトのホットリロード Hot reloading scripts)
+## スクリプトのホットリロード (Hot reloading scripts)
 
 迅速な開発・テストサイクルを実現するために、ホットリロードは極めて有用な機能です。スクリプトファイルの更新を検知し、アプリケーションを再起動せずに自動的にリロードする役割を持つ「デバッグモード」を搭載することは、ゲームエンジンにおいて一般的です。これにより、開発者は AI の振る舞いなどを素早く変更し、レベルの最初からやり直すことなく即座にその結果を確認できます。
 
