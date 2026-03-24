@@ -150,10 +150,10 @@ class A
 void main()
 {
   A a;
-  
+
   // A::Cmp クラスメソッドのデリゲートを作成します
   CALLBACK @func = CALLBACK(a.Cmp);
-  
+
   // グローバル関数であるかのようにデリゲートを通常通り呼び出します
   if( func(1,2) )
   {
@@ -163,7 +163,7 @@ void main()
   {
     print("The function returned false\n");
   }
-  
+
   printf("The number of comparisons performed is "+a.count+"\n");
 }
 ```
@@ -251,4 +251,4 @@ auto@ b = getObject();  // より明示的にしたい場合は @auto も使用�
 
 ---
 
-原文: https://www.angelcode.com/angelscript/sdk/docs/manual/doc_script_datatypes.html
+原文: https://www.angelcode.com/angelscript/sdk/docs/manual/doc_datatypes.html
