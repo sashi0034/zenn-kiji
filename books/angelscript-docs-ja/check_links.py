@@ -59,10 +59,19 @@ class MarkdownLinkTester:
             print(f"Error reading {file_path}: {e}")
             return []
 
-    def test_links(self, early_exit: bool = False) -> int:
+    def test_links(self, specific_files: List[str] = None, early_exit: bool = False) -> int:
         """Iterates through all .md files and validates internal links."""
-        # Skip files with all-uppercase names (e.g., README.md, LICENSE.md, AGENTS.md)
-        md_files = [f for f in self.root_dir.rglob("*.md") if not f.stem.isupper()]
+        if specific_files:
+            md_files = []
+            for f in specific_files:
+                p = pathlib.Path(f).resolve()
+                if p.exists() and p.suffix == '.md':
+                    md_files.append(p)
+                else:
+                    print(f"⚠️  Warning: File not found or not a .md file: {f}")
+        else:
+            # Skip files with all-uppercase names (e.g., README.md, LICENSE.md, AGENTS.md)
+            md_files = [f for f in self.root_dir.rglob("*.md") if not f.stem.isupper()]
         error_count = 0
 
         for md_file in md_files:
@@ -77,7 +86,12 @@ class MarkdownLinkTester:
                 error_count += 1
                 continue
 
-            for match in LINK_PATTERN.finditer(content):
+            # Remove code blocks and inline code to avoid false positives
+            # Replacing with spaces/newlines to maintain line numbering and positions
+            clean_content = re.sub(r'```.*?```', lambda m: '\n' * m.group(0).count('\n'), content, flags=re.DOTALL)
+            clean_content = re.sub(r'`[^`\n]+`', lambda m: ' ' * len(m.group(0)), clean_content)
+
+            for match in LINK_PATTERN.finditer(clean_content):
                 line_number = content.count('\n', 0, match.start()) + 1
                 raw_path = match.group('path') or ""
                 anchor = match.group('anchor')
@@ -145,15 +159,20 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Validate internal links in Markdown files.")
     parser.add_argument("directory", nargs="?", default=".", help="Root directory to check (default: current)")
     parser.add_argument("--early-exit", "-e", action="store_true", help="Stop immediately on the first error found.")
+    parser.add_argument("--files", "-f", nargs="+", help="Specific Markdown files to check.")
     args = parser.parse_args()
 
     tester = MarkdownLinkTester(args.directory)
     print(f"Checking links in: {tester.root_dir}")
     
     # Pre-calculate file count for informational purposes
-    md_files_count = len([f for f in tester.root_dir.rglob("*.md") if not f.stem.isupper()])
+    if args.files:
+        md_files_count = len(args.files)
+    else:
+        md_files_count = len([f for f in tester.root_dir.rglob("*.md") if not f.stem.isupper()])
+    
     print(f"Found {md_files_count} Markdown files.")
     
-    total_errors = tester.test_links(early_exit=args.early_exit)
+    total_errors = tester.test_links(specific_files=args.files, early_exit=args.early_exit)
     if total_errors > 0:
         sys.exit(1)
