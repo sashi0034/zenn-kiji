@@ -3,6 +3,8 @@ import re
 import pathlib
 import urllib.parse
 import difflib
+import argparse
+import sys
 from typing import List, Dict, Set
 
 # Regex for Markdown links: [text](path#anchor)
@@ -52,17 +54,22 @@ class MarkdownLinkTester:
             print(f"Error reading {file_path}: {e}")
             return []
 
-    def test_links(self):
+    def test_links(self, early_exit: bool = False) -> int:
         """Iterates through all .md files and validates internal links."""
         # Skip files with all-uppercase names (e.g., README.md, LICENSE.md, AGENTS.md)
         md_files = [f for f in self.root_dir.rglob("*.md") if not f.stem.isupper()]
         error_count = 0
 
         for md_file in md_files:
+            if early_exit and error_count > 0:
+                print("\n❌ [Early-exit] Terminating on first error.")
+                return error_count
+
             try:
                 content = md_file.read_text(encoding='utf-8')
             except Exception as e:
                 print(f"Could not read file {md_file}: {e}")
+                error_count += 1
                 continue
 
             for match in LINK_PATTERN.finditer(content):
@@ -119,16 +126,23 @@ class MarkdownLinkTester:
 
         if error_count == 0:
             print("✅ All links are valid!")
-        else:
-            print(f"Done. Found {error_count} error(s).")
+        
+        print(f"Done. Found {error_count} error(s).")
+        return error_count
 
 if __name__ == "__main__":
-    # Specify your documentation directory here
-    DOCS_DIRECTORY = "." 
-    
-    tester = MarkdownLinkTester(DOCS_DIRECTORY)
+    parser = argparse.ArgumentParser(description="Validate internal links in Markdown files.")
+    parser.add_argument("directory", nargs="?", default=".", help="Root directory to check (default: current)")
+    parser.add_argument("--early-exit", "-e", action="store_true", help="Stop immediately on the first error found.")
+    args = parser.parse_args()
+
+    tester = MarkdownLinkTester(args.directory)
     print(f"Checking links in: {tester.root_dir}")
-    # Skip files with all-uppercase names (e.g., README.md, LICENSE.md, AGENTS.md)
-    md_files = [f for f in tester.root_dir.rglob("*.md") if not f.stem.isupper()]
-    print(f"Found {len(md_files)} Markdown files.")
-    tester.test_links()
+    
+    # Pre-calculate file count for informational purposes
+    md_files_count = len([f for f in tester.root_dir.rglob("*.md") if not f.stem.isupper()])
+    print(f"Found {md_files_count} Markdown files.")
+    
+    total_errors = tester.test_links(early_exit=args.early_exit)
+    if total_errors > 0:
+        sys.exit(1)
