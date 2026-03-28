@@ -39,6 +39,6 @@ def extract_markdown_headers(target_dir, output_file):
 if __name__ == "__main__":
     # Configuration
     SEARCH_DIRECTORY = "."  # Change this to your directory
-    OUTPUT_FILENAME = "extracted_sections.md"
+    OUTPUT_FILENAME = "extracted_sections.txt"
     
     extract_markdown_headers(SEARCH_DIRECTORY, OUTPUT_FILENAME)

@@ -204,6 +204,7 @@
 #### テンプレートインスタンスのサブタイプ置換について-(On-subtype-replacement-for-template-instances)
 ### テンプレートの子関数定義-(Child-funcdefs-of-templates)
 ### コンパイル時のテンプレートインスタンス化の検証-(Validating-template-instantiations-at-compile-time)
+## テンプレートの特殊化-(Template-Specialization)
 ## テンプレート関数-(Template-functions)
 
 ---
@@ -217,6 +218,7 @@
 
 [doc_adv_var_type.md]
 
+## 可変パラメータ型-(The-variable-parameter-type)
 ### 可変型の変換演算子-(Variable-conversion-operators)
 ## 可変長引数-(Variadic-arguments)
 
@@ -290,6 +292,7 @@
 [doc_debug.md]
 
 ## ラインブレークポイントの設定-(Setting-line-breaks)
+## コールスタックの表示-(Viewing-the-call-stack)
 ## 変数の検査-(Inspecting-variables)
 ## 内部的に実行されたスクリプトのデバッグ-(Debugging-internally-executed-scripts)
 
