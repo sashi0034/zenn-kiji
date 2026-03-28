@@ -56,4 +56,10 @@ title: "動的なビルド (Dynamic compilations)"
 
 ---
 
+訳注: ホットリロードを実装した簡単なサンプルです。
+
+https://github.com/sashi0034/AngelScript-HotReload
+
+---
+
 原文: https://www.angelcode.com/angelscript/sdk/docs/manual/doc_adv_dynamic_build.html
