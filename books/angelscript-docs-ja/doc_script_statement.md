@@ -22,7 +22,7 @@ array<int> arr, arr2 = {1,2,3};
 
 初期値を指定せずに宣言されたプリミティブ型の変数は、初期化されていない不定な値を持ちます。一方、ハンドルやオブジェクトなどの複合型はデフォルト値で初期化されます（ハンドルの場合は `null`、オブジェクトの場合はデフォルトコンストラクタによる初期化）。
 
-参照: [自動型宣言](./doc_script_datatypes#自動型宣言-auto-declarations)
+参照: [自動型宣言](./doc_script_datatypes#自動型宣言-(auto-declarations))
 
 ## 式ステートメント (Expression statement)
 
@@ -130,7 +130,7 @@ double average = double(sum)/count;
 
 `foreach` ループ内でコンテナが変更された場合（例えば要素が削除または追加された場合）、動作は未定義です。
 
-参照: [foreach ループ演算子](./doc_script_class_ops#foreach-ループ演算子-foreach-loop-operators)
+参照: [foreach ループ演算子](./doc_script_class_ops#foreach-ループ演算子-(foreach-loop-operators))
 
 ## ループ制御 (Loop control: break / continue)
 

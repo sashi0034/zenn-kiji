@@ -17,7 +17,7 @@ https://github.com/anjo76/angelscript
 ## 開発者マニュアル
 
 - [ライセンス (原文)](https://www.angelcode.com/angelscript/sdk/docs/manual/doc_license.html)
-- [はじめに](#はじめに-getting-started)
+- [はじめに](#はじめに-(getting-started))
 - [AngelScript の理解](./doc_understanding_as)
 - [アプリケーションインターフェースの登録](#アプリケーションインターフェースの登録)
 - [スクリプトのコンパイル](./doc_compile_script)

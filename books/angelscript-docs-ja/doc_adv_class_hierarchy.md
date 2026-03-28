@@ -4,11 +4,11 @@ title: "クラス階層 (Class hierarchies)"
 
 AngelScript は登録されたクラス間の継承関係を自動的に判別することはできません。そのため、スクリプト言語内でクラス階層を確立するには、通常の [オブジェクト型の登録](./doc_register_type) に加えて、いくつかの追加の設定が必要になります。
 
-現時点では、クラス階層の登録は [参照型](./doc_register_type#参照型の登録-registering-a-reference-type) に対してのみサポートされており、[値型](./doc_register_type#値型の登録-registering-a-value-type) では利用できません。
+現時点では、クラス階層の登録は [参照型](./doc_register_type#参照型の登録-(registering-a-reference-type)) に対してのみサポートされており、[値型](./doc_register_type#値型の登録-(registering-a-value-type)) では利用できません。
 
 ## 関係の確立 (Establishing the relationship)
 
-2つの型に継承関係があることを AngelScript に認識させるには、参照キャスト演算子である [opCast](./doc_script_class_ops#型変換演算子-type-conversion-operators) または [opImplCast](./doc_script_class_ops#型変換演算子-type-conversion-operators) を登録します。`opCast` は、`cast<class>` 演算子を用いた明示的な型変換のみを許可する場合に使用します。一方、`opImplCast` は、必要に応じてコンパイラが暗黙的に型変換を行うことを許可する場合に使用します。
+2つの型に継承関係があることを AngelScript に認識させるには、参照キャスト演算子である [opCast](./doc_script_class_ops#型変換演算子-(type-conversion-operators)) または [opImplCast](./doc_script_class_ops#型変換演算子-(type-conversion-operators)) を登録します。`opCast` は、`cast<class>` 演算子を用いた明示的な型変換のみを許可する場合に使用します。一方、`opImplCast` は、必要に応じてコンパイラが暗黙的に型変換を行うことを許可する場合に使用します。
 
 一般的には、派生型から基底型への変換には `opImplCast`（暗黙的キャスト）を使い、基底型から派生型への変換には `opCast`（明示的キャスト）を使用します。
 

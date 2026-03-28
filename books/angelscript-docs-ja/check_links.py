@@ -7,10 +7,9 @@ import argparse
 import sys
 from typing import List, Dict, Set
 
-# Regex for Markdown links: [text](path#anchor)
-# Groups: 'path' for the file reference, 'anchor' for the section fragment
-# Allows path to be empty for local anchors: (#anchor)
-LINK_PATTERN = re.compile(r'\[.*?\]\((?P<path>[^#)]*)(?:#(?P<anchor>[^)]+))?\)')
+# Regex for Markdown links: [text](url)
+# Supports one level of nested parentheses in the URL such as (co-routines)
+LINK_PATTERN = re.compile(r'\[.*?\]\((?P<url>(?:[^()]+|\([^()]*\))*)\)')
 
 # Regex for Markdown headings: # Heading Text
 HEADING_PATTERN = re.compile(r'^(?P<level>#{1,6})\s+(?P<text>.+)$', re.MULTILINE)
@@ -32,7 +31,7 @@ class MarkdownLinkTester:
         """
         text = text.lower().strip()
         # Remove non-alphanumeric characters (simplified)
-        text = re.sub(r'[^\w\s\-]', '', text)
+        # text = re.sub(r'[^\w\s\-]', '', text)
         # Replace whitespace with hyphens
         text = re.sub(r'\s+', '-', text)
         return text
@@ -59,7 +58,7 @@ class MarkdownLinkTester:
             print(f"Error reading {file_path}: {e}")
             return []
 
-    def test_links(self, specific_files: List[str] = None, early_exit: bool = False) -> int:
+    def test_links(self, specific_files: List[str] = None, early_exit: bool = False, interactive: bool = False) -> int:
         """Iterates through all .md files and validates internal links."""
         if specific_files:
             md_files = []
@@ -87,14 +86,25 @@ class MarkdownLinkTester:
                 continue
 
             # Remove code blocks and inline code to avoid false positives
-            # Replacing with spaces/newlines to maintain line numbering and positions
-            clean_content = re.sub(r'```.*?```', lambda m: '\n' * m.group(0).count('\n'), content, flags=re.DOTALL)
+            # Replacing with spaces and preserving newlines to maintain character offsets and line numbering
+            clean_content = re.sub(r'```.*?```', lambda m: re.sub(r'[^\r\n]', ' ', m.group(0)), content, flags=re.DOTALL)
             clean_content = re.sub(r'`[^`\n]+`', lambda m: ' ' * len(m.group(0)), clean_content)
 
+            replacements = []
             for match in LINK_PATTERN.finditer(clean_content):
                 line_number = content.count('\n', 0, match.start()) + 1
-                raw_path = match.group('path') or ""
-                anchor = match.group('anchor')
+                url_b = match.group('url')
+                if url_b and '#' in url_b:
+                    parts = url_b.split('#', 1)
+                    raw_path = parts[0]
+                    anchor = parts[1]
+                    anchor_start = match.start('url') + len(raw_path) + 1
+                    anchor_end = match.end('url')
+                else:
+                    raw_path = url_b or ""
+                    anchor = None
+                    anchor_start = -1
+                    anchor_end = -1
 
                 # Skip external links
                 if raw_path.startswith(('http://', 'https://', 'mailto:', 'ftp:')):
@@ -143,11 +153,34 @@ class MarkdownLinkTester:
                         if suggestions:
                             suggestion_str = ", ".join(['#' + s for s in suggestions])
                             print(f"   Did you mean: {suggestion_str} ?")
+                            if interactive:
+                                try:
+                                    ans = input("   Replace? [Y/n]: ").strip().lower()
+                                    if ans in ('', 'y', 'yes'):
+                                        new_anchor = suggestions[0]
+                                        replacements.append((anchor_start, anchor_end, new_anchor))
+                                        print(f"   ✅ Replacement scheduled: #{new_anchor}")
+                                except EOFError:
+                                    print("   Interrupted.")
+                                    return error_count
                         else:
                             print(f"   No similar headings found in {target_path.name}.")
                         
                         print("-----------------------------------------------")
                         error_count += 1
+
+            if replacements:
+                # Apply replacements in reverse order to keep offsets valid
+                replacements.sort(key=lambda x: x[0], reverse=True)
+                new_content = list(content)
+                for start, end, rep in replacements:
+                    new_content[start:end] = list(rep)
+                
+                try:
+                    md_file.write_text("".join(new_content), encoding='utf-8')
+                    print(f"📝 Fixed {len(replacements)} link(s) in {md_file.relative_to(self.root_dir)}")
+                except Exception as e:
+                    print(f"❌ Error writing to {md_file}: {e}")
 
         if error_count == 0:
             print("✅ All links are valid!")
@@ -160,6 +193,7 @@ if __name__ == "__main__":
     parser.add_argument("directory", nargs="?", default=".", help="Root directory to check (default: current)")
     parser.add_argument("--early-exit", "-e", action="store_true", help="Stop immediately on the first error found.")
     parser.add_argument("--files", "-f", nargs="+", help="Specific Markdown files to check.")
+    parser.add_argument("--fix", "-x", action="store_true", help="Interactively fix broken anchors with suggested corrections.")
     args = parser.parse_args()
 
     tester = MarkdownLinkTester(args.directory)
@@ -173,6 +207,6 @@ if __name__ == "__main__":
     
     print(f"Found {md_files_count} Markdown files.")
     
-    total_errors = tester.test_links(specific_files=args.files, early_exit=args.early_exit)
+    total_errors = tester.test_links(specific_files=args.files, early_exit=args.early_exit, interactive=args.fix)
     if total_errors > 0:
         sys.exit(1)

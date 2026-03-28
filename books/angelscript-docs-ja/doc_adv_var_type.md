@@ -39,7 +39,7 @@ void func_g(asIScriptGeneric *gen)
 
 ### 可変型の変換演算子 (Variable conversion operators)
 
-可変パラメータ型は、[演算子オーバーロード](./doc_script_class_ops#型変換演算子-type-conversion-operators) の特別バージョンで使用することもできます。これは、任意の型のコンテンツを保持できるようにする必要があるジェネリックなコンテナ型にとって特に有用です。
+可変パラメータ型は、[演算子オーバーロード](./doc_script_class_ops#型変換演算子-(type-conversion-operators)) の特別バージョンで使用することもできます。これは、任意の型のコンテンツを保持できるようにする必要があるジェネリックなコンテナ型にとって特に有用です。
 
  - `void opCast(?&out)`
  - `void opConv(?&out)`
@@ -55,7 +55,7 @@ void func_g(asIScriptGeneric *gen)
 
 関数が可変長引数を受け取るように登録されている場合、コンパイラは関数に渡された引数の数を保持する隠し引数をスタックにさらに一つ積みます。これは `asIScriptGeneric` インターフェースが引数の数を知るために使用されます。アプリケーションはこの隠し引数を明示的に読み取る必要はなく、通常通り `GetArgCount` メソッドを使用するだけで構いません。可変長部分に渡されるすべての引数の型は（アプリケーションが登録した型と）同一になります。
 
-この引数の一般的な構成としては、[可変パラメータ型](#可変パラメータ型-the-variable-parameter-type) のリストを入力として受け取るための `const ?&in ...`、または様々な型の引数を出力として受け取るための `?&out ...` があります。しかし単にそれだけが必要なのであれば、特定の単一の型（例：`int ...`）を指定しても完全に問題ありません。
+この引数の一般的な構成としては、[可変パラメータ型](#可変パラメータ型-(the-variable-parameter-type)) のリストを入力として受け取るための `const ?&in ...`、または様々な型の引数を出力として受け取るための `?&out ...` があります。しかし単にそれだけが必要なのであれば、特定の単一の型（例：`int ...`）を指定しても完全に問題ありません。
 
 ```cpp
     r = engine->RegisterGlobalFunction("string format(const string&in fmt, const ?&in ...)", asFUNCTION(StringFormat), asCALL_GENERIC); assert(r >= 0);

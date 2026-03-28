@@ -47,9 +47,9 @@ int CompileScript(asIScriptEngine *engine, const char *script, int type)
  - [グローバル関数](./doc_register_func)
  - [グローバルプロパティ](./doc_register_prop)
  - [オブジェクト型](./doc_register_type)
- - [型の個々のメソッド](./doc_register_type#オブジェクトメソッドの登録-registering-object-methods)
- - [型の個々のプロパティ](./doc_register_type#オブジェクトプロパティの登録-registering-object-properties)
- - [個々のオブジェクトの振る舞い (behaviours)](./doc_register_type#参照型の登録-registering-a-reference-type)
+ - [型の個々のメソッド](./doc_register_type#オブジェクトメソッドの登録-(registering-object-methods))
+ - [型の個々のプロパティ](./doc_register_type#オブジェクトプロパティの登録-(registering-object-properties))
+ - [個々のオブジェクトの振る舞い (behaviours)](./doc_register_type#参照型の登録-(registering-a-reference-type))
 
 ---
 

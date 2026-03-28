@@ -37,11 +37,11 @@ void DebugLineCallback(asIScriptContext *ctx, CDebugMgr *dbg)
   ctx->SetLineCallback(asFUNCTION(DebugLineCallback), dbg, asCALL_CDECL);
 ```
 
-ラインコールバックによって実行が中断されると、コンテキストの `Execute` メソッドは `asEXECUTION_SUSPENDED` を返します。その後、アプリケーションは [コールスタックの表示](#コールスタックの表示-viewing-the-call-stack) や [変数の検査](#変数の検査-inspecting-variables) などのデバッグ機能を処理するための、専用のメッセージループに入ることができます。実行を再開するには、再度 `Execute` を呼び出すだけです。
+ラインコールバックによって実行が中断されると、コンテキストの `Execute` メソッドは `asEXECUTION_SUSPENDED` を返します。その後、アプリケーションは [コールスタックの表示](#コールスタックの表示-(viewing-the-call-stack)) や [変数の検査](#変数の検査-(inspecting-variables)) などのデバッグ機能を処理するための、専用のメッセージループに入ることができます。実行を再開するには、再度 `Execute` を呼び出すだけです。
 
 スクリプトの実行をサスペンド（一時停止）させる代わりに、ラインコールバックの中から直接メッセージループを開始するという実装方法もあります。この場合、実行の再開はラインコールバック関数からリターン（戻る）することによって行われます。どちらの方法が実装しやすいかは、アプリケーションの設計に依存します。
 
-`asIScriptContext` は、実行の経緯を追跡するためにコールスタックを公開しています。これにより、各スタック階層で [変数の値を表示](#変数の検査-inspecting-variables) することも可能です。
+`asIScriptContext` は、実行の経緯を追跡するためにコールスタックを公開しています。これにより、各スタック階層で [変数の値を表示](#変数の検査-(inspecting-variables)) することも可能です。
 
 ## コールスタックの表示 (Viewing the call stack)
  

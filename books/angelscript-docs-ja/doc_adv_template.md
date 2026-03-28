@@ -8,7 +8,7 @@ AngelScript におけるテンプレート型の実装は、必ずしも C++ の
 
 これにより、未知の型に対する汎用的なサポートと、特定の既知の型に対する高いパフォーマンスを両立させることができます。
 
-テンプレート型は [参照型](./doc_register_type#参照型の登録-registering-a-reference-type) または [値型](./doc_register_type#値型の登録-registering-a-value-type) のいずれとしても登録できます。手順は通常の型とほぼ同じですが、いくつか独自のルールがあります。
+テンプレート型は [参照型](./doc_register_type#参照型の登録-(registering-a-reference-type)) または [値型](./doc_register_type#値型の登録-(registering-a-value-type)) のいずれとしても登録できます。手順は通常の型とほぼ同じですが、いくつか独自のルールがあります。
 
 型名は、テンプレート名に続けてサブタイプ名を山括弧（`< >`）で囲んで宣言します。サブタイプが複数ある場合はコンマ（`,`）で区切ります。また、登録時には `asOBJ_TEMPLATE` フラグを指定して、これがテンプレート型であることを AngelScript に伝えます。
 
@@ -152,7 +152,7 @@ r = engine->RegisterObjectBehaviour("myTemplate<float>", asBEHAVE_FACTORY, "myTe
 
 ## テンプレート関数 (Template functions)
 
-テンプレート関数は [ジェネリック呼び出し規約](./doc_generic) を用いて実装することができ、エンジンに対して [グローバル関数](./doc_register_func) または [オブジェクトメソッド](./doc_register_type#オブジェクトメソッドの登録-registering-object-methods) として登録できます。
+テンプレート関数は [ジェネリック呼び出し規約](./doc_generic) を用いて実装することができ、エンジンに対して [グローバル関数](./doc_register_func) または [オブジェクトメソッド](./doc_register_type#オブジェクトメソッドの登録-(registering-object-methods)) として登録できます。
 
 テンプレート関数が呼び出されると、関数は `GetArgTypeId`、もしくは `GetSubTypeId` を使用して引数の型を決定することができます。
 

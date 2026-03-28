@@ -41,9 +41,9 @@ external shared void GlobalFunc();
 
 ## 共有できるもの (What can be shared)
 
-現在は [クラス](./doc_script_class)、[インターフェース](./doc_script_global#インターフェース-interfaces)、[関数](./doc_script_function)、[列挙型](./doc_script_global#列挙型-enums)、および [funcdefs](./doc_script_global#funcdef-関数定義) エンティティのみが共有できます。
+現在は [クラス](./doc_script_class)、[インターフェース](./doc_script_global#インターフェース-(interfaces))、[関数](./doc_script_function)、[列挙型](./doc_script_global#列挙型-(enums))、および [funcdefs](./doc_script_global#funcdef-(関数定義)) エンティティのみが共有できます。
 
-将来のバージョンでは [グローバル変数](./doc_script_global#グローバル変数-variables) も共有できるようになる可能性があります。
+将来のバージョンでは [グローバル変数](./doc_script_global#グローバル変数-(variables)) も共有できるようになる可能性があります。
 
 ---
 

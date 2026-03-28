@@ -146,7 +146,7 @@ class MyObj
 | `type(expr)` | コンストラクタ、opConv、opImplConv |
 | `cast<type>(expr)` | opCast、opImplCast |
 
-式 `type(expr)` がコンパイルされる際、その型が引数一致する [変換コンストラクタ](./doc_script_class#コンストラクタ-class-constructors) を持っていない場合、コンパイラは `expr.opConv()` への書き換えを試みます。戻り値の型が要求される `type` と一致する `opConv` が選択されます。
+式 `type(expr)` がコンパイルされる際、その型が引数一致する [変換コンストラクタ](./doc_script_class#コンストラクタ-(class-constructors)) を持っていない場合、コンパイラは `expr.opConv()` への書き換えを試みます。戻り値の型が要求される `type` と一致する `opConv` が選択されます。
 
 暗黙的な型変換では、コンパイラはまず対象型の変換コンストラクタ（`explicit` でないもの）を探し、見つからない場合はソース側の `opImplConv` を呼び出そうとします。
 
@@ -191,7 +191,7 @@ class MyObjA
 条件式の中の論理式をコンパイルする際、コンパイラは参照型に対して `bool opImplConv` が実装されていてもそれを使用しません。これは、ハンドル自体を確認しているのか、それとも実際のオブジェクトを確認しているのかが曖昧になるためです。
 :::
 
-参照: [型変換](./doc_script_expr#型変換-type-conversions)、[アプリケーションクラスの継承](./doc_adv_inheritappclass)
+参照: [型変換](./doc_script_expr#型変換-(type-conversions))、[アプリケーションクラスの継承](./doc_adv_inheritappclass)
 
 ## foreach ループ演算子 (Foreach loop operators)
 
@@ -226,7 +226,7 @@ for( auto @container = expr, auto @it = container.opForBegin(); !container.opFor
 
 コンテナが単一の値のみをサポートする場合は `opForValue` 演算子を使用できますが、そうでない場合は複数の番号付き `opForValue#` 演算子を使用しなければなりません。
 
-参照: [ステートメント](./doc_script_statement#ループ-loops-while-do-while-for-foreach)
+参照: [ステートメント](./doc_script_statement#ループ-(loops:-while-/-do-while-/-for-/-foreach))
 
 ---
 

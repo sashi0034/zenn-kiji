@@ -4,18 +4,18 @@ title: "標準ライブラリ (Standard library)"
 
 本ページでは AngelScript SDK が提供する標準ライブラリについて説明します。AngelScript を組み込んだアプリケーションによって、これらのライブラリがスクリプト側に公開されているかどうかが異なります。利用可能な API の詳細については、対象となるアプリケーションのマニュアルを併せて参照してください。
 
-- [string](#string-文字列)
-- [array - 配列](#array-配列)
-- [dictionary - 辞書](#dictionary-辞書)
-- [ref - 汎用ハンドル](#ref-汎用ハンドル)
-- [weakref - 弱参照](#weakref-弱参照)
-- [datetime - 日時](#datetime-日時)
-- [file - ファイル](#file-ファイル)
-- [filesystem - ファイルシステム](#filesystem-ファイルシステム)
+- [string](#string-（文字列）)
+- [array - 配列](#array-（配列）)
+- [dictionary - 辞書](#dictionary-（辞書）)
+- [ref - 汎用ハンドル](#ref-（汎用ハンドル）)
+- [weakref - 弱参照](#weakref-（弱参照）)
+- [datetime - 日時](#datetime-（日時）)
+- [file - ファイル](#file-（ファイル）)
+- [filesystem - ファイルシステム](#filesystem-（ファイルシステム）)
 - [socket](#socket)
-- [例外処理](#例外処理-exception-handling)
-- [コルーチン](#コルーチン-co-routines)
-- [システム関数](#システム関数-system-functions)
+- [例外処理](#例外処理-(exception-handling))
+- [コルーチン](#コルーチン-(co-routines))
+- [システム関数](#システム関数-(system-functions))
 
 ## socket
 

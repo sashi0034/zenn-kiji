@@ -36,7 +36,7 @@ void LineCallback(asIScriptContext *ctx, DWORD *timeOut)
 }
 ```
 
-この動作の詳細については、[Events サンプル](./doc_samples#eventsイベント) を参照してください。
+この動作の詳細については、[Events サンプル](./doc_samples#events（イベント）) を参照してください。
 
 もしスクリプトが `asEP_BUILD_WITHOUT_LINE_CUES` エンジンプロパティを有効にしてコンパイルされている場合、ラインコールバックの呼び出し頻度は低下しますが、少なくともすべてのループ内や関数呼び出しの際には呼び出されることが保証されています。
 

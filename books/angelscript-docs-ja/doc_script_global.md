@@ -104,7 +104,7 @@ funcdef は、一致するシグネチャを持つ関数へのポインタを格
 funcdef bool CALLBACK(int, int);
 ```
 
-参照: より詳細な使い方については [関数ハンドル](./doc_script_datatypes#関数ハンドル-function-handles)
+参照: より詳細な使い方については [関数ハンドル](./doc_script_datatypes#関数ハンドル-(function-handles))
 
 ## 名前空間 (Namespaces)
 
@@ -177,7 +177,7 @@ void main()
 
 `using namespace` がグローバルに、または名前空間内で使用される場合、指定された名前空間のシンボルはその外包名前空間全体で可視になります。
 
-参照: [ステートメント 'using namespace'](./doc_script_statement#using-namespace-ステートメント-using-namespace)
+参照: [ステートメント 'using namespace'](./doc_script_statement#using-namespace-ステートメント-(using-namespace))
 
 ---
 

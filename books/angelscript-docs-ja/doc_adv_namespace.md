@@ -4,7 +4,7 @@ title: "名前空間の使用 (Using namespaces)"
 
 名前空間 (Namespaces) は、関連する関数やエンティティをグループ化するための仕組みです。名前空間を利用することで、同じ名前を持つ無関係なエンティティとの衝突を回避できます。
 
-名前空間は、アプリケーション側で登録するインターフェースのほか、[スクリプト内](./doc_script_global#名前空間-namespaces)でも定義・利用できます。
+名前空間は、アプリケーション側で登録するインターフェースのほか、[スクリプト内](./doc_script_global#名前空間-(namespaces))でも定義・利用できます。
 
 ## 名前空間を用いたインターフェースの登録 (Registering the interface with namespaces)
 

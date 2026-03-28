@@ -6,11 +6,11 @@ title: "オブジェクト型の登録 (Registering an object type)"
 
 どちらを選択すべきかという厳格なルールはありませんが、一般的には、生成されたスコープを越えて生存し続ける必要があるものは参照型、一時的な計算結果の保持など、すぐに破棄して構わないものは値型として定義します。データサイズが大きかったり、内部構造が複雑な場合は、参照型を選択するのが一般的です。
 
-  - [参照型の登録](#参照型の登録-registering-a-reference-type)
-  - [値型の登録](#値型の登録-registering-a-value-type)
-  - [演算子の振る舞いの登録](#演算子の振る舞いの登録-registering-operator-behaviours)
-  - [オブジェクトメソッドの登録](#オブジェクトメソッドの登録-registering-object-methods)
-  - [オブジェクトプロパティの登録](#オブジェクトプロパティの登録-registering-object-properties)
+  - [参照型の登録](#参照型の登録-(registering-a-reference-type))
+  - [値型の登録](#値型の登録-(registering-a-value-type))
+  - [演算子の振る舞いの登録](#演算子の振る舞いの登録-(registering-operator-behaviours))
+  - [オブジェクトメソッドの登録](#オブジェクトメソッドの登録-(registering-object-methods))
+  - [オブジェクトプロパティの登録](#オブジェクトプロパティの登録-(registering-object-properties))
 
 ## 参照型の登録 (Registering a reference type)
 
@@ -158,7 +158,7 @@ r = engine->RegisterObjectType("ref", 0, asOBJ_REF | asOBJ_NOCOUNT); assert( r >
 
 値型を登録する際は、AngelScript が正確なメモリサイズを把握できるように、型のサイズ（sizeof）を指定する必要があります。ポインタなどの管理すべきリソースを一切含まない純粋なデータ型（POD: Plain Old Data）であれば、`asOBJ_POD` フラグを指定できます。この場合、デフォルトコンストラクタ、代入演算子、デストラクタを個別に登録する必要はなく、AngelScript が組み込み型と同様に自動的に処理（ビットコピー等）を行います。
 
-ネイティブ呼び出し規約を使用して型を値渡し（または値で返却）させたい場合は、[C++側での実装の詳細](#値型とネイティブ呼び出し規約-value-types-and-native-calling-conventions)をさらに AngelScript に伝える必要があります。ジェネリック呼び出し規約のみを使用する場合や、値渡しを一切行わない場合は、これらを気にする必要はありません。
+ネイティブ呼び出し規約を使用して型を値渡し（または値で返却）させたい場合は、[C++側での実装の詳細](#値型とネイティブ呼び出し規約-(value-types-and-native-calling-conventions))をさらに AngelScript に伝える必要があります。ジェネリック呼び出し規約のみを使用する場合や、値渡しを一切行わない場合は、これらを気にする必要はありません。
 
 ```cpp
 // 特別な管理が不要なプリミティブ型を登録
@@ -201,7 +201,7 @@ r = engine->RegisterObjectBehaviour("val", asBEHAVE_DESTRUCT, "void f()", asFUNC
 
 ### リストコンストラクタ (List constructor)
 
-リストコンストラクタは、参照型の[リストファクトリ関数](#リストファクトリ関数-list-factory-function)と同様の役割を果たします。コンストラクタは初期化リストのバッファへのポインタを受け取り、期待される形式をリストパターンとして登録します。違いは、他の[コンストラクタ](#コンストラクタとデストラクタ-constructor-and-destructor)と同様にメソッドの形式で登録される点です。
+リストコンストラクタは、参照型の[リストファクトリ関数](#リストファクトリ関数-(list-factory-function))と同様の役割を果たします。コンストラクタは初期化リストのバッファへのポインタを受け取り、期待される形式をリストパターンとして登録します。違いは、他の[コンストラクタ](#コンストラクタとデストラクタ-(constructor-and-destructor))と同様にメソッドの形式で登録される点です。
 
 リストコンストラクタの登録例：
 
@@ -303,7 +303,7 @@ r = engine->RegisterObjectType("complex", sizeof(complex), asOBJ_VALUE | asOBJ_A
 
 AngelScript がアプリ側の型と連携するためには、メモリ管理などの基本的な振る舞いを登録する必要があります。
 
-メモリ管理に関する振る舞いは、上記の[参照型の登録](#参照型の登録-registering-a-reference-type)および[値型の登録](#値型の登録-registering-a-value-type)で解説されています。
+メモリ管理に関する振る舞いは、上記の[参照型の登録](#参照型の登録-(registering-a-reference-type))および[値型の登録](#値型の登録-(registering-a-value-type))で解説されています。
 
 その他の高度な振る舞については、[登録可能な要素](./doc_register_api) で扱います。
 

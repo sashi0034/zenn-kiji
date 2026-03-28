@@ -45,7 +45,7 @@ title: "カスタムオプション (Custom options)"
 
 #### asEP_HEREDOC_TRIM_MODE
 
-このオプションにより、[ヒアドキュメント文字列](./doc_script_datatypes#文字列-strings)のトリム（空白削除）動作を設定できます。常にトリムする、複数行の場合のみトリムする、または一切トリムしない、のいずれかを選択できます。
+このオプションにより、[ヒアドキュメント文字列](./doc_script_datatypes#文字列-(strings))のトリム（空白削除）動作を設定できます。常にトリムする、複数行の場合のみトリムする、または一切トリムしない、のいずれかを選択できます。
 
 #### asEP_ALLOW_IMPLICIT_HANDLE_TYPES
 
@@ -74,14 +74,14 @@ title: "カスタムオプション (Custom options)"
 #### asEP_ALWAYS_IMPL_DEFAULT_CONSTRUCT
 
 このプロパティは、コンパイラがクラスに対してデフォルトコンストラクタを自動生成するかどうかを決定します。
-- 0 (デフォルト): [言語仕様](./doc_script_class#コンストラクタ-class-constructors)に従います。
+- 0 (デフォルト): [言語仕様](./doc_script_class#コンストラクタ-(class-constructors))に従います。
 - 1: 常に生成します。
 - 2: 決して生成しません。
 
 #### asEP_ALWAYS_IMPL_DEFAULT_COPY_CONSTRUCT
 
 このプロパティは、コンパイラがクラスに対してコピーコンストラクタを自動生成するかどうかを決定します。
-- 0 (デフォルト): [言語仕様](./doc_script_class#コンストラクタ-class-constructors)に従います。
+- 0 (デフォルト): [言語仕様](./doc_script_class#コンストラクタ-(class-constructors))に従います。
 - 1: 常に生成します。
 - 2: 決して生成しません。
 
@@ -98,7 +98,7 @@ title: "カスタムオプション (Custom options)"
 
 #### asEP_ALTER_SYNTAX_NAMED_ARGS
 
-このフラグを 1 または 2 に設定すると、コンパイラは[関数呼び出しの名前付き引数](./doc_script_expr#関数呼び出し-function-call)において `:` の代わりに `=` を受け入れるようになります。
+このフラグを 1 または 2 に設定すると、コンパイラは[関数呼び出しの名前付き引数](./doc_script_expr#関数呼び出し-(function-call))において `:` の代わりに `=` を受け入れるようになります。
 - 1: 警告を表示します（スクリプト作者に正しい `:` トークンへの更新を促します）。
 - 2: 警告なしで両方の記号（`=` と `:`）を受け入れます。
 
@@ -128,11 +128,11 @@ title: "カスタムオプション (Custom options)"
 
 #### asEP_FOREACH_SUPPORT
 
-このプロパティを無効にすると、[foreach ループ](./doc_script_statement#ループ-loops-while-do-while-for-foreach)のサポートがオフになります。これは、`foreach` が予約語となる前の 2.38.0 以前のスクリプトで `foreach` という単語を識別子として使用している場合に、後方互換性を保つために用意されています。
+このプロパティを無効にすると、[foreach ループ](./doc_script_statement#ループ-(loops:-while-/-do-while-/-for-/-foreach))のサポートがオフになります。これは、`foreach` が予約語となる前の 2.38.0 以前のスクリプトで `foreach` という単語を識別子として使用している場合に、後方互換性を保つために用意されています。
 
 #### asEP_MEMBER_INIT_MODE
 
-このプロパティを 0 に設定すると、宣言時に初期化式を持つクラスメンバーは常に `super()` の呼び出し後に初期化されるようになります。また、コンストラクタの本体内でメンバーを明示的に初期化することもできなくなります。1 (デフォルト) に設定した場合は、[メンバーの初期化](./doc_script_class#クラスメンバーの初期化-initialization-of-class-members)で説明されている通りに動作します。このモードはバージョン 2.38.0 以前との後方互換性のために追加されました。
+このプロパティを 0 に設定すると、宣言時に初期化式を持つクラスメンバーは常に `super()` の呼び出し後に初期化されるようになります。また、コンストラクタの本体内でメンバーを明示的に初期化することもできなくなります。1 (デフォルト) に設定した場合は、[メンバーの初期化](./doc_script_class#クラスメンバーの初期化-(initialization-of-class-members))で説明されている通りに動作します。このモードはバージョン 2.38.0 以前との後方互換性のために追加されました。
 
 ## エンジンの動作 (Engine behaviours)
 
@@ -164,7 +164,7 @@ title: "カスタムオプション (Custom options)"
 
 #### asEP_BUILD_WITHOUT_LINE_CUES
 
-このオプションを使用すると、スクリプトの実行速度をわずかに向上させることができます。詳細は[パフォーマンスの微調整](./doc_finetuning#ラインキュー無しのスクリプトコンパイル-compile-scripts-without-line-cues)を参照してください。
+このオプションを使用すると、スクリプトの実行速度をわずかに向上させることができます。詳細は[パフォーマンスの微調整](./doc_finetuning#ラインキュー無しのスクリプトコンパイル-(compile-scripts-without-line-cues))を参照してください。
 
 #### asEP_INIT_GLOBAL_VARS_AFTER_BUILD
 

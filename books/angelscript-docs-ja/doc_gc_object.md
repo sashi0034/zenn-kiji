@@ -146,11 +146,11 @@ void CGCRef2::ReleaseAllReferences(asIScriptEngine *engine)
 
 ## ガベージコレクション対応オブジェクトとマルチスレッド (Garbage collected objects and multi-threading)
 
-もしあなたが [自動ガベージコレクション](./doc_adv_custom_options#エンジンの動作-engine-behaviours) を有効にした状態で複数のスレッドからスクリプトを実行する予定がある場合、またはバックグラウンドスレッドから手動でガベージコレクターを実行する予定がある場合は、ガベージコレクターをサポートするオブジェクト型の振る舞い（behaviours）が**スレッドセーフ**であることを保証しなければなりません。特に ADDREF、RELEASE、および ENUMREFS の振る舞いは、複数のスレッドから同時に呼び出される確率が高くなります。RELEASEREFS の振る舞いは、ガベージコレクターがそのオブジェクトが既にデッドであると判断した時にのみ呼び出されるため、複数のスレッドによって呼び出されないことが保証されています。その他の GETREFCOUNT、SETGCFLAG、および GETGCFLAG は、ガベージコレクターがその情報を単にヒントとして使用するだけなので、さほど敏感ではありません。
+もしあなたが [自動ガベージコレクション](./doc_adv_custom_options#エンジンの動作-(engine-behaviours)) を有効にした状態で複数のスレッドからスクリプトを実行する予定がある場合、またはバックグラウンドスレッドから手動でガベージコレクターを実行する予定がある場合は、ガベージコレクターをサポートするオブジェクト型の振る舞い（behaviours）が**スレッドセーフ**であることを保証しなければなりません。特に ADDREF、RELEASE、および ENUMREFS の振る舞いは、複数のスレッドから同時に呼び出される確率が高くなります。RELEASEREFS の振る舞いは、ガベージコレクターがそのオブジェクトが既にデッドであると判断した時にのみ呼び出されるため、複数のスレッドによって呼び出されないことが保証されています。その他の GETREFCOUNT、SETGCFLAG、および GETGCFLAG は、ガベージコレクターがその情報を単にヒントとして使用するだけなので、さほど敏感ではありません。
 
 ADDREF と RELEASE の振る舞いをスレッドセーフにするのは、`asAtomicInc` と `asAtomicDec` を使用することで簡単に実現できます。オブジェクトの内容のメモリレイアウトが変更されない（例えば静的なコンテナである）場合、ENUMREFS はすでにスレッドセーフです。しかし、動的配列やハッシュマップのようにメモリレイアウトが変更され得る場合は、ENUMREFS の内容に対する反復処理（イテレーション）の途中でメモリが変更された場合に備えて、壊れないように反復処理を保護しなければなりません。
 
-参照: [ガベージコレクション (Garbage collection)](./doc_gc#ガベージコレクションとマルチスレッド-garbage-collection-and-multi-threading)
+参照: [ガベージコレクション (Garbage collection)](./doc_gc#ガベージコレクションとマルチスレッド-(garbage-collection-and-multi-threading))
 
 ---
 

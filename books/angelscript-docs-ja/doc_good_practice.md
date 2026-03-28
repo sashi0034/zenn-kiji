@@ -21,7 +21,7 @@ r = engine->RegisterGlobalFunction("void func()", asFUNCTION(func), asCALL_CDECL
 
 登録関数やビルドメソッド、`CompileFunction` などからの戻り値は「異常が発生したこと」は教えてくれますが、その具体的な原因までは教えてくれません。詳細な問題を特定するには、メッセージコールバックを活用すべきです。これにより、ライブラリはエラーや警告の内容を人間が理解できるテキストメッセージとして通知してくれます。
 
-メッセージコールバックに関する詳細情報は、[スクリプトのコンパイル](./doc_compile_script#メッセージコールバック-message-callback) を参照してください。
+メッセージコールバックに関する詳細情報は、[スクリプトのコンパイル](./doc_compile_script#メッセージコールバック-(message-callback)) を参照してください。
 
 ## スクリプト関数の実行後は必ず戻り値を検証する (Always verify return value after executing script function)
 

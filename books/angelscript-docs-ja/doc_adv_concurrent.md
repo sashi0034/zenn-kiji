@@ -46,7 +46,7 @@ void ExecuteScripts(std::vector<asIScriptContext *> contexts)
 
 前述の `SetTimeoutForContext` のようなタイムアウト機能は、主に 2 つの方法で実装できます。
 
-1 つ目は、[ラインコールバック](./doc_debug#ラインブレークポイントの設定-setting-line-breaks)を使用する方法です。コンテキストはスクリプト内の各ステートメントの実行ごとにコールバックを呼び出します。そこでタイムアウトに達したかどうかを確認し、達していればコンテキストをサスペンドさせます。
+1 つ目は、[ラインコールバック](./doc_debug#ラインブレークポイントの設定-(setting-line-breaks))を使用する方法です。コンテキストはスクリプト内の各ステートメントの実行ごとにコールバックを呼び出します。そこでタイムアウトに達したかどうかを確認し、達していればコンテキストをサスペンドさせます。
 
 2 つ目は、タイムアウト専用のスレッドを使用する方法です。このスレッドはタイムアウト時間に達するまでスリープし、復帰時に（実行中であれば）そのコンテキストをサスペンドさせます。
 
@@ -84,7 +84,7 @@ void RemoveTimeoutForContext()
 
 マルチスレッドのルーチンはターゲットシステムに大きく依存して異なるのが一般的であることに注意してください。上記のコードは Windows 向けであり、他のシステムで動作させるためには適応が必要になる可能性が高いです。
 
-参照: [Context manager アドオン](./doc_addon#コンテキストマネージャー)、[Concurrent scripts サンプル](./doc_samples#concurrent-scripts並行スクリプト)、[コルーチン](./doc_adv_coroutine)
+参照: [Context manager アドオン](./doc_addon#コンテキストマネージャー)、[Concurrent scripts サンプル](./doc_samples#concurrent-scripts（並行スクリプト）)、[コルーチン](./doc_adv_coroutine)
 
 ---
 
