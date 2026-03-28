@@ -12,7 +12,7 @@ title: "カスタムオプション (Custom options)"
 
 ## 言語の変更 (Language modifications)
 
-エンジンのメソッド [asIScriptEngine::SetEngineProperty](./doc_register_api#エンジンのプロパティ) を使用すると、エンジン内のさまざまな動作について実行時の選択を行うことができます。
+エンジンのメソッド [asIScriptEngine::SetEngineProperty](./doc_register_api) を使用すると、エンジン内のさまざまな動作について実行時の選択を行うことができます。
 
 以下のプロパティは、スクリプト言語の動作や仕様をカスタマイズするものです。
 
@@ -132,11 +132,11 @@ title: "カスタムオプション (Custom options)"
 
 #### asEP_MEMBER_INIT_MODE
 
-このプロパティを 0 に設定すると、宣言時に初期化式を持つクラスメンバーは常に `super()` の呼び出し後に初期化されるようになります。また、コンストラクタの本体内でメンバーを明示的に初期化することもできなくなります。1 (デフォルト) に設定した場合は、[メンバーの初期化](./doc_script_class#メンバーの初期化-member-initialization)で説明されている通りに動作します。このモードはバージョン 2.38.0 以前との後方互換性のために追加されました。
+このプロパティを 0 に設定すると、宣言時に初期化式を持つクラスメンバーは常に `super()` の呼び出し後に初期化されるようになります。また、コンストラクタの本体内でメンバーを明示的に初期化することもできなくなります。1 (デフォルト) に設定した場合は、[メンバーの初期化](./doc_script_class#クラスメンバーの初期化-initialization-of-class-members)で説明されている通りに動作します。このモードはバージョン 2.38.0 以前との後方互換性のために追加されました。
 
 ## エンジンの動作 (Engine behaviours)
 
-[asIScriptEngine::SetEngineProperty](./doc_register_api#エンジンのプロパティ) には、エンジンの動作を調整するためのオプションもいくつか用意されています。
+[asIScriptEngine::SetEngineProperty](./doc_register_api) には、エンジンの動作を調整するためのオプションもいくつか用意されています。
 
 #### asEP_MAX_NESTED_CALLS
 
@@ -164,7 +164,7 @@ title: "カスタムオプション (Custom options)"
 
 #### asEP_BUILD_WITHOUT_LINE_CUES
 
-このオプションを使用すると、スクリプトの実行速度をわずかに向上させることができます。詳細は[パフォーマンスの微調整](./doc_finetuning#line-cue-を伴わないビルド)を参照してください。
+このオプションを使用すると、スクリプトの実行速度をわずかに向上させることができます。詳細は[パフォーマンスの微調整](./doc_finetuning#ラインキュー無しのスクリプトコンパイル-compile-scripts-without-line-cues)を参照してください。
 
 #### asEP_INIT_GLOBAL_VARS_AFTER_BUILD
 
@@ -180,7 +180,7 @@ JIT コンパイルを適切に動作させるには、バイトコードの中�
 
 #### asEP_EXPAND_DEF_ARRAY_TO_TMPL
 
-このオプションは、[デフォルトの配列型](./doc_register_api#デフォルト配列型の登録)がコンバイラメッセージや関数宣言でどのように表示されるか（例：`int[]` か `array<int>` か）を決定します。
+このオプションは、[デフォルトの配列型](./doc_arrays)がコンパイラメッセージや関数宣言でどのように表示されるか（例：`int[]` か `array<int>` か）を決定します。
 
 #### asEP_AUTO_GARBAGE_COLLECT
 

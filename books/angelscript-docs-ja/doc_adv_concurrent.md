@@ -84,7 +84,7 @@ void RemoveTimeoutForContext()
 
 マルチスレッドのルーチンはターゲットシステムに大きく依存して異なるのが一般的であることに注意してください。上記のコードは Windows 向けであり、他のシステムで動作させるためには適応が必要になる可能性が高いです。
 
-参照: [Context manager アドオン](./doc_addon#コンテキストマネージャ-context-manager)、[Concurrent scripts サンプル](./doc_samples#concurrent-scripts)、[コルーチン](./doc_adv_coroutine)
+参照: [Context manager アドオン](./doc_addon#コンテキストマネージャー)、[Concurrent scripts サンプル](./doc_samples#concurrent-scripts並行スクリプト)、[コルーチン](./doc_adv_coroutine)
 
 ---
 

@@ -199,7 +199,7 @@ COgre @CreateOgre()
 
 なお、コンテキストマネージャークラス自体はスレッドセーフ（マルチスレッド対応）に設計されていないため、複数のホストスレッドから同時にスクリプトを実行する場合には適切な同期処理が必要です。
 
-参照: サンプルの [Concurrent scripts](#concurrent-scripts並行スクリプト) および [Co-routines](#co-routinesコルーティン)
+参照: サンプルの [Concurrent scripts](./doc_samples#concurrent-scripts並行スクリプト) および [Co-routines](./doc_samples#co-routinesコルーティン)
 (※これらは [サンプル](./doc_samples) ページに記載されています)
 
 ### C++ パブリックインターフェース
@@ -546,7 +546,7 @@ void RegisterExceptionRoutines(asIScriptEngine *engine);
 
 **パス:** `/sdk/add_on/scriptarray/`
 
-`array` 型は、任意の型の配列を宣言できるようにする[テンプレートオブジェクト](./doc_adv_template)です。汎用的なクラスであるため、実行時に型の特性を判断する必要があり、パフォーマンス面では最適ではありません。そのため、頻繁に使用される特定の型については、[テンプレートの特殊化](./doc_adv_template_2)（Template Specialization）を登録することをお勧めします。
+`array` 型は、任意の型の配列を宣言できるようにする[テンプレートオブジェクト](./doc_adv_template)です。汎用的なクラスであるため、実行時に型の特性を判断する必要があり、パフォーマンス面では最適ではありません。そのため、頻繁に使用される特定の型については、[テンプレートの特殊化](./doc_adv_template)（Template Specialization）を登録することをお勧めします。
 
 `RegisterScriptArray(asIScriptEngine *engine, bool defaultArrayType)` で型を登録します。`type[]` 構文で配列を宣言できるようにしたい場合は、2番目のパラメータを true に設定してください。
 
