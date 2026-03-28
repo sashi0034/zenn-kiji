@@ -6,7 +6,7 @@ title: "関数の登録 (Registering a function)"
 
 ## アプリケーション関数またはメソッドのアドレスを取得する方法 (How to get the address of the application function or method)
 
-マクロ [asFUNCTION](#asFUNCTION)、[asFUNCTIONPR](#asFUNCTIONPR)、[asMETHOD](#asMETHOD)、[asMETHODPR](#asMETHODPR) は、C++ の関数ポインタをエンジンが扱える形式で取得し、受け渡しを簡略化するために用意されています。
+マクロ `asFUNCTION`、`asFUNCTIONPR`、`asMETHOD`、`asMETHODPR` は、C++ の関数ポインタをエンジンが扱える形式で取得し、受け渡しを簡略化するために用意されています。
 
 `asFUNCTION` ターゲットとなる関数名を引数に取ります。これは、オーバーロードのないグローバル関数であればそのまま利用できます。もしオーバーロード（同名で引数リストが異なる複数の関数）が存在する場合は、代わりに `asFUNCTIONPR` を使用してください。このマクロには、関数名、引数リスト、および戻り値の型を明示的に指定します。これにより、C++ コンパイラが適切なオーバーロード関数を正確に解決できるようになります。
 
@@ -69,13 +69,13 @@ r = engine->RegisterGlobalFunction("void MyGlobalFunc(int, int)", asMETHOD(MySin
 
 AngelScript は、C++ で一般的に使用される呼び出し規約（cdecl、stdcall、thiscall）をサポートしています。また、プラットフォームがネイティブの呼び出し規約をサポートしていない場合などに利用できる「ジェネリック」な規約も用意されています。
 
-関数の登録時には、それがどの呼び出し規約を使用するかを [asCALL_CDECL](#asCALL_CDECL)、[asCALL_STDCALL](#asCALL_STDCALL)、[asCALL_THISCALL](#asCALL_THISCALL)、あるいは [asCALL_GENERIC](#asCALL_GENERIC) フラグで指定する必要があります。また、グローバル関数でクラスメソッドをシミュレートするための [asCALL_CDECL_OBJLAST](#asCALL_CDECL_OBJLAST) や [asCALL_CDECL_OBJFIRST](#asCALL_CDECL_OBJFIRST)、さらにファンクタ（関数オブジェクト）を登録するための [asCALL_THISCALL_ASGLOBAL](#asCALL_THISCALL_ASGLOBAL) といった特殊な指定も可能です。
+関数の登録時には、それがどの呼び出し規約を使用するかを `asCALL_CDECL`、`asCALL_STDCALL`、`asCALL_THISCALL`、あるいは `asCALL_GENERIC` フラグで指定する必要があります。また、グローバル関数でクラスメソッドをシミュレートするための `asCALL_CDECL_OBJLAST` や `asCALL_CDECL_OBJFIRST`、さらにファンクタ（関数オブジェクト）を登録するための `asCALL_THISCALL_ASGLOBAL` といった特殊な指定も可能です。
 
 登録時に誤った呼び出し規約を指定すると、スクリプトからの呼び出し時にスタックが破損（Stack Corruption）し、アプリケーションがほぼ確実にクラッシュします。C++ のグローバル関数は通常 `cdecl` ですが、ビルド設定やプラットフォームによって異なる場合があるため、確信が持てない場合はまず `asCALL_CDECL` を試してください。明示的に別の規約を指定している場合や、コンパイルオプションでデフォルトの規約を変更している場合を除き、通常は `cdecl` となります。
 
 クラスメソッド（非静的メンバ関数）には `thiscall` 規約が使用されます。ただし、静的メソッド（static）は事実上クラスの名前空間内にあるグローバル関数と同じであるため、扱いに注意してください。通常のメソッド、仮想メソッド、および多重継承クラスのメソッドは、すべて同じように `asCALL_THISCALL` で登録します。
 
-仮想継承（Virtual Inheritance）を含むクラスはネイティブにはサポートされておらず（[後述](#仮想継承はサポートされていません-virtual-inheritance-is-not-supported)）、それらの場合はラッパー関数を作成する必要があります。これらのラッパー関数は手動で実装することもできますし、[アドオン](./doc_addon#自動ラッパー関数-autowrapper) が提供するテンプレートベースの自動ラッパーを使用することもできます。
+仮想継承（Virtual Inheritance）を含むクラスはネイティブにはサポートされておらず（[後述](#仮想継承はサポートされていません-virtual-inheritance-is-not-supported)）、それらの場合はラッパー関数を作成する必要があります。これらのラッパー関数は手動で実装することもできますし、[アドオン](./doc_addon#自動ラッパー関数) が提供するテンプレートベースの自動ラッパーを使用することもできます。
 
 参照: [ジェネリック関数](./doc_generic)
 

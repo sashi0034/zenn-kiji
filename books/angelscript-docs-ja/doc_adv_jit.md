@@ -100,7 +100,7 @@ int CJITCompiler::CompileFunction(asIScriptFunction *func, asJITFunction *output
 }
 ```
 
-バイトコード命令から引数を読み取るには、以下のマクロを使用すべきです。引数のレイアウトは [asBCInfo](#asBCInfo) 配列から決定されます。
+バイトコード命令から引数を読み取るには、以下のマクロを使用すべきです。引数のレイアウトは `asBCInfo` 配列から決定されます。
 
  - `asBC_DWORDARG`
  - `asBC_INTARG`

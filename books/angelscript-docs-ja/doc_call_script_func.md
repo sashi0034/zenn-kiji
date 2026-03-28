@@ -154,7 +154,7 @@ void PrintExceptionInfo(asIScriptContext *ctx)
 
 希望する場合は、`SetExceptionCallback` を使用して、例外が発生した瞬間（`Execute` メソッドが戻る前）に呼び出されるコールバック関数を登録することも可能です。例外コールバックはその後、`WillExceptionBeCaught` を使用して、例外が [スクリプト内でキャッチされる](./doc_script_statement#try-catch-ブロック-try-catch-blocks) のか、それとも実行を中断させるのかを判断することができます。
 
-参照: コールスタックの調査については [デバッグ](./doc_debug) を、例外情報を取得するためのヘルパー関数については [ヘルパーアドオン](./doc_addon#ヘルパー関数-scripthelper) を参照してください。
+参照: コールスタックの調査については [デバッグ](./doc_debug) を、例外情報を取得するためのヘルパー関数については [ヘルパーアドオン](./doc_addon#ヘルパー関数) を参照してください。
 
 ---
 

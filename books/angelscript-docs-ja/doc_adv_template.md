@@ -134,6 +134,8 @@ bool myTemplateCallback(asITypeInfo *ot, bool &dontGarbageCollect)
 }
 ```
 
+## テンプレートの特殊化 (Template Specialization)
+
 テンプレートの特殊化（Template Specialization）を登録すると、スクリプトがテンプレート型を含む宣言をコンパイルする際に通常行われる、AngelScript 側のインスタンス化処理がオーバーライドされます。これにより、アプリケーションは特定のサブタイプに対して、独自の実装を持つ全く異なるオブジェクトを登録できるようになります。当然ながら、スクリプト開発者に対して透過的（意識させない状態）であるように特殊化を登録することが推奨されます。つまり、テンプレート型とその特殊化との間で、メソッド名や振る舞いが異なるような設計は避けるべきです。
 
 型名を除けば、テンプレートの特殊化は[通常の型](./doc_register_type)と全く同じように登録されます。テンプレートの特殊化は、ベースとなるテンプレートと同じネームスペース（名前空間）に登録されなければなりません。
@@ -150,7 +152,7 @@ r = engine->RegisterObjectBehaviour("myTemplate<float>", asBEHAVE_FACTORY, "myTe
 
 ## テンプレート関数 (Template functions)
 
-テンプレート関数は [ジェネリック呼び出し規約](./doc_generic) を用いて実装することができ、エンジンに対して [グローバル関数](#asIScriptEngine::RegisterGlobalFunction) または [クラスメソッド](#asIScriptEngine::RegisterObjectMethod) として登録できます。
+テンプレート関数は [ジェネリック呼び出し規約](./doc_generic) を用いて実装することができ、エンジンに対して [グローバル関数](./doc_register_func) または [オブジェクトメソッド](./doc_register_type#オブジェクトメソッドの登録-registering-object-methods) として登録できます。
 
 テンプレート関数が呼び出されると、関数は `GetArgTypeId`、もしくは `GetSubTypeId` を使用して引数の型を決定することができます。
 

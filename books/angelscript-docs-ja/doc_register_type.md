@@ -6,11 +6,11 @@ title: "オブジェクト型の登録 (Registering an object type)"
 
 どちらを選択すべきかという厳格なルールはありませんが、一般的には、生成されたスコープを越えて生存し続ける必要があるものは参照型、一時的な計算結果の保持など、すぐに破棄して構わないものは値型として定義します。データサイズが大きかったり、内部構造が複雑な場合は、参照型を選択するのが一般的です。
 
- - [参照型の登録](#参照型の登録-registering-a-reference-type)
- - [値型の登録](#値型の登録-registering-a-value-type)
- - [演算子の振る舞いの登録](#演算子の振る舞いの登録-registering-operator-behaviours)
- - [オブジェクトメソッドの登録](#オブジェクトメソッドの登録-registering-object-methods)
- - [オブジェクトプロパティの登録](#オブジェクトプロパティの登録-registering-object-properties)
+  - [参照型の登録](#参照型の登録-registering-a-reference-type)
+  - [値型の登録](#値型の登録-registering-a-value-type)
+  - [演算子の振る舞いの登録](#演算子の振る舞いの登録-registering-operator-behaviours)
+  - [オブジェクトメソッドの登録](#オブジェクトメソッドの登録-registering-object-methods)
+  - [オブジェクトプロパティの登録](#オブジェクトプロパティの登録-registering-object-properties)
 
 ## 参照型の登録 (Registering a reference type)
 
@@ -168,7 +168,7 @@ r = engine->RegisterObjectType("pod", sizeof(pod), asOBJ_VALUE | asOBJ_POD); ass
 r = engine->RegisterObjectType("val", sizeof(val), asOBJ_VALUE); assert( r >= 0 );
 ```
 
-参照: [std::string アドオン](./doc_addon#string-オブジェクト)や [math アドオン](./doc_addon#math-アドオン) の complex 型（値型の実装例として）
+参照: [std::string アドオン](./doc_addon#string-オブジェクト)や [math アドオン](./doc_addon#math-関数) の complex 型（値型の実装例として）
 
 参照: [ガベージコレクション対応オブジェクト](./doc_gc_object)（値型が他の型のメンバとして循環参照を形成する場合）
 
@@ -209,7 +209,7 @@ r = engine->RegisterObjectBehaviour("val", asBEHAVE_DESTRUCT, "void f()", asFUNC
 engine->RegisterObjectBehaviour("vector3", asBEHAVE_LIST_CONSTRUCT, "void f(int &in) {float, float, float}", ...);
 ```
 
-参照: [math アドオン](./doc_addon#math-アドオン)（リストコンストラクタを持つ値型の例として）
+参照: [math アドオン](./doc_addon#math-関数)（リストコンストラクタを持つ値型の例として）
 
 ### 値型とネイティブ呼び出し規約 (Value types and native calling conventions)
 
@@ -282,7 +282,7 @@ struct D
 };
 ```
 
-これらはシステムの ABI に関する専門知識を必要とするため、使用する場合は十分にテストを行ってください。どうしても解決できない場合は、ジェネリック呼び出し規約や[自動ラッパー (auto wrappers)](./doc_addon#自動ラッパー関数-autowrapper) の使用を検討してください。
+これらはシステムの ABI に関する専門知識を必要とするため、使用する場合は十分にテストを行ってください。どうしても解決できない場合は、ジェネリック呼び出し規約や[自動ラッパー (auto wrappers)](./doc_addon#自動ラッパー関数) の使用を検討してください。
 
 ### C++11 未満のコンパイラを使用する場合
 
@@ -305,7 +305,7 @@ AngelScript がアプリ側の型と連携するためには、メモリ管理�
 
 メモリ管理に関する振る舞いは、上記の[参照型の登録](#参照型の登録-registering-a-reference-type)および[値型の登録](#値型の登録-registering-a-value-type)で解説されています。
 
-その他の高度な振る舞については、[高度な API](./doc_advanced_api) で扱います。
+その他の高度な振る舞については、[登録可能な要素](./doc_register_api) で扱います。
 
 多くの振る舞いは通常のクラスメソッドとして実装されますが、コンパイラが理解できるようにあらかじめ定義された名前を使用します。
 

@@ -134,7 +134,7 @@ void RegisterFooScripted(asIScriptEngine *engine)
 ```
 
 スクリプト側はすべてのスクリプトモジュールで使用できるように [共有 (shared)](./doc_script_shared) として宣言されます。
-また、[抽象 (abstract)](./doc_script_class_inheritance_2) としても宣言されるため、単独でインスタンス化することはできず、他のスクリプトクラスの親クラスとしてのみインスタンス化できます。
+また、[抽象 (abstract)](./doc_script_class#final-abstract-override) としても宣言されるため、単独でインスタンス化することはできず、他のスクリプトクラスの親クラスとしてのみインスタンス化できます。
 
 このスクリプトセクションは、`FooScripted` クラスから派生できる必要のあるすべてのモジュールにおいて、アプリケーションによって自動的にインクルードされるのが望ましいです。
 

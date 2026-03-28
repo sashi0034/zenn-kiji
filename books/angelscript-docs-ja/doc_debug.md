@@ -6,7 +6,7 @@ AngelScript は、スクリプトのデバッグをサポートする強力な�
 
 以下の例で使用されている `CDebugMgr` クラスは、架空のデバッグ用管理クラスです。説明を簡略化するための抽象化として使用しています。
 
-参照: 標準的な実装については [デバッガーアドオン](./doc_addon#デバッガ-debugger) を参照してください。
+参照: 標準的な実装については [デバッガーアドオン](./doc_addon#デバッガー) を参照してください。
 
 ## ラインブレークポイントの設定 (Setting line breaks)
 
@@ -43,7 +43,9 @@ void DebugLineCallback(asIScriptContext *ctx, CDebugMgr *dbg)
 
 `asIScriptContext` は、実行の経緯を追跡するためにコールスタックを公開しています。これにより、各スタック階層で [変数の値を表示](#変数の検査-inspecting-variables) することも可能です。
 
-以下は、コールスタック全体を出力する方法の例です：
+## コールスタックの表示 (Viewing the call stack)
+ 
+ 以下は、コールスタック全体を出力する方法の例です：
 
 ```cpp
 void PrintCallstack(asIScriptContext *ctx)

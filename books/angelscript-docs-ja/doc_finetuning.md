@@ -111,7 +111,7 @@ engine->SetEngineProperty(asEP_AUTO_GARBAGE_COLLECT, false);
 
 もし非常に頻繁に呼び出される特定の関数がある場合、ネイティブ呼び出し規約 (native calling convention) で関数をバインドする場合と、ジェネリック呼び出し規約 (generic calling convention) の場合のパフォーマンスを比較する価値があるかもしれません。どちらが常に速いと一般化して言うことはできず、関数のシグネチャやプラットフォームの ABI の複雑さに依存して変化します。
 
-参照: [ジェネリック関数](./doc_generic)、[関数の登録 - 呼び出し規約](./doc_register_func#呼び出し規約-calling-conventions)
+参照: [ジェネリック関数](./doc_generic)、[関数の登録 - 呼び出し規約](./doc_register_func#呼び出し規約-calling-convention)
 
 ---
 
