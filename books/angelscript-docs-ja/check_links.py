@@ -15,9 +15,14 @@ LINK_PATTERN = re.compile(r'\[.*?\]\((?P<path>[^#)]*)(?:#(?P<anchor>[^)]+))?\)')
 # Regex for Markdown headings: # Heading Text
 HEADING_PATTERN = re.compile(r'^(?P<level>#{1,6})\s+(?P<text>.+)$', re.MULTILINE)
 
+# Zenn repository root relative to the book directory
+REPO_ROOT = "../.."
+
 class MarkdownLinkTester:
-    def __init__(self, root_dir: str):
+    def __init__(self, root_dir: str, repo_root: str = REPO_ROOT):
         self.root_dir = pathlib.Path(root_dir).resolve()
+        # Resolve repo_root relative to the root_dir
+        self.repo_root = (self.root_dir / repo_root).resolve()
         self.heading_cache: Dict[str, List[str]] = {}
 
     def slugify(self, text: str) -> str:
@@ -89,11 +94,17 @@ class MarkdownLinkTester:
                 else:
                     # Handle missing .md extensions in links
                     processed_path = raw_path
-                    if not raw_path.endswith('.md') and '.' not in os.path.basename(raw_path):
-                        processed_path += '.md'
 
-                    # Resolve target path relative to the current file
-                    target_path = (md_file.parent / processed_path).resolve()
+                    # If path starts with / or images/, treat as repo-root relative
+                    if raw_path.startswith('/'):
+                        target_path = (self.repo_root / raw_path.lstrip('/')).resolve()
+                    elif raw_path.startswith('images/'):
+                        target_path = (self.repo_root / raw_path).resolve()
+                    else:
+                        if not raw_path.endswith('.md') and '.' not in os.path.basename(raw_path):
+                            processed_path += '.md'
+                        # Resolve target path relative to the current file
+                        target_path = (md_file.parent / processed_path).resolve()
 
                 # 1. Check if the file exists
                 if not target_path.exists():
