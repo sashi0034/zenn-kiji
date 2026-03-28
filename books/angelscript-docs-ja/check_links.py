@@ -54,7 +54,8 @@ class MarkdownLinkTester:
 
     def test_links(self):
         """Iterates through all .md files and validates internal links."""
-        md_files = list(self.root_dir.rglob("*.md"))
+        # Skip files with all-uppercase names (e.g., README.md, LICENSE.md, AGENTS.md)
+        md_files = [f for f in self.root_dir.rglob("*.md") if not f.stem.isupper()]
         error_count = 0
 
         for md_file in md_files:
@@ -113,7 +114,7 @@ class MarkdownLinkTester:
                         else:
                             print(f"   No similar headings found in {target_path.name}.")
                         
-                        print("-" * 40)
+                        print("-----------------------------------------------")
                         error_count += 1
 
         if error_count == 0:
@@ -127,6 +128,7 @@ if __name__ == "__main__":
     
     tester = MarkdownLinkTester(DOCS_DIRECTORY)
     print(f"Checking links in: {tester.root_dir}")
-    md_files = list(tester.root_dir.rglob("*.md"))
+    # Skip files with all-uppercase names (e.g., README.md, LICENSE.md, AGENTS.md)
+    md_files = [f for f in tester.root_dir.rglob("*.md") if not f.stem.isupper()]
     print(f"Found {len(md_files)} Markdown files.")
     tester.test_links()
