@@ -58,7 +58,7 @@ title: "データ型 (Data types)"
 
 参照型はメモリヒープ上に割り当てられ、インスタンスへの別の参照が保持されている場合は、それを割り当てた最初の変数より長く生存する可能性があります。すべての [スクリプトで宣言されたクラス](./doc_script_class) は参照型です。[インターフェース](./doc_script_global#インターフェース-(interfaces)) は参照型の特殊な形式で、インスタンス化はできませんが、正確な型を知らずにインターフェースを実装するオブジェクトにアクセスするために使用できます。
 
-```cs
+```c++ (as)
 obj o;      // オブジェクトがインスタンス化されます
 o = obj();  // 一時的なインスタンスが作成され、
             // その値が変数に代入されます
@@ -68,7 +68,7 @@ o = obj();  // 一時的なインスタンスが作成され、
 
 オブジェクトハンドルは、他のオブジェクトへの参照を保持するために使用できる特殊な型です。オブジェクトハンドルである変数に対してメソッドを呼び出したりプロパティにアクセスしたりする時、エイリアスであるかのように、ハンドルが参照する実際のオブジェクトにアクセスします。ハンドルはオブジェクトのハンドルで初期化されていない限り、`null` であることに注意してください。
 
-```cs
+```c++ (as)
 obj o;
 obj@ a;           // a は null に初期化されます
 obj@ b = @o;      // b は o への参照を保持します
@@ -95,7 +95,7 @@ if( a is null )   // オブジェクトがオブジェクトを指している�
 
 関数ハンドルの使用構文を示す例：
 
-```cs
+```c++ (as)
 // 関数ハンドルの関数シグネチャを定義します
 funcdef bool CALLBACK(int, int);
 
@@ -136,7 +136,7 @@ bool myCompare(int a, int b)
 
 クラスのメソッドへの関数ハンドルを取ることも可能ですが、この場合クラスのメソッドは呼び出しに使用されるオブジェクトインスタンスにバインドされなければなりません。このバインドを行うことをデリゲートの作成と呼び、クラスのメソッドを引数として渡した宣言された関数定義に対して構築呼び出しを実行することで行われます。
 
-```cs
+```c++ (as)
 class A
 {
   bool Cmp(int a, int b)
@@ -193,14 +193,14 @@ AngelScript 言語は通常の引用符付き文字列とドキュメント文�
 | `\uFFFF`   | 0xFFFF   | FFFF は Unicode コードポイントを表す16進数で置き換えてください。 |
 | `\UFFFFFFFF`| 0xFFFFFFFF| FFFFFFFF は Unicode コードポイントを表す16進数で置き換えてください。 |
 
-```cs
+```c++ (as)
 string str1 = "This is a string with \"escape sequences\".";
 string str2 = 'If single quotes are used then double quotes can be included without "escape sequences".';
 ```
 
 ヒアドック文字列はエスケープシーケンスを処理せずに大量のテキストを含めるために設計されています。ヒアドック文字列はトリプルダブルクォーテーションマーク (`"""`) で囲まれており、複数行にまたがることができます。文字列の開始から最初の改行までの文字が空白のみの場合、コンパイラによって自動的に削除されます。同様に、最後の改行から文字列の終わりまでの文字が空白のみの場合も削除されます。
 
-```cs
+```c++ (as)
 string str = """
 This is some text without "escape sequences". This is some text.
 This is some text. This is some text. This is some text. This is
@@ -212,7 +212,7 @@ This is some text.
 
 2つ以上の文字列定数が、空白やコメントのみを挟んで並んでいる場合、コンパイラはそれらを1つの連続した文字列として連結します。
 
-```cs
+```c++ (as)
 string str = "First line.\n"
              "Second line.\n"
              "Third line.\n";
@@ -228,7 +228,7 @@ string str = "First line.\n"
 
 変数に適切な型が自動的に決定されます。
 
-```cs
+```c++ (as)
 auto i = 18;         // i は整数になります
 auto f = 18 + 5.f;   // f の型は float に解決されます
 auto o = getLongObjectTypeNameById(id); // 長い型名の冗長性を避けられます
@@ -236,13 +236,13 @@ auto o = getLongObjectTypeNameById(id); // 長い型名の冗長性を避けら�
 
 `auto` に `const` を付けて定数値を強制することもできます：
 
-```cs
+```c++ (as)
 const auto i = 2;  // i は 'const int' として型付けされます
 ```
 
 ハンドルをサポートする型の場合、`auto` は値代入よりも効率的なためハンドルとして解決されます。何らかの理由で変数がハンドルであってはならない場合は、`auto` キーワードを使用しないでください。
 
-```cs
+```c++ (as)
 auto  a = getObject();  // auto は 'obj@' として型付けされます
 auto@ b = getObject();  // より明示的にしたい場合は @auto も使用できます
 ```

@@ -126,7 +126,7 @@ typedef int(*PRAGMACALLBACK_t)(const std::string &pragmaText, CScriptBuilder &bu
 
 ### インクルードディレクティブ
 
-```cs
+```c++ (as)
 #include "commonfuncs.as"
 
 void main()
@@ -142,7 +142,7 @@ void main()
 
 これは、例えばクライアント／サーバー型のアプリケーションにおいて、同じスクリプトファイルを異なるバイナリ（役割）間で共有する場合などに非常に便利です。
 
-```cs
+```c++ (as)
 class CObject
 {
   void Process()
@@ -164,7 +164,7 @@ class CObject
 
 メタデータは、スクリプト内のクラス、インターフェース、関数、およびグローバル変数の宣言の直前に付与できる情報です。メタデータはビルド時にスクリプトビルダーによって抽出され（コードからは削除されます）、ビルド完了後に型 ID、関数 ID、または変数インデックスを用いて検索できるように保存されます。
 
-```cs
+```c++ (as)
 [factory func = CreateOgre]
 class COgre
 {
@@ -676,7 +676,7 @@ public:
 
 ### スクリプトインターフェース
 
-```cs
+```c++ (as)
 class grid<T>
 {
   grid();
@@ -706,7 +706,7 @@ class grid<T>
 
 ### スクリプトでの使用例
 
-```cs
+```c++ (as)
 // 5x5 のマップを初期化します
 grid<int> map = {{1,0,1,1,1},
                  {0,0,1,0,0},
@@ -761,7 +761,7 @@ public:
 
 ### スクリプトインターフェース
 
-```cs
+```c++ (as)
 class any
 {
   any();
@@ -795,7 +795,7 @@ class any
 
 ### スクリプトでの使用例
 
-```cs
+```c++ (as)
 int value;
 obj object;
 obj @handle;
@@ -1102,7 +1102,7 @@ public:
 
 ### スクリプトインターフェース
 
-```cs
+```c++ (as)
 // 三角関数
 float cos(float rad);   // コサイン（ラジアン入力）
 float sin(float rad);   // サイン（ラジアン入力）
@@ -1158,7 +1158,7 @@ float を IEEE 754 表現へまたは表現から変換します。2進表現で
 
 ### complex 型
 
-```cs
+```c++ (as)
 // この型は実部と虚部を持つ複素数を表します
 class complex
 {

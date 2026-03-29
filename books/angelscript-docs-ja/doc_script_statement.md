@@ -4,7 +4,7 @@ title: "ステートメント (Statements)"
 
 ## 変数宣言 (Variable declarations)
 
-```cs
+```c++ (as)
 int var = 0, var2 = 10;
 object@ handle, handle2;
 const float pi = 3.141592f;
@@ -26,7 +26,7 @@ array<int> arr, arr2 = {1,2,3};
 
 ## 式ステートメント (Expression statement)
 
-```cs
+```c++ (as)
 a = b;  // 変数代入
 func(); // 関数呼び出し
 ```
@@ -37,7 +37,7 @@ func(); // 関数呼び出し
 
 ## 条件分岐 (Conditions: if / if-else / switch-case)
 
-```cs
+```c++ (as)
 if( condition ) 
 {
   // 条件が true の時に何かを行います
@@ -57,7 +57,7 @@ if ステートメントは特定の条件に基づいてロジックの一部�
 
 複数の `if-else` を連鎖させることも可能で、その場合はいずれかの条件が `true` になるまで順次評価が行われます。
 
-```cs
+```c++ (as)
 switch( value )
 {
 case 0:
@@ -80,7 +80,7 @@ default:
 
 ## ループ (Loops: while / do-while / for / foreach)
 
-```cs
+```c++ (as)
 // ロジックが実行される前に条件がチェックされるループ
 int i = 0;
 while( i < 10 )
@@ -100,7 +100,7 @@ do
 
 `while` と `do-while` の両方において、ループを続けるかどうかを決定する式は true または false に評価しなければなりません。
 
-```cs
+```c++ (as)
 // 条件がロジックの実行前にチェックされるよりコンパクトなループ
 for( int n = 0; n < 10; n++ ) 
 {
@@ -112,7 +112,7 @@ for( int n = 0; n < 10; n++ )
 
 `for` ループでは `,` で区切って複数の変数を宣言することができます。同様に、最後の部分で `,` で区切ることで複数のインクリメント式を使用することができます。
 
-```cs
+```c++ (as)
 // foreach ループはコンテナオブジェクトの各要素を反復処理します
 dictionary dict = {...};
 int count = 0;
@@ -134,7 +134,7 @@ double average = double(sum)/count;
 
 ## ループ制御 (Loop control: break / continue)
 
-```cs
+```c++ (as)
 for(;;) // 無限ループ
 {
   // 何かを行います
@@ -147,7 +147,7 @@ for(;;) // 無限ループ
 
 `break` は最も内側のループ文または switch 文を終了します。
 
-```cs
+```c++ (as)
 for(int n = 0; n < 10; n++ )
 {
   if( n == 5 )
@@ -161,7 +161,7 @@ for(int n = 0; n < 10; n++ )
 
 ## return ステートメント (Return statement)
 
-```cs
+```c++ (as)
 float valueOfPI()
 {
   return 3.141592f; // 値を返します
@@ -172,7 +172,7 @@ float valueOfPI()
 
 ## ステートメントブロック (Statement blocks)
 
-```cs
+```c++ (as)
 {
   int a; 
   float b;
@@ -193,7 +193,7 @@ float valueOfPI()
 
 ## try-catch ブロック (Try-catch blocks)
 
-```cs
+```c++ (as)
 {
   try
   {
@@ -218,7 +218,7 @@ float valueOfPI()
 
 ステートメントブロック内で `using namespace` を宣言することができます。これを行うと、そのブロック内の後続のすべてのステートメントは指定された名前空間でもシンボルを検索します。
 
-```cs
+```c++ (as)
 namespace test
 {
   void func() {}

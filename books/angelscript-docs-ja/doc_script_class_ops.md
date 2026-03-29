@@ -70,7 +70,7 @@ title: "演算子オーバーロード (Operator overloads)"
 
 代入式 `a op b` は `a.opfunc(b)` に書き換えられます。代入演算子は、次のように連鎖的な代入を可能にするために自身へのハンドルを返すのが一般的です。
 
-```cs
+```c++ (as)
 obj &opAssign(const obj &inout other)
 {
   // メンバのコピー処理
@@ -87,7 +87,7 @@ obj &opAssign(const obj &inout other)
 
 自動生成された `opAssign` が望ましくない場合は、削除済みとしてフラグを立てることで明示的に除外できます：
 
-```cs
+```c++ (as)
 class MyClass
 {
   MyClass &opAssign(const MyClass &inout) delete;
@@ -123,7 +123,7 @@ class MyClass
 
 インデックス演算子は [プロパティアクセサー](./doc_script_class_prop) と同様の形式でも実装できます。get アクセサーは `get_opIndex` という名前で、インデックスのための1つのパラメータを持ちます。set アクセサーは `set_opIndex` という名前で、インデックス用の最初のパラメータと新しい値のための2番目のパラメータを持ちます。
 
-```cs
+```c++ (as)
 class MyObj
 {
   float get_opIndex(int idx) const property { return 0; }
@@ -150,7 +150,7 @@ class MyObj
 
 暗黙的な型変換では、コンパイラはまず対象型の変換コンストラクタ（`explicit` でないもの）を探し、見つからない場合はソース側の `opImplConv` を呼び出そうとします。
 
-```cs
+```c++ (as)
 class MyObj
 {
   double myValue;
@@ -171,7 +171,7 @@ class MyObj
 
 参照キャストが望ましい場合（つまり同じオブジェクトインスタンスへの異なる型のハンドル）は、代わりに `opCast` メソッドを実装すべきです。コンパイラは `cast<type>(expr)` という式を `expr.opCast()` に書き換え、要求された型のハンドルを返す `opCast` オーバーライドを選択します。暗黙的な参照キャストを許可する場合は、代わりに `opImplCast` を実装することもできます。
 
-```cs
+```c++ (as)
 class MyObjA
 {
   MyObjB @objB;
@@ -204,7 +204,7 @@ class MyObjA
 
 コンパイラが `foreach` ループをコンパイルしようとする時、コンテナ型に対してメソッドのセットを使用します：
 
-```cs
+```c++ (as)
 foreach( auto val, auto key : expr )
 {
   ...
@@ -213,7 +213,7 @@ foreach( auto val, auto key : expr )
 
 上記は次のように書かれたかのようにコンパイルされます：
 
-```cs
+```c++ (as)
 for( auto @container = expr, auto @it = container.opForBegin(); !container.opForEnd(it); @it = container.opForNext(it) )
 {
   auto val = container.opForValue0(it);

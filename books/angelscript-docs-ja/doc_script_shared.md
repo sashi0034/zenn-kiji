@@ -10,7 +10,7 @@ title: "共有スクリプトエンティティ (Shared script entities)"
 
 共有エンティティを宣言するには、通常の宣言の前に `shared` キーワードを付けるだけです：
 
-```cs
+```c++ (as)
 shared class Foo
 {
   void MethodInFoo(int b) { bar = b; }
@@ -32,7 +32,7 @@ shared void GlobalFunc() {}
 
 共有エンティティを外部参照として宣言するには、通常の宣言の前に `external` キーワードを付け、エンティティを一意に特定できるシグネチャを記述した後に `;` で終了します。
 
-```cs
+```c++ (as)
 external shared class Foo;
 external shared void GlobalFunc();
 ```

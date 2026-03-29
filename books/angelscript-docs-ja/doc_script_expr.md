@@ -4,7 +4,7 @@ title: "式 (Expressions)"
 
 ## 代入 (Assignments)
 
-```cs
+```c++ (as)
 lvalue = rvalue;
 ```
 
@@ -12,7 +12,7 @@ lvalue = rvalue;
 
 ## 関数呼び出し (Function call)
 
-```cs
+```c++ (as)
 func();
 func(arg);
 func(arg1, arg2);
@@ -23,7 +23,7 @@ lvalue = func();
 
 一部の関数は、複数の値を返すために「出力参照パラメータ（`out` 参照）」を伴って宣言されています。このような関数を呼び出す際、出力パラメータには値を代入可能な式を指定する必要があります。出力値が必要ない場合は、特別な引数 `void` を渡すことでコンパイラにその旨を伝えることができます。
 
-```cs
+```c++ (as)
 // この関数は出力パラメータで値を返します
 void func(int &out outputValue)
 {
@@ -40,7 +40,7 @@ func(void);
 
 引数に名前を付け、パラメータが宣言された順序に関わらず特定の引数に渡すことも可能です。名前付き引数の後に位置引数（名前のない引数）を置くことはできません。
 
-```cs
+```c++ (as)
 void func(int flagA = false, int flagB = false, int flagC = false) {}
 
 // パラメータのサブセットのみを設定して関数を呼び出します
@@ -50,13 +50,13 @@ func(flagB: true, flagA: true);
 
 関数テンプレートでは、コンパイラが呼び出すべき正しい関数テンプレートインスタンスを評価できるよう、サブタイプを明示的に指定する必要があります：
 
-```cs
+```c++ (as)
 templ<int,float>(arg1, arg2);
 ```
 
 ## 算術演算子 (Math operators)
 
-```cs
+```c++ (as)
 c = -(a + b);
 ```
 
@@ -75,7 +75,7 @@ c = -(a + b);
 
 ## ビット演算子 (Bitwise operators)
 
-```cs
+```c++ (as)
 c = ~(a | b);
 ```
 
@@ -93,7 +93,7 @@ c = ~(a | b);
 
 ## 複合代入 (Compound assignments)
 
-```cs
+```c++ (as)
 lvalue += rvalue;
 lvalue = lvalue + rvalue;
 ```
@@ -104,7 +104,7 @@ lvalue = lvalue + rvalue;
 
 ## 論理演算子 (Logic operators)
 
-```cs
+```c++ (as)
 if( a and b or not c )
 {
   // ... 何かを行います
@@ -124,7 +124,7 @@ if( a and b or not c )
 
 ## 等値比較演算子 (Equality comparison operators)
 
-```cs
+```c++ (as)
 if( a == b )
 {
   // ... 何かを行います
@@ -135,7 +135,7 @@ if( a == b )
 
 ## 関係比較演算子 (Relational comparison operators)
 
-```cs
+```c++ (as)
 if( a > b )
 {
   // ... 何かを行います
@@ -146,7 +146,7 @@ if( a > b )
 
 ## 同一性比較演算子 (Identity comparison operators)
 
-```cs
+```c++ (as)
 if( a is null )
 {
   // ... 何かを行います
@@ -161,7 +161,7 @@ else if( a is b )
 
 ## インクリメント演算子 (Increment operators)
 
-```cs
+```c++ (as)
 // 以下は a = i; i = i + 1; を意味します
 a = i++;
 
@@ -173,7 +173,7 @@ b = --i;
 
 ## インデックス演算子 (Indexing operator)
 
-```cs
+```c++ (as)
 arr[i] = 1;
 ```
 
@@ -181,7 +181,7 @@ arr[i] = 1;
 
 ## 条件式 (Conditional expression)
 
-```cs
+```c++ (as)
 choose ? a : b;
 ```
 
@@ -191,14 +191,14 @@ choose ? a : b;
 
 `a` と `b` の両方が同じ型の lvalue である場合は、条件式を代入式の左辺として使用することができます：
 
-```cs
+```c++ (as)
 int a, b;
 (expr ? a : b) = 42;
 ```
 
 ## メンバーアクセス (Member access)
 
-```cs
+```c++ (as)
 object.property = 1;
 object.method();
 ```
@@ -207,7 +207,7 @@ object.method();
 
 ## ハンドル (Handle-of)
 
-```cs
+```c++ (as)
 // ハンドルがオブジェクトインスタンスを参照するようにします
 @handle = @object;
 
@@ -223,7 +223,7 @@ object.method();
 
 ## 括弧 (Parenthesis)
 
-```cs
+```c++ (as)
 a = c * (a + b);
 if( (a or b) and c )
 {
@@ -235,7 +235,7 @@ if( (a or b) and c )
 
 ## スコープ解決 (Scope resolution)
 
-```cs
+```c++ (as)
 int value;
 void function()
 {
@@ -250,7 +250,7 @@ void function()
 
 ## 型変換 (Type conversions)
 
-```cs
+```c++ (as)
 // クラスのハンドルをインターフェースのハンドルに暗黙的に変換します
 intf @a = @clss();
 
@@ -264,7 +264,7 @@ clss @b = cast<clss>(a);
 
 通常、プリミティブ型や値型同士の変換には「値キャスト」が用いられます。この場合、元の値に基づいて新しい値が生成されます（または新しいインスタンスが作成されます）。
 
-```cs
+```c++ (as)
 // 暗黙の値キャスト
 int a = 1.0f;
 
@@ -278,14 +278,14 @@ float b = float(a)/2;
 
 変数として宣言せずにその場でオブジェクトを作成する（匿名オブジェクト）には、コンストラクタを関数のように呼び出します。これは参照型と値型のどちらでも可能です。
 
-```cs
+```c++ (as)
 // MyClass 型の新しいオブジェクトで関数を呼び出します
 func(MyClass(1,2,3));
 ```
 
 サポートする型では、匿名オブジェクトを初期化リストで初期化することもできます：
 
-```cs
+```c++ (as)
 // dictionary を使って関数を呼び出し、初期化リストの型を明示的に指定します
 func(dictionary = {{'banana',1}, {'apple',2}, {'orange',3}});
 
@@ -296,7 +296,7 @@ funcExpectsAnArrayOfInts({1,2,3,4});
 
 望む匿名オブジェクトの型がテンプレートである場合、テンプレート型を明示的に指定する必要があるかもしれません：
 
-```cs
+```c++ (as)
 funcExpectsAnArray(array<int> = {1,2,3,4});
 ```
 
