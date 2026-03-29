@@ -78,4 +78,8 @@ obj *ChooseObj(obj *a, obj *b)
 
 ---
 
+訳注: オブジェクトハンドルの詳細については、[スクリプトのハンドル](./doc_script_handle) を参照してください。
+
+---
+
 原文: https://www.angelcode.com/angelscript/sdk/docs/manual/doc_obj_handle.html
