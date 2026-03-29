@@ -94,7 +94,7 @@ protected:
   // コンストラクタとデストラクタは間接的に呼び出されます
   FooScripted(asIScriptObject *obj) : m_obj(0), m_isDead(0), m_value(0), m_refCount(1)
   {
-    // スクリプトオブジェクトの弱い参照 (weak ref) フラグを取得し、
+    // スクリプトオブジェクトの弱参照 (weak ref) フラグを取得し、
     // スクリプトクラスへの強い参照を保持することを避けます
     m_isDead = obj->GetWeakRefFlag();
     m_isDead->AddRef();
@@ -104,7 +104,7 @@ protected:
 
   ~FooScripted()
   {
-    // 弱い参照フラグを解放します
+    // 弱参照フラグを解放します
     m_isDead->Release();
   }
 
