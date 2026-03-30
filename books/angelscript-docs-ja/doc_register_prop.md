@@ -1,5 +1,5 @@
 ---
-title: "グローバルプロパティの登録 (Registering global properties)"
+title: "🛠️ グローバルプロパティの登録 (Registering global properties)"
 ---
 
 グローバルプロパティ（Global Properties）を登録すると、特別なラッパー関数などを記述することなく、スクリプトからアプリケーション内の変数を直接参照・変更できるようになります。

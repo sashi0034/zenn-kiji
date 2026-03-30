@@ -1,5 +1,5 @@
 ---
-title: "関数の登録 (Registering a function)"
+title: "🛠️ 関数の登録 (Registering a function)"
 ---
 
 本稿では、AngelScript におけるアプリケーション関数の登録方法と、アプリケーションのインターフェースを適切に公開するために開発者が留意すべき C++ と AngelScript の相違点について解説します。ここで説明する原則は、`RegisterGlobalFunction`、`RegisterObjectMethod`、`RegisterObjectBehaviour` など、API の各所で使用されます。

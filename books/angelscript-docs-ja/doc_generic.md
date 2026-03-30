@@ -1,5 +1,5 @@
 ---
-title: "ジェネリック呼び出し規約 (The generic calling convention)"
+title: "🛠️ ジェネリック呼び出し規約 (The generic calling convention)"
 ---
 
 訳注: 前節 ([関数の登録](./doc_register_func) など) では、C++ のネイティブ呼び出し規約を使用して関数を登録しましたが、他にも **ジェネリック呼び出し規約** というものがあります。ジェネリック呼び出し規約は Lua で C の関数を呼び出す手順と同様に、ラッパー関数を介して AngelScript の関数を呼び出す方法です。

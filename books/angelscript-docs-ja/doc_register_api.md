@@ -1,5 +1,5 @@
 ---
-title: "登録可能な要素 (What can be registered)"
+title: "🛠️ 登録可能な要素 (What can be registered)"
 ---
 
 AngelScript では、スクリプトが自身の外部（アプリケーション側）と対話できるように、開発者が専用のインターフェースを登録（Register）する必要があります。

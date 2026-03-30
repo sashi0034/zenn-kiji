@@ -1,5 +1,5 @@
 ---
-title: "C++例外と longjmp (C++ exceptions and longjmp)"
+title: "🚀 C++例外と longjmp (C++ exceptions and longjmp)"
 ---
 
 スクリプトエンジンに登録されたアプリケーション関数やクラスメソッドは、C++ 例外をスローすることが許可されています。仮想マシン（VM）はあらゆる C++ 例外を自動的にキャッチし、スクリプトの実行を中断してアプリケーションに制御を戻します。

@@ -1,5 +1,5 @@
 ---
-title: "スクリプトクラス (Script classes)"
+title: "📜 スクリプトクラス (Script classes)"
 ---
 
 ## クラスの概要 (Script class overview)

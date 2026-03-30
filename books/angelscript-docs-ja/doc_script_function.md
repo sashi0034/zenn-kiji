@@ -1,5 +1,5 @@
 ---
-title: "関数の宣言 (Function declaration)"
+title: "📜 関数の宣言 (Function declaration)"
 ---
 
 ## グローバル関数の宣言

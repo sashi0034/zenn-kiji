@@ -1,5 +1,5 @@
 ---
-title: "AngelScript と C++ のデータ型 (Datatypes in AngelScript and C++)"
+title: "🛠️ AngelScript と C++ のデータ型 (Datatypes in AngelScript and C++)"
 ---
 
 ## プリミティブ型 (Primitives)

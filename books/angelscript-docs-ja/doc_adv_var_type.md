@@ -1,5 +1,5 @@
 ---
-title: "可変パラメータ型 (The variable parameter type) / 可変長引数 (Variadic arguments)"
+title: "🚀 可変パラメータ型 (The variable parameter type) / 可変長引数 (Variadic arguments)"
 ---
 
 ## 可変パラメータ型 (The variable parameter type)

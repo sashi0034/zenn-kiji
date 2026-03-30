@@ -1,5 +1,5 @@
 ---
-title: "アプリケーションが登録したクラスからの継承 (Inheriting from application registered class)"
+title: "🚀 アプリケーションが登録したクラスからの継承 (Inheriting from application registered class)"
 ---
 
 スクリプトクラスは C++ クラスのようにネイティブな機械語にコンパイルされるわけではないため、アプリケーション側で登録したクラスから直接継承することはできません。

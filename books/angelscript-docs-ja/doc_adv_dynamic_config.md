@@ -1,5 +1,5 @@
 ---
-title: "動的なエンジン設定 (Dynamic configurations)"
+title: "🚀 動的なエンジン設定 (Dynamic configurations)"
 ---
 
 AngelScript は設定グループ (Configuration groups) の概念をサポートしています。これは、例えばアプリケーションのプラグインが独自のインターフェースをスクリプトエンジンに登録したい場合などに利用できます。プラグインが削除された際、エンジン全体を再初期化することなく、そのプラグインに関連する設定グループだけを AngelScript インターフェースから削除することが可能です。

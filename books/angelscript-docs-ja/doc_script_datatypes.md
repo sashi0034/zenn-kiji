@@ -1,5 +1,5 @@
 ---
-title: "データ型 (Data types)"
+title: "📜 データ型 (Data types)"
 ---
 
 :::message

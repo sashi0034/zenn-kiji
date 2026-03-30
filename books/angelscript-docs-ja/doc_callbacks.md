@@ -1,5 +1,5 @@
 ---
-title: "関数定義とスクリプトのコールバック関数 (Funcdefs and script callback functions)"
+title: "🚀 関数定義とスクリプトのコールバック関数 (Funcdefs and script callback functions)"
 ---
 
 [Funcdef（関数定義）](./doc_script_global#funcdef-(関数定義)) は、コールバックに使用される関数シグネチャを定義するために使用されます。定義された funcdef は、そのシグネチャに一致する関数へのハンドルを保持できる変数や関数パラメータを宣言する際に利用されます。

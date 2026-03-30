@@ -1,5 +1,5 @@
 ---
-title: "スコープ付き参照型の登録 (Registering a scoped reference type)"
+title: "🚀 スコープ付き参照型の登録 (Registering a scoped reference type)"
 ---
 
 一部の C++ 値型には、メモリ上の配置に関する特別な要件（特定のアライメントやメモリプーリングなど）があります。AngelScript は値型がどこにどのように割り当てられるかを細かく制御できないため、こうした型は参照型として登録する必要があります。この際、その型を**スコープ付き参照型 (scoped reference type)** として定義するのが適切です。

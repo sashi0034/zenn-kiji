@@ -1,5 +1,5 @@
 ---
-title: "ステートメント (Statements)"
+title: "📜 ステートメント (Statements)"
 ---
 
 ## 変数宣言 (Variable declarations)

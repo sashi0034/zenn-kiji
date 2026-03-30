@@ -1,5 +1,5 @@
 ---
-title: "概要 (Overview)"
+title: "🔰 概要 (Overview)"
 ---
 
 AngelScript は、アプリケーションがスクリプトに公開する[関数](./doc_register_func)、[プロパティ](./doc_register_prop)、さらには[型](./doc_register_type)を[登録](./doc_register_api)するためのエンジンを中心に構成されています。スクリプトは[モジュール (modules)](./doc_module) 単位にコンパイルされ、アプリケーションの用途に応じて 1 つ以上のモジュールを保持できます。また、[アクセスマスク (access profiles)](./doc_adv_access_mask) を使用することで、モジュールごとに異なるインターフェースを公開することも可能です。これは、GUI 制御用や AI 制御用など、役割の異なるスクリプトを共存させる場合に非常に有効です。

@@ -1,5 +1,5 @@
 ---
-title: "動的なビルド (Dynamic compilations)"
+title: "🚀 動的なビルド (Dynamic compilations)"
 ---
 
 スクリプトの動的コンパイルにはいくつかの形態があります。本節ではその理論的な背景と、実装方法に関するガイドラインを解説します。

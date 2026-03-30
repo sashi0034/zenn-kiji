@@ -1,5 +1,5 @@
 ---
-title: "スクリプトのコンパイル (Compiling scripts)"
+title: "🚀 スクリプトのコンパイル (Compiling scripts)"
 ---
 
 [アプリケーションインターフェースの登録](./doc_register_api) が完了したら、次は実行されるスクリプトをコンパイルします。

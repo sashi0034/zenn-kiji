@@ -1,5 +1,5 @@
 ---
-title: "スクリプト言語の文法 (Script language grammar)"
+title: "📜 スクリプト言語の文法 (Script language grammar)"
 ---
 
 AngelScript の言語文法を、拡張バッカス・ナウア表記法 (EBNF) で記述したものです。

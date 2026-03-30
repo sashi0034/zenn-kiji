@@ -1,5 +1,5 @@
 ---
-title: "ジェネリック・ハンドル型の登録 (Registering a generic handle type)"
+title: "🚀 ジェネリック・ハンドル型の登録 (Registering a generic handle type)"
 ---
 
 特定のクラスの実装に依存せず、あらゆるオブジェクトへの参照を保持できる「汎用的なストレージ」や「メッセージングシステム」を提供したい場合があります。

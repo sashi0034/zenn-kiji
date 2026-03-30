@@ -1,5 +1,5 @@
 ---
-title: "はじめに (Introduction)"
+title: "🏠 はじめに (Introduction)"
 ---
 
 ![](/images/angelscript-docs-ja/aslogo.png)

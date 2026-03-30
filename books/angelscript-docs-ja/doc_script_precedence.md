@@ -1,5 +1,5 @@
 ---
-title: "演算子の優先順位 (Operator precedence)"
+title: "📜 演算子の優先順位 (Operator precedence)"
 ---
 
 式の中に複数の演算子が含まれる場合、常に優先順位の高い演算子から先に計算されます。

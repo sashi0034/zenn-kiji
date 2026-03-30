@@ -1,5 +1,5 @@
 ---
-title: "サンプル (Samples)"
+title: "📚 サンプル (Samples)"
 ---
 
 このページでは、`/sdk/samples/` フォルダ内のサンプルについて簡単に説明します。

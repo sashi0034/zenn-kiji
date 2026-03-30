@@ -1,5 +1,5 @@
 ---
-title: "AngelScript の理解 (Understanding AngelScript)"
+title: "🛠️ AngelScript の理解 (Understanding AngelScript)"
 ---
 
 AngelScript を使いこなすためには、AngelScript と C++ の間のいくつかの相違点を理解しておくことが重要です。このライブラリは、アプリケーションの関数やクラスを最小限の変更で組み込めるよう設計されていますが、両者の間でオブジェクトをやり取りする際にはいくつかの注意点があります。

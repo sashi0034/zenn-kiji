@@ -1,5 +1,5 @@
 ---
-title: "メモリ管理 (Memory management)"
+title: "🛠️ メモリ管理 (Memory management)"
 ---
 
 本稿では、AngelScript のメモリ管理メカニズムについて詳細に解説します。多くの開発者にとっては必要以上に踏み込んだ内容かもしれませんが、ライブラリの内部動作を正確に把握し、AngelScript をより深く評価したい方向けの情報です。

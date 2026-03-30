@@ -1,5 +1,5 @@
 ---
-title: "式 (Expressions)"
+title: "📜 式 (Expressions)"
 ---
 
 ## 代入 (Assignments)

@@ -1,5 +1,5 @@
 ---
-title: "スクリプト関数の呼び出し (Calling a script function)"
+title: "🚀 スクリプト関数の呼び出し (Calling a script function)"
 ---
 
 ## コンテキストの準備と関数の実行 (Preparing context and executing the function)

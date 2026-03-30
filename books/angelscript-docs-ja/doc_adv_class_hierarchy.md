@@ -1,5 +1,5 @@
 ---
-title: "クラス階層 (Class hierarchies)"
+title: "🚀 クラス階層 (Class hierarchies)"
 ---
 
 AngelScript は登録されたクラス間の継承関係を自動的に判別することはできません。そのため、スクリプト言語内でクラス階層を確立するには、通常の [オブジェクト型の登録](./doc_register_type) に加えて、いくつかの追加の設定が必要になります。

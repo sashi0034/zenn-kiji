@@ -1,5 +1,5 @@
 ---
-title: "JITコンパイラの構築 (How to build a JIT compiler)"
+title: "🚀 JITコンパイラの構築 (How to build a JIT compiler)"
 ---
 
 AngelScript には標準の JIT コンパイラは組み込まれていませんが、公開されているインターフェースを通じて外部の JIT コンパイラを導入可能です。

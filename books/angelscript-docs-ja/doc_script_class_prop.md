@@ -1,5 +1,5 @@
 ---
-title: "プロパティアクセサー (Property accessors)"
+title: "📜 プロパティアクセサー (Property accessors)"
 ---
 
 :::message

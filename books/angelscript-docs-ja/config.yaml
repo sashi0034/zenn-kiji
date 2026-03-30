@@ -6,10 +6,12 @@ price: 0
 chapters:
   - doc_main
   # - doc_license
+  # 🔰 はじめに
   - doc_overview
   - doc_compile_lib
   - doc_hello_world
   - doc_good_practice
+  # 📜 スクリプト言語
   - doc_script_datatypes
   - doc_script_global
   - doc_script_function
@@ -26,6 +28,7 @@ chapters:
   - doc_script_reserved
   - doc_script_precedence
   - doc_understanding_as
+  # 🛠️ 組み込みガイド
   - doc_module
   - doc_as_vs_cpp_types
   - doc_memory
@@ -38,6 +41,7 @@ chapters:
   - doc_arrays
   - doc_gc_object
   - doc_generic
+  # 🚀 高度なトピック
   - doc_adv_generic_handle
   - doc_adv_scoped_type
   - doc_adv_single_ref_type
@@ -68,6 +72,7 @@ chapters:
   - doc_adv_reflection
   - doc_adv_inheritappclass
   - doc_adv_jit
+  # 📚 付録
   - doc_samples
   - doc_versions
   - doc_addon

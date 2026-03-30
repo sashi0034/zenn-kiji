@@ -1,5 +1,5 @@
 ---
-title: "パフォーマンスの微調整 (Fine tuning)"
+title: "🚀 パフォーマンスの微調整 (Fine tuning)"
 ---
 
 AngelScript から最大限のパフォーマンスを引き出すためのいくつかの推奨事項を以下に示します。

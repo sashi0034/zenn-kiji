@@ -1,5 +1,5 @@
 ---
-title: "スクリプトのグローバルエンティティ (Script global entities)"
+title: "📜 スクリプトのグローバルエンティティ (Script global entities)"
 ---
 
 ## グローバル変数 (Variables)
