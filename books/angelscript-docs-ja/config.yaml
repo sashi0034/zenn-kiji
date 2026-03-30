@@ -5,7 +5,6 @@ published: true
 price: 0
 chapters:
   - doc_main
-  - features
   # - doc_license
   - doc_overview
   - doc_compile_lib
