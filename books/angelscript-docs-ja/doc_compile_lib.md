@@ -147,7 +147,7 @@ iOS および Android 用に Marmalade で AngelScript をコンパイルする�
 
 訳注: こちらも参考になれば幸いです。
 
-https://zenn.dev/sashi0034/articles/bf06646e0d88ac
+https://zenn.dev/sashi0034/articles/bf06646e0d88ac#5.-c%2B%2B-%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%AB-angelscript-%E3%82%92%E7%B5%84%E3%81%BF%E8%BE%BC%E3%82%80
 
 ---
 
