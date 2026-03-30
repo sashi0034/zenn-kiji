@@ -1,5 +1,5 @@
 ---
-title: "🚀 アクセスマスクと別のインターフェースの公開 (Access masks and exposing different interfaces)"
+title: "🚀 アクセスマスク (Access masks and exposing different interfaces)"
 ---
 
 アプリケーションによっては、スクリプトの種類に応じて異なるインターフェースを公開したい場合があります。例えば、ゲーム内の各エンティティには特定の関数セットのみを許可し、GUI スクリプトには全く別の関数セットを許可するといった使い分けです。
