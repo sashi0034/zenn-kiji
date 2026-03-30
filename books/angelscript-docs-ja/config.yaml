@@ -11,6 +11,21 @@ chapters:
   - doc_compile_lib
   - doc_hello_world
   - doc_good_practice
+  - doc_script_datatypes
+  - doc_script_global
+  - doc_script_function
+  - doc_script_class
+  - doc_script_class_ops
+  - doc_script_class_prop
+  - doc_script_statement
+  - doc_script_expr
+  - doc_script_handle
+  - doc_script_mixin
+  - doc_script_shared
+  - doc_script_reserved
+  - doc_script_precedence
+  - doc_script_stdlib
+  - doc_script_bnf
   - doc_understanding_as
   - doc_module
   - doc_as_vs_cpp_types
@@ -54,21 +69,6 @@ chapters:
   - doc_adv_reflection
   - doc_adv_inheritappclass
   - doc_adv_jit
-  - doc_script_bnf
-  - doc_script_datatypes
-  - doc_script_global
-  - doc_script_function
-  - doc_script_class
-  - doc_script_class_ops
-  - doc_script_class_prop
-  - doc_script_statement
-  - doc_script_expr
-  - doc_script_handle
-  - doc_script_mixin
-  - doc_script_shared
-  - doc_script_reserved
-  - doc_script_precedence
-  - doc_script_stdlib
   - doc_samples
   - doc_versions
   - doc_addon
