@@ -138,7 +138,7 @@ void print(string &msg)
 
 ---
 
-訳注: こちらも参考になれば幸いです。
+訳注: こちらも参考になれば幸いです (再掲)。
 
 https://zenn.dev/sashi0034/articles/bf06646e0d88ac
 

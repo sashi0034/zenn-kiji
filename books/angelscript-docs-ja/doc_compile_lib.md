@@ -145,4 +145,10 @@ iOS および Android 用に Marmalade で AngelScript をコンパイルする�
 
 ---
 
+訳注: こちらも参考になれば幸いです。
+
+https://zenn.dev/sashi0034/articles/bf06646e0d88ac
+
+---
+
 原文: https://www.angelcode.com/angelscript/sdk/docs/manual/doc_compile_lib.html
