@@ -21,10 +21,10 @@ chapters:
   - doc_script_handle
   - doc_script_mixin
   - doc_script_shared
-  - doc_script_reserved
-  - doc_script_precedence
   - doc_script_stdlib
   - doc_script_bnf
+  - doc_script_reserved
+  - doc_script_precedence
   - doc_understanding_as
   - doc_module
   - doc_as_vs_cpp_types
