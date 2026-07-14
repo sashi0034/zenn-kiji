@@ -6,7 +6,6 @@ title: "Image based lights（IBL）"
 
 ![](/images/filament-md-ja/screenshot_ball_ibl.png)
 *図 [iblBall]: ここに示されているオブジェクトは、画像エンコードされた環境光のみで照明されています。この技術を使用して適用できる微妙な照明効果に注目してください。*
-
 画像ベース照明には制限があります。明らかに、環境画像は何らかの方法で取得する必要があり、以下で説明するように、照明に使用する前に前処理する必要があります。通常、環境画像は実世界でオフラインで取得されるか、オフラインまたは実行時にエンジンによって生成されます。いずれの場合も、ローカルまたは遠方のプローブが使用されます。
 
 これらのプローブは、遠方またはローカルの環境を取得するために使用できます。このドキュメントでは、光が無限に遠くから来ると仮定される遠方環境プローブに焦点を当てます（これは、オブジェクトの表面上のすべての点が同じ環境マップを使用することを意味します）。
@@ -89,7 +88,6 @@ $\Omega_s$ はサンプル $i$ に関連する立体角[^iblDiffuse2]です。
 *図 [iblOriginal]: 画像ベースの環境*
 ![](/images/filament-md-ja/ibl/ibl_irradiance.png)
 *図 [iblIrradiance]: ランベルトBRDFを使用した画像ベースの放射照度マップ*
-
 [^ibl1]: $\Theta$ はマテリアルモデル $f$ のパラメータを表します。つまり：_粗さ_、アルベドなど
 
 [^iblTypes1]: これは、静的プローブのブレンディングまたは時間経過によるワークロードの分散によって実行できます
@@ -114,7 +112,6 @@ SH分解は概念的にフーリエ変換に似ており、周波数領域で正
 *図 [iblSH3]: 3バンド（9係数）*
 ![](/images/filament-md-ja/ibl/ibl_irradiance_sh2.png)
 *図 [iblSH2]: 2バンド（4係数）*
-
 実際には、$L_{\bot}$ を $\left< \cos \theta \right>$ で事前畳み込みし、これらの係数を基底スケーリング係数 $K_l^m$ で事前スケーリングして、シェーダーでの再構築コードを可能な限り単純にします。
 
 ```glsl
@@ -163,10 +160,10 @@ $L_{out}$ 積分の閉形式解や簡単に計算する方法がないため、�
 
 このような簡略化は、白いファーネスなどの定数環境にも深刻な影響を与えます。なぜなら、結果の定数（つまりDC）項の大きさに影響するからです。少なくとも、適切に選択されたときに平均放射照度が正しく保たれることを確認するスケール係数 $K$ を使用して、簡略化された積分でこれを修正できます。
 
-    - $I$ は元の積分です。つまり：$I(g) = \int_\Omega g(l) \left< n \cdot l \right> \partial l$
-    - $\hat{I}$ は $v = n$ の簡略化された積分です
-    - $K$ は、平均放射照度が $\hat{I}$ によって変更されないことを保証するスケール係数です
-    - $\tilde{I}$ は $I$ の最終的な近似です。$\tilde{I} = \hat{I} \times K$ 
+- $I$ は元の積分です。つまり：$I(g) = \int_\Omega g(l) \left< n \cdot l \right> \partial l$
+- $\hat{I}$ は $v = n$ の簡略化された積分です
+- $K$ は、平均放射照度が $\hat{I}$ によって変更されないことを保証するスケール係数です
+- $\tilde{I}$ は $I$ の最終的な近似です。$\tilde{I} = \hat{I} \times K$ 
 
 $I$ は積分であるため、乗算をその上に分配できます。つまり：$I(g()f()) = I(g())I(f())$。
 
@@ -291,7 +288,7 @@ $$
 $$
 \begin{align*}
 I(f(n, v, \alpha))  \equiv & \color{green}{f_0   } \frac{4}{N}\sum_i^N  \color{green}{(1 - F_c(\left<v \cdot h\right>))} V(l_i, v, \alpha)\frac{\left<v \cdot h\right>}{\left<n \cdot h\right>} \left<n \cdot l\right> \\
-                    +      & \color{green}{f_{90}} \frac{4}{N}\sum_i^N  \color{green}{     F_c(\left<v \cdot h\right>) } V(l_i, v, \alpha)\frac{\left<v \cdot h\right>}{\left<n \cdot h\right>} \left<n \cdot l\right>
++      & \color{green}{f_{90}} \frac{4}{N}\sum_i^N  \color{green}{     F_c(\left<v \cdot h\right>) } V(l_i, v, \alpha)\frac{\left<v \cdot h\right>}{\left<n \cdot h\right>} \left<n \cdot l\right>
 \end{align*}
 $$
 
@@ -325,9 +322,7 @@ $DFG_1$ と $DFG_2$ の両方は、$(n \cdot v, \alpha)$ でインデックス�
 ![](/images/filament-md-ja/ibl/dfg2.png)
 *$DFG_2$*
 ![](/images/filament-md-ja/ibl/dfg.png)
-*${ DFG_1, DFG_2, 0 }$*
 *表 [textureDFG]: Y軸：$\alpha$。X軸：$\cos\theta$*
-
 $DFG_1$ と $DFG_2$ は便利なことに $[0, 1]$ の範囲内にありますが、8ビットテクスチャには十分な精度がなく、問題を引き起こします。残念ながら、モバイルでは16ビットまたは浮動小数点テクスチャは普遍的ではなく、サンプラーの数が限られています。テクスチャを使用するシェーダーコードの魅力的な単純さにもかかわらず、分析近似を使用する方が良いかもしれません。ただし、2つの項のみを格納する必要があるため、OpenGL ES 3.0のRG16Fテクスチャ形式が良い候補です。
 
 このような分析近似は [#Karis14] で説明されており、それ自体は [#Lazarov13] に基づいています。[#Narkowicz14] も別の興味深い近似です。これら2つの近似は、[マルチスキャタリングの事前積分]セクションで提示されるエネルギー補償項と互換性がないことに注意してください。表 [textureApproxDFG] は、これらの近似の視覚的表現を示しています。
@@ -337,9 +332,7 @@ $DFG_1$ と $DFG_2$ は便利なことに $[0, 1]$ の範囲内にあります�
 ![](/images/filament-md-ja/ibl/dfg2_approx.png)
 *$DFG_2$（近似）*
 ![](/images/filament-md-ja/ibl/dfg_approx.png)
-*${ DFG_1, DFG_2, 0 }$（近似）*
 *表 [textureApproxDFG]: Y軸：$\alpha$。X軸：$\cos\theta$*
-
 ### $LD$ 項の視覚化
 
 $LD$ は、$\alpha$ パラメータ（それ自体は粗さに関連、[粗さの再マッピングとクランピング]セクションを参照）にのみ依存する関数による環境の畳み込みです。$LD$ は、LODの増加が粗さの増加で事前フィルタリングされた環境を受け取るミップマップキューブマップに便利に格納できます。この畳み込みは強力なローパスフィルタであるため、これはうまく機能します。各ミップマップレベルを有効に活用するには、$\alpha$ を再マップする必要があります。私たちは、$\gamma = 2$ のべき乗再マッピングを使用するとうまく機能し、便利であることを発見しました。
@@ -363,14 +356,12 @@ $$
 *$\alpha=0.6$*
 ![](/images/filament-md-ja/ibl/ibl_river_roughness_m4.png)
 *$\alpha=0.8$*
-
 ### 間接鏡面と間接拡散コンポーネントの視覚化
 
 図 [iblVisualized] は、間接照明が誘電体と導体とどのように相互作用するかを示しています。説明のため、直接照明は削除されました。
 
 ![](/images/filament-md-ja/ibl/ibl_visualization.jpg)
 *図 [iblVisualized]: 間接拡散と鏡面の分解*
-
 ### IBL評価の実装
 
 リスト [iblEvaluation] は、前のセクションで説明したさまざまなテクスチャを使用してIBLを評価するGLSL実装を示しています。
@@ -493,36 +484,30 @@ vec3 specularColor = mix(dfg.xxx, dfg.yyy, f0);
 
 遠方の画像ベースライトの鏡面寄与を計算するために、いくつかの近似と妥協を行う必要がありました。
 
-    - $v = n$、IBLの非定数部分を積分する際に最大の誤差をもたらす仮定です。これにより、視点に対する粗さの異方性が完全に失われます。
+- $v = n$、IBLの非定数部分を積分する際に最大の誤差をもたらす仮定です。これにより、視点に対する粗さの異方性が完全に失われます。
 
-    - IBLの非定数部分の粗さ寄与は量子化され、三線形フィルタリングがこれらのレベル間を補間するために使用されます。これは低粗さで最も顕著です（たとえば、9 LODのキューブマップの場合、約0.0625付近）。
+- IBLの非定数部分の粗さ寄与は量子化され、三線形フィルタリングがこれらのレベル間を補間するために使用されます。これは低粗さで最も顕著です（たとえば、9 LODのキューブマップの場合、約0.0625付近）。
 
-    - ミップマップレベルは事前統合された環境を格納するために使用されるため、本来そうあるべきテクスチャ縮小には使用できません。これにより、低粗さおよび/または遠方または小さなオブジェクトでの環境の高周波領域でエイリアシングまたはモアレアーティファクトが発生する可能性があります。これにより、結果として生じる貧弱なキャッシュアクセスパターンのためにパフォーマンスにも影響する可能性があります。
+- ミップマップレベルは事前統合された環境を格納するために使用されるため、本来そうあるべきテクスチャ縮小には使用できません。これにより、低粗さおよび/または遠方または小さなオブジェクトでの環境の高周波領域でエイリアシングまたはモアレアーティファクトが発生する可能性があります。これにより、結果として生じる貧弱なキャッシュアクセスパターンのためにパフォーマンスにも影響する可能性があります。
 
-    - IBLの非定数部分にフレネルなし。
+- IBLの非定数部分にフレネルなし。
 
-    - IBLの非定数部分に可視性 = 1。
+- IBLの非定数部分に可視性 = 1。
 
-    - シュリックのフレネル
+- シュリックのフレネル
 
-    - マルチスキャタリングの場合は $f_{90} = 1$。
+- マルチスキャタリングの場合は $f_{90} = 1$。
 
-![図 [iblPrefilterVsImportanceSampling]:
-重点サンプリング参照（上）と事前フィルタリングされたIBL（中央）の比較。](/images/filament-md-ja/ibl/ibl_prefilter_vs_reference.png)
-
-![図 [iblStretchyReflectionLoss]:
-$v = n$ を仮定することによる反射の誤差（下） — 「伸縮反射」の喪失。](/images/filament-md-ja/ibl/ibl_stretchy_reflections_error.png)
-
-![図 [iblRoughnessInLods0]:
-粗さ = 0.0625でキューブマップLODに粗さを格納することによる誤差（つまり、レベル間で正確にサンプリング）。
-ぼやけの代わりに、2つのぼやけ間の「クロスフェード」が表示されることに注意してください。](/images/filament-md-ja/ibl/ibl_trilinear_0.png)
-
-![図 [iblRoughnessInLods1]:
-粗さ = 0.125でキューブマップLODに粗さを格納することによる誤差（つまり、レベル1を正確にサンプリング）。
-粗さがLODと密接に一致する場合、キューブマップの三線形フィルタリングによる誤差が減少します。掠角での $v = n$ による誤差に注意してください。](/images/filament-md-ja/ibl/ibl_trilinear_1.png)
-
-![図 [iblMoirePattern]:
-色付き垂直ストライプで作られた環境を使用した $\alpha = 0$ の金属球でのテクスチャ縮小によるモアレパターン（スカイボックスは非表示）。](/images/filament-md-ja/ibl/ibl_no_mipmaping.png)
+![](/images/filament-md-ja/ibl/ibl_prefilter_vs_reference.png)
+*図 [iblPrefilterVsImportanceSampling]: 重点サンプリング参照（上）と事前フィルタリングされたIBL（中央）の比較。*
+![](/images/filament-md-ja/ibl/ibl_stretchy_reflections_error.png)
+*図 [iblStretchyReflectionLoss]: $v = n$ を仮定することによる反射の誤差（下） — 「伸縮反射」の喪失。*
+![](/images/filament-md-ja/ibl/ibl_trilinear_0.png)
+*図 [iblRoughnessInLods0]: 粗さ = 0.0625でキューブマップLODに粗さを格納することによる誤差（つまり、レベル間で正確にサンプリング）。 ぼやけの代わりに、2つのぼやけ間の「クロスフェード」が表示されることに注意してください。*
+![](/images/filament-md-ja/ibl/ibl_trilinear_1.png)
+*図 [iblRoughnessInLods1]: 粗さ = 0.125でキューブマップLODに粗さを格納することによる誤差（つまり、レベル1を正確にサンプリング）。 粗さがLODと密接に一致する場合、キューブマップの三線形フィルタリングによる誤差が減少します。掠角での $v = n$ による誤差に注意してください。*
+![](/images/filament-md-ja/ibl/ibl_no_mipmaping.png)
+*図 [iblMoirePattern]: 色付き垂直ストライプで作られた環境を使用した $\alpha = 0$ の金属球でのテクスチャ縮小によるモアレパターン（スカイボックスは非表示）。*
 
 ## クリアコート
 
@@ -546,7 +531,6 @@ iblSpecular += specularIBL(r, clearCoatPerceptualRoughness) * Fc;
 *図 [anisotropicIBL1]: 曲がった法線を使用した異方性間接鏡面反射（左：粗さ0.3、右：粗さ：0.0；両方：異方性1.0）*
 ![](/images/filament-md-ja/screenshot_anisotropic_ibl2.jpg)
 *図 [anisotropicIBL2]: さまざまな粗さ、金属性などを持つ異方性反射*
-
 この技術の実装は、リスト [bentReflectionVector] で示されるように簡単です。
 
 ```glsl
@@ -572,7 +556,6 @@ vec3 r = reflect(-v, bentNormal);
 
 ![](/images/filament-md-ja/screenshot_anisotropy_direction.png)
 *図 [anisotropicDirection]: 正（左）と負（右）の値を使用した異方性方向の制御*
-
 ## サブサーフェス
 
 [TODO] サブサーフェスとIBLの説明
@@ -585,7 +568,6 @@ DG項は、[#Estevez17] で推奨されているように一様サンプリン�
 
 ![](/images/filament-md-ja/ibl/dfg_cloth.png)
 *図 [dfgClothLUT]: クロスBRDFのDG項をエンコードする第3チャンネルを持つDFG LUT*
-
 画像ベース照明実装の残りの部分は、オプションのサブサーフェススキャタリング項とそのラップディフューズコンポーネントを含め、通常のライトの実装と同じステップに従います。クリアコートIBL実装と同様に、半球上で積分できず、ラップディフューズコンポーネントを計算するための支配的な光の方向としてビュー方向を使用します。
 
 ```glsl
