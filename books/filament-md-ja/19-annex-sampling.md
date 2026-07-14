@@ -12,7 +12,7 @@ $$
 
 残念ながら、この積分を評価するには非常に多くのサンプルが必要です。一般的に使用される手法は、より「重要」なサンプルをより頻繁に選択することです。これは _importance sampling_ と呼ばれます。私たちの場合、マイクロファセット法線の分布 $D_{ggx}$ を重要なサンプルの分布として使用します。
 
-importance samplingによる $ L_{out}(n,v,\Theta) $ の評価は、式 `annexIblImportanceSampling` に示されています。
+importance samplingによる $L_{out}(n,v,\Theta)$ の評価は、式 `annexIblImportanceSampling` に示されています。
 
 $$
 L_{out}(n,v,\Theta) \equiv \frac{1}{N} \sum_{i}^{N} \frac{f(l_{i},v,\Theta)}{p(l_i,v,\Theta)} L_{\perp}(l_i) \left< n \cdot l_i \right>
@@ -45,7 +45,7 @@ $$
 l = \{ cos \phi sin \theta, sin \phi sin \theta, cos \theta \}
 $$
 
-通常、$ (\zeta_{\phi},\zeta_{\theta}) $ は、[Hammersley列](#Hammersley列) セクションで説明されているHammersley一様分布アルゴリズムを使用して選択されます。
+通常、$(\zeta_{\phi},\zeta_{\theta})$ は、[Hammersley列](#Hammersley列) セクションで説明されているHammersley一様分布アルゴリズムを使用して選択されます。
 
 ### Pre-filtered importance sampling
 
@@ -64,7 +64,7 @@ K &= 4.0 \\
 \Omega_p &\approx \frac{4\pi}{6 \cdot width \cdot height}
 \end{align*}$$
 
-ここで、$K$ は経験的に決定された定数、$p$ はBRDFのPDF、$ \Omega_{s} $ はサンプルに関連付けられた立体角、$\Omega_p$ はキューブマップのテクセルに関連付けられた立体角です。
+ここで、$K$ は経験的に決定された定数、$p$ はBRDFのPDF、$\Omega_{s}$ はサンプルに関連付けられた立体角、$\Omega_p$ はキューブマップのテクセルに関連付けられた立体角です。
 
 キューブマップサンプリングは、シームレストリリニアフィルタリングを使用して行われます。OpenGLのシームレスサンプリング機能、またはシームを回避/削減する他の手法を使用して、フェイス間でキューブマップを正しくサンプリングすることは非常に重要です。
 
@@ -107,7 +107,7 @@ K &= 4.0 \\
 
 ## BRDFをサンプリングするための重要な方向の選択
 
-簡単にするために、BRDFの $ D $ 項をPDFとして使用しますが、PDFは半球上の積分が1になるように正規化する必要があります：
+簡単にするために、BRDFの $D$ 項をPDFとして使用しますが、PDFは半球上の積分が1になるように正規化する必要があります：
 
 $$
 \int_{\Omega}p(m)dm = 1 \\
@@ -128,7 +128,7 @@ p(\theta) &= \int_0^{2\pi} p(\theta,\phi) d\phi = \frac{2\alpha^2}{(cos^2\theta 
 p(\phi) &= \frac{p(\theta,\phi)}{p(\phi)} = \frac{1}{2\pi}
 \end{align*}$$
 
-$ p(\phi) $ の式は、法線の等方性分布に対して真です。
+$p(\phi)$ の式は、法線の等方性分布に対して真です。
 
 次に、各変数の累積分布関数（CDF）を計算します：
 
@@ -137,14 +137,14 @@ P(s_{\phi}) &= \int_{0}^{s_{\phi}} p(\phi) d\phi = \frac{s_{\phi}}{2\pi} \\
 P(s_{\theta}) &= \int_{0}^{s_{\theta}} p(\theta) d\theta = 2 \alpha^2 \left( \frac{1}{(2\alpha^4-4\alpha^2+2) cos(s_{\theta})^2 + 2\alpha^2 - 2} - \frac{1}{2\alpha^4-2\alpha^2} \right)
 \end{align*}$$
 
-$ P(s_{\phi}) $ と $ P(s_{\theta}) $ を確率変数 $ \zeta_{\phi} $ と $ \zeta_{\theta} $ に設定し、それぞれ $ s_{\phi} $ と $ s_{\theta} $ を求めます：
+$P(s_{\phi})$ と $P(s_{\theta})$ を確率変数 $\zeta_{\phi}$ と $\zeta_{\theta}$ に設定し、それぞれ $s_{\phi}$ と $s_{\theta}$ を求めます：
 
 $$\begin{align*}
 P(s_{\phi}) &= \zeta_{\phi} \rightarrow s_{\phi} = 2\pi\zeta_{\phi} \\
 P(s_{\theta}) &= \zeta_{\theta} \rightarrow s_{\theta} = cos^{-1} \sqrt{\frac{1-\zeta_{\theta}}{(\alpha^2-1)\zeta_{\theta}+1}}
 \end{align*}$$
 
-したがって、一様分布 $ (\zeta_{\phi},\zeta_{\theta}) $ が与えられると、重要な方向 $l$ は次のように定義されます：
+したがって、一様分布 $(\zeta_{\phi},\zeta_{\theta})$ が与えられると、重要な方向 $l$ は次のように定義されます：
 
 $$\begin{align*}
 \phi &= 2\pi\zeta_{\phi} \\
@@ -169,7 +169,7 @@ vec2f hammersley(uint i, float numSamples) {
 
 ## Image-based lightingのためのLの事前計算
 
-$ L_{DFG} $ 項は $ n \cdot v $ のみに依存します。以下では、法線を任意に $ n=\left[0, 0, 1\right] $ に設定し、$v$ は $ n \cdot v $ を満たすように選択されます。ベクトル $ h_i $ は、$ D_{GGX}(\alpha) $ の重要な方向サンプル $i$ です。
+$L_{DFG}$ 項は $n \cdot v$ のみに依存します。以下では、法線を任意に $n=\left[0, 0, 1\right]$ に設定し、$v$ は $n \cdot v$ を満たすように選択されます。ベクトル $h_i$ は、$D_{GGX}(\alpha)$ の重要な方向サンプル $i$ です。
 
 ```glsl
 float GDFG(float NoV, float NoL, float a) {
@@ -206,7 +206,7 @@ float2 DFG(float NoV, float a) {
     return r * (1.0f / sampleCount);
 }
 ```
-[$ L_{DFG} $ 項のC++実装]
+[$L_{DFG}$ 項のC++実装]
 
 ---
 

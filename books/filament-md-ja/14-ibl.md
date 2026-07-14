@@ -83,7 +83,7 @@ $$ E_d(n) \equiv \sum_{\forall \, i \in image} L_{\bot}(s_i) \left< n \cdot s_i 
 
 $\Omega_s$ はサンプル $i$ に関連する立体角[^iblDiffuse2]です。
 
-放射照度積分 $E_d$ は、自明ではありますが、ゆっくりと[^iblDiffuse3]事前計算でき、実行時の効率的なアクセスのためにキューブマップに格納できます。通常、_image_ はキューブマップまたは正距円筒図です。項 $ \frac{\sigma}{\pi} $ はIBLとは独立しており、実行時に追加されて_放射輝度_を取得します。
+放射照度積分 $E_d$ は、自明ではありますが、ゆっくりと[^iblDiffuse3]事前計算でき、実行時の効率的なアクセスのためにキューブマップに格納できます。通常、_image_ はキューブマップまたは正距円筒図です。項 $\frac{\sigma}{\pi}$ はIBLとは独立しており、実行時に追加されて_放射輝度_を取得します。
 
 ![](/images/filament-md-ja/ibl/ibl_river_roughness_m0.png)
 *図 [iblOriginal]: 画像ベースの環境*

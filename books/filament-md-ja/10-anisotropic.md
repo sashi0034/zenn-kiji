@@ -89,7 +89,7 @@ V_{aniso}(n \cdot l,n \cdot v,\alpha) = \frac{1}{2((n \cdot l)\hat{\Lambda}_v+(n
 \hat{\Lambda}_l = \sqrt{\alpha^2_t(t \cdot l)^2+\alpha^2_b(b \cdot l)^2+(n \cdot l)^2}
 $$
 
-$ \hat{\Lambda}_v $ 項はすべてのライトで同じであり、必要に応じて一度だけ計算できます。結果として得られる実装は、リスト [anisotropicV] に記載されています。
+$\hat{\Lambda}_v$ 項はすべてのライトで同じであり、必要に応じて一度だけ計算できます。結果として得られる実装は、リスト [anisotropicV] に記載されています。
 
 ```glsl
 float at = max(roughness * (1.0 + anisotropy), 0.001);

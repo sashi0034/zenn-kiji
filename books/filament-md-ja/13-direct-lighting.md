@@ -100,12 +100,12 @@ $$
 
 ### スポットライト
 
-スポットライトは、空間内の位置、方向ベクトル、2つの円錐角 $ \theta_{inner} $ と $ \theta_{outer} $ で定義されます（図 [spotLight] 参照）。これら2つの角度は、スポットライトの角度減衰を定義するために使用されます。したがって、スポットライトのライト評価関数は、輝度減衰を適切に評価するために、逆二乗則とこれら2つの角度の両方を考慮する必要があります。
+スポットライトは、空間内の位置、方向ベクトル、2つの円錐角 $\theta_{inner}$ と $\theta_{outer}$ で定義されます（図 [spotLight] 参照）。これら2つの角度は、スポットライトの角度減衰を定義するために使用されます。したがって、スポットライトのライト評価関数は、輝度減衰を適切に評価するために、逆二乗則とこれら2つの角度の両方を考慮する必要があります。
 
 ![](/images/filament-md-ja/diagram_spot_light.png)
 *図 [spotLight]: スポットライトと表面の相互作用。減衰は光源までの距離と、表面とスポットライトの方向ベクトル間の角度に依存します*
 
-式 `spotLightLuminousPower` は、ポイントライトと同様の方法でスポットライトの光束を計算する方法を説明しており、スポットライトの円錐の外角 $ \theta_{outer} $ を [0..$\pi$] の範囲で使用します。
+式 `spotLightLuminousPower` は、ポイントライトと同様の方法でスポットライトの光束を計算する方法を説明しており、スポットライトの円錐の外角 $\theta_{outer}$ を [0..$\pi$] の範囲で使用します。
 
 $$
 \Phi = \int_{\Omega} I dl = \int_{0}^{2\pi} \int_{0}^{\theta_{outer}} I d\theta d\phi = 2 \pi (1 - cos\frac{\theta_{outer}}{2})I \\
@@ -142,7 +142,7 @@ $$
 L_{out} = f(v,l) \frac{\Phi}{2 \pi (1 - cos\frac{\theta_{outer}}{2}) d^2} \left< n \cdot l \right> \lambda(l)
 $$
 
-式 `spotAbsorber` と `spotReflector` の項 $ \lambda(l) $ は、以下の式 `spotAngleAtt` で説明されるスポットの角度減衰係数です。
+式 `spotAbsorber` と `spotReflector` の項 $\lambda(l)$ は、以下の式 `spotAngleAtt` で説明されるスポットの角度減衰係数です。
 
 $$
 \lambda(l) = \frac{l \cdot spotDirection - cos\theta_{outer}}{cos\theta_{inner} - cos\theta_{outer}}
@@ -154,7 +154,7 @@ $$
 
 1. 距離の二乗による除算は、オブジェクトが光源と交差または「接触」するときにゼロ除算につながる可能性があります。
 
-2. 各ライトの影響球は無限です（$ \frac{I}{d^2} $ は漸近的で、決してゼロに達しません）。これは、ピクセルを正しくシェーディングするために、世界のすべてのライトを評価する必要があることを意味します。
+2. 各ライトの影響球は無限です（$\frac{I}{d^2}$ は漸近的で、決してゼロに達しません）。これは、ピクセルを正しくシェーディングするために、世界のすべてのライトを評価する必要があることを意味します。
 
 最初の問題は、点光源が真に点状ではなく、代わりに小さなエリアライトであるという仮定を設定することで簡単に解決できます。これを行うには、式 `finitePunctualLight` に示すように、点光源を半径1cmの球として扱うだけです。
 
@@ -253,7 +253,7 @@ $$
 L_{out} = f(v,l) \frac{I}{d^2} \left< n \cdot l \right> \Psi(l)
 $$
 
-項 $ \Psi(l) $ は測光減衰関数です。これは光ベクトルに依存するだけでなく、ライトの方向にも依存します。スポットライトはすでに方向ベクトルを持っていますが、測光ポイントライトにも方向ベクトルを導入する必要があります。
+項 $\Psi(l)$ は測光減衰関数です。これは光ベクトルに依存するだけでなく、ライトの方向にも依存します。スポットライトはすでに方向ベクトルを持っていますが、測光ポイントライトにも方向ベクトルを導入する必要があります。
 
 測光減衰関数は、点光源の実装（リスト [glslPunctualLight]）に新しい減衰係数を追加することで、GLSLで簡単に実装できます。変更された実装は、リスト [glslPhotometricPunctualLight] に示されています。
 
@@ -351,7 +351,7 @@ v(T) = \frac{0.317398726 + 4.22806245
  \times 10^{-5}T + 1.61456053 \times 10^{-7}T^2}
 $$
 
-この近似は、1,000K〜15,000Kの範囲で約 $ 9 \times 10^{-5} $ まで正確です。CIE 1960空間から、式 `cieToxyY` を使用してxyY空間（CIES 1931）の座標を計算できます。
+この近似は、1,000K〜15,000Kの範囲で約 $9 \times 10^{-5}$ まで正確です。CIE 1960空間から、式 `cieToxyY` を使用してxyY空間（CIES 1931）の座標を計算できます。
 
 $$
 x = \frac{3u}{2u - 8v + 4} \\
@@ -398,7 +398,7 @@ C_{sRGB} = \begin{cases} 12.92 \times \hat{C}_{linear} & \hat{C}_{linear} \le 0.
 1.055 \times \hat{C}_{linear}^{\frac{1}{2.4}} - 0.055 & \hat{C}_{linear} \gt 0.0031308 \end{cases}
 $$
 
-便宜上、図 [colorTemperatureScaleCCT] は、1,000K〜12,500Kの相関色温度の範囲を示しています。以下で使用されるすべての色は、白色点としてCIE $ D_{65} $ を想定しています（sRGB色空間の場合と同様）。
+便宜上、図 [colorTemperatureScaleCCT] は、1,000K〜12,500Kの相関色温度の範囲を示しています。以下で使用されるすべての色は、白色点としてCIE $D_{65}$ を想定しています（sRGB色空間の場合と同様）。
 
 ![](/images/filament-md-ja/diagram_color_temperature_cct.png)
 *図 [colorTemperatureScaleCCT]: 相関色温度のスケール*
@@ -413,7 +413,7 @@ $$
 ![](/images/filament-md-ja/diagram_color_temperature_cct_clamped.png)
 *図 [colorTemperatureScaleCCTClamped]: 正規化されていない相関色温度のスケール*
 
-表 [colorTemperatureSamples] は、さまざまな一般的な光源の相関色温度をsRGB色見本として示しています。これらの色は $ D_{65} $ 白色点に対する相対的なものであるため、ディスプレイの白色点によって知覚される色相が異なる場合があります。詳細については、[What colour is the Sun?](http://jila.colorado.edu/~ajsh/colour/Tspectrum.html) を参照してください。
+表 [colorTemperatureSamples] は、さまざまな一般的な光源の相関色温度をsRGB色見本として示しています。これらの色は $D_{65}$ 白色点に対する相対的なものであるため、ディスプレイの白色点によって知覚される色相が異なる場合があります。詳細については、[What colour is the Sun?](http://jila.colorado.edu/~ajsh/colour/Tspectrum.html) を参照してください。
 
 | Temperature (K) | Light source | Color |
 | ---: | :--- | --- |
