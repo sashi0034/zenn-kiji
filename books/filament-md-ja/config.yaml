@@ -1,9 +1,39 @@
-title: ""
-summary: ""
-topics: []
+title: "Filament — Physically Based Rendering（和訳）"
+summary: "Google Filament の公式ドキュメント『Physically Based Rendering in Filament』の日本語訳です。マテリアル／ライティング／IBL／イメージングパイプラインなど、PBR の理論と実装を解説します。生成AIによる翻訳をベースにしています。"
+topics:
+  - rendering
+  - pbr
+  - filament
+  - graphics
 published: false
-price: 0 # 有料の場合200〜5000
-# 本に含めるチャプターを順番に並べましょう
+price: 0
+toc_depth: 2
 chapters:
-  - example1
-  - example2
+  # はじめに
+  - 01-about
+  - 02-overview
+  - 03-notation
+  # マテリアル
+  - 04-material-standard
+  - 05-specular-brdf
+  - 06-diffuse-brdf
+  - 07-improving-brdfs
+  - 08-parameterization
+  - 09-clear-coat
+  - 10-anisotropic
+  - 11-subsurface-cloth
+  # ライティング
+  - 12-lighting-units
+  - 13-direct-lighting
+  - 14-ibl
+  - 15-other-lighting
+  # イメージング
+  - 16-imaging-camera
+  - 17-imaging-post
+  # 付録
+  - 18-annex-specular
+  - 19-annex-sampling
+  - 20-annex-sh
+  - 21-annex-misc
+  - 22-revisions
+  - 23-bibliography
