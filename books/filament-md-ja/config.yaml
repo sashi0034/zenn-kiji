@@ -1,4 +1,4 @@
-title: "Filament — Physically Based Rendering（和訳）"
+title: "Filament — Physically Based Rendering (和訳)"
 summary: "Google Filament の公式ドキュメント『Physically Based Rendering in Filament』の和訳です。マテリアル / ライティング / IBL / イメージングパイプラインなど、PBR の理論と実装についての解説があります。生成AIによる翻訳をベースにしています。"
 topics:
   - rendering
