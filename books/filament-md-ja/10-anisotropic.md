@@ -6,7 +6,8 @@ title: "Anisotropic モデル"
 
 これまでに説明した[標準マテリアルモデル](./04-material-standard)では、等方性サーフェス、つまりすべての方向で特性が同一であるサーフェスしか記述できません。しかし、ブラシをかけた金属など、多くの実世界のマテリアルは、異方性モデルを使用しないと再現できません。
 
-![図 [anisotropic]: 等方性マテリアル（左）と異方性マテリアル（右）の比較](/images/filament-md-ja/material_anisotropic.png)
+![](/images/filament-md-ja/material_anisotropic.png)
+*図 [anisotropic]: 等方性マテリアル（左）と異方性マテリアル（右）の比較*
 
 ### Anisotropic specular BRDF
 
@@ -115,7 +116,8 @@ float V_SmithGGXCorrelated_Anisotropic(float at, float ab, float ToV, float BoV,
 
 さらなるリマッピングは必要ありません。負の値は、異方性を tangent 方向ではなく bitangent 方向に合わせることに注意してください。図 [anisotropyParameter] は、anisotropy パラメータが粗い金属サーフェスの外観にどのように影響するかを示しています。
 
-![図 [anisotropyParameter]: Anisotropy を 0.0（左）から 1.0（右）まで変化させた様子](/images/filament-md-ja/materials/anisotropy.png)
+![](/images/filament-md-ja/materials/anisotropy.png)
+*図 [anisotropyParameter]: Anisotropy を 0.0（左）から 1.0（右）まで変化させた様子*
 
 ---
 

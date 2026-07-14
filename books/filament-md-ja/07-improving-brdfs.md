@@ -14,19 +14,22 @@ Lambert diffuse BRDF は、サーフェスで反射するため diffuse 散乱�
 
 先ほど提示した Cook-Torrance BRDF は、マイクロファセットレベルで複数のイベントをモデル化しようとしますが、光の単一バウンスを考慮することでそれを行います。この近似は、高 roughness でエネルギー損失を引き起こす可能性があり、サーフェスはエネルギー保存則に従いません。図 [singleVsMultiBounce] は、このエネルギー損失が発生する理由を示しています。単一バウンス（または単一散乱）モデルでは、サーフェスに当たる光線が別のマイクロファセットに反射され、マスキングとシャドウイング項のために破棄される可能性があります。しかし、複数のバウンス（マルチスキャタリング）を考慮すると、同じ光線がマイクロファセットフィールドから抜け出し、視聴者に向かって反射される可能性があります。
 
-![図 [singleVsMultiBounce]: 単一散乱（左）vs マルチスキャタリング](/images/filament-md-ja/diagram_single_vs_multi_scatter.png)
+![](/images/filament-md-ja/diagram_single_vs_multi_scatter.png)
+*図 [singleVsMultiBounce]: 単一散乱（左）vs マルチスキャタリング*
 
 この簡単な説明に基づいて、サーフェスが粗いほど、複数の散乱イベントを考慮しないためにエネルギーが失われる可能性が高くなることを直感的に推測できます。このエネルギー損失により、粗いマテリアルが暗くなるように見えます。金属サーフェスは、すべての reflectance が specular であるため、特に影響を受けます。この暗化効果は図 [metallicRoughEnergyLoss] に示されています。マルチスキャタリングを使用すると、図 [metallicRoughEnergyPreservation] に示すように、エネルギー保存則を達成できます。
 
-![図 [metallicRoughEnergyLoss]: 単一散乱により roughness とともに暗化が増加](/images/filament-md-ja/material_metallic_energy_loss.png)
-
-![図 [metallicRoughEnergyPreservation]: マルチスキャタリングによるエネルギー保存](/images/filament-md-ja/material_metallic_energy_preservation.png)
+![](/images/filament-md-ja/material_metallic_energy_loss.png)
+*図 [metallicRoughEnergyLoss]: 単一散乱により roughness とともに暗化が増加*
+![](/images/filament-md-ja/material_metallic_energy_preservation.png)
+*図 [metallicRoughEnergyPreservation]: マルチスキャタリングによるエネルギー保存*
 
 ホワイトファーネス（純白に設定された均一なライティング環境）を使用して、BRDF のエネルギー保存特性を検証できます。エネルギー保存が達成されると、純粋に反射する金属サーフェス（$f_{0} = 1$）は、そのサーフェスの roughness に関係なく、背景と区別がつかないはずです。図 [whiteFurnaceLoss] は、前のセクションで提示した specular BRDF を使用した場合のそのようなサーフェスの外観を示しています。roughness が増加するにつれてのエネルギー損失は明らかです。対照的に、図 [whiteFurnacePreservation] は、マルチスキャタリングイベントを考慮することでエネルギー損失に対処できることを示しています。
 
-![図 [whiteFurnaceLoss]: 単一散乱により roughness とともに暗化が増加](/images/filament-md-ja/material_furnace_energy_loss.png)
-
-![図 [whiteFurnacePreservation]: マルチスキャタリングによるエネルギー保存](/images/filament-md-ja/material_furnace_energy_preservation.png)
+![](/images/filament-md-ja/material_furnace_energy_loss.png)
+*図 [whiteFurnaceLoss]: 単一散乱により roughness とともに暗化が増加*
+![](/images/filament-md-ja/material_furnace_energy_preservation.png)
+*図 [whiteFurnacePreservation]: マルチスキャタリングによるエネルギー保存*
 
 複数散乱マイクロファセット BRDF は [#Heitz16] で詳しく議論されています。残念ながら、この論文はマルチスキャタリング BRDF の確率的評価のみを提示しています。したがって、この解決策はリアルタイムレンダリングには適していません。Kulla と Conty は [#Kulla17] で別のアプローチを提示しています。彼らのアイデアは、式 `energyCompensationLobe` に示すように、追加の BRDF ローブとしてエネルギー補償項を追加することです。
 

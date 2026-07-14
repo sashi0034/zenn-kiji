@@ -189,7 +189,8 @@ C_4 &= -0.11078
 
 図 [shCosThetaApprox] に示すように、$\left< cos \theta \right>$ を合理的に近似するには、非常に少ない係数が必要です。
 
-![図 [shCosThetaApprox]: SH係数による $cos \theta$ の近似](/images/filament-md-ja/chart_sh_cos_thera_approx.png)
+![](/images/filament-md-ja/chart_sh_cos_thera_approx.png)
+*図 [shCosThetaApprox]: SH係数による $cos \theta$ の近似*
 
 ### 畳み込み
 

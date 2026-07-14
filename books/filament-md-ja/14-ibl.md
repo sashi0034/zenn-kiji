@@ -4,7 +4,8 @@ title: "Image based lights（IBL）"
 
 現実世界では、光はあらゆる方向から来ます。光源から直接来るか、環境内のオブジェクトに跳ね返った後に間接的に来て、その過程で部分的に吸収されます。ある意味では、オブジェクトを囲む環境全体を光源と見なすことができます。画像、特にキューブマップは、そのような「環境光」をエンコードする優れた方法です。これはImage Based Lighting（IBL）または間接照明と呼ばれます。
 
-![図 [iblBall]: ここに示されているオブジェクトは、画像エンコードされた環境光のみで照明されています。この技術を使用して適用できる微妙な照明効果に注目してください。](/images/filament-md-ja/screenshot_ball_ibl.png)
+![](/images/filament-md-ja/screenshot_ball_ibl.png)
+*図 [iblBall]: ここに示されているオブジェクトは、画像エンコードされた環境光のみで照明されています。この技術を使用して適用できる微妙な照明効果に注目してください。*
 
 画像ベース照明には制限があります。明らかに、環境画像は何らかの方法で取得する必要があり、以下で説明するように、照明に使用する前に前処理する必要があります。通常、環境画像は実世界でオフラインで取得されるか、オフラインまたは実行時にエンジンによって生成されます。いずれの場合も、ローカルまたは遠方のプローブが使用されます。
 
@@ -84,9 +85,10 @@ $\Omega_s$ はサンプル $i$ に関連する立体角[^iblDiffuse2]です。
 
 放射照度積分 $E_d$ は、自明ではありますが、ゆっくりと[^iblDiffuse3]事前計算でき、実行時の効率的なアクセスのためにキューブマップに格納できます。通常、_image_ はキューブマップまたは正距円筒図です。項 $ \frac{\sigma}{\pi} $ はIBLとは独立しており、実行時に追加されて_放射輝度_を取得します。
 
-![図 [iblOriginal]: 画像ベースの環境](/images/filament-md-ja/ibl/ibl_river_roughness_m0.png style="max-width:100%;")
-
-![図 [iblIrradiance]: ランベルトBRDFを使用した画像ベースの放射照度マップ](/images/filament-md-ja/ibl/ibl_irradiance.png style="max-width:100%;")
+![](/images/filament-md-ja/ibl/ibl_river_roughness_m0.png)
+*図 [iblOriginal]: 画像ベースの環境*
+![](/images/filament-md-ja/ibl/ibl_irradiance.png)
+*図 [iblIrradiance]: ランベルトBRDFを使用した画像ベースの放射照度マップ*
 
 [^ibl1]: $\Theta$ はマテリアルモデル $f$ のパラメータを表します。つまり：_粗さ_、アルベドなど
 
@@ -108,9 +110,10 @@ SH分解は概念的にフーリエ変換に似ており、周波数領域で正
 
 実際には、$\left< \cos \theta \right>$ には4または9係数（つまり：2または3バンド）で十分です。つまり、$L_{\bot}$ にもこれ以上必要ありません。
 
-![図 [iblSH3]: 3バンド（9係数）](/images/filament-md-ja/ibl/ibl_irradiance_sh3.png style="max-width:100%;")
-
-![図 [iblSH2]: 2バンド（4係数）](/images/filament-md-ja/ibl/ibl_irradiance_sh2.png style="max-width:100%;")
+![](/images/filament-md-ja/ibl/ibl_irradiance_sh3.png)
+*図 [iblSH3]: 3バンド（9係数）*
+![](/images/filament-md-ja/ibl/ibl_irradiance_sh2.png)
+*図 [iblSH2]: 2バンド（4係数）*
 
 実際には、$L_{\bot}$ を $\left< \cos \theta \right>$ で事前畳み込みし、これらの係数を基底スケーリング係数 $K_l^m$ で事前スケーリングして、シェーダーでの再構築コードを可能な限り単純にします。
 
@@ -145,7 +148,7 @@ L_{out}(n, v, \Theta) = \int_\Omega f(l, v, \Theta) L_{\bot}(l) \left< n \cdot l
 $$ 
 
 これは、$f(l, v, \Theta) \left< n \cdot l \right>$ による $L_{\bot}$ の畳み込みと認識されます。つまり：環境はBRDFをカーネルとして*フィルタリング*されます。実際、粗さが高いほど、鏡面反射は*ぼやけて*見えます。
- 
+
 式 `specularBRDFIntegration` に $f$ の式を代入すると、次のようになります。
 
 $$
@@ -190,20 +193,20 @@ $$\begin{align*}
                         &= I(f(\Theta)L_{\bot})
 \end{align*}$$
 
-最後に、$L_{\bot} = \bar{L_{\bot}} + (L_{\bot} - \bar{L_{\bot}}) = \bar{L_{\bot}} + \DeltaL_{\bot}$ を $\tilde{I}$ に代入することで、スケール係数 $K$ が平均放射照度（$\bar{L_{\bot}}$）要件を満たすことを示すことができます。
+最後に、$L_{\bot} = \bar{L_{\bot}} + (L_{\bot} - \bar{L_{\bot}}) = \bar{L_{\bot}} + \Delta L_{\bot}$ を $\tilde{I}$ に代入することで、スケール係数 $K$ が平均放射照度（$\bar{L_{\bot}}$）要件を満たすことを示すことができます。
 
 $$\begin{align*}
-\tilde{I}(f(\Theta)L_{\bot}) &= \tilde{I}\left[f\left(\Theta\right) \left(\bar{L_{\bot}} + \DeltaL_{\bot}\right)\right] \\
-                        &= K \times \hat{I}\left[f\left(\Theta\right) \left(\bar{L_{\bot}} + \DeltaL_{\bot}\right)\right] \\
-                        &= K \times \left[\hat{I}\left(f\left(\Theta\right)\bar{L_{\bot}}\right) + \hat{I}\left(f\left(\Theta\right)\DeltaL_{\bot}\right)\right] \\ 
-                        &= K \times \hat{I}\left(f\left(\Theta\right)\bar{L_{\bot}}\right) + K \times \hat{I}\left(f\left(\Theta\right) \DeltaL_{\bot}\right) \\
-                        &= \tilde{I}\left(f\left(\Theta\right)\bar{L_{\bot}}\right) + \tilde{I}\left(f\left(\Theta\right) \DeltaL_{\bot}\right) \\
-                        &= I\left(f\left(\Theta\right)\bar{L_{\bot}}\right) + \tilde{I}\left(f\left(\Theta\right) \DeltaL_{\bot}\right)
+\tilde{I}(f(\Theta)L_{\bot}) &= \tilde{I}\left[f\left(\Theta\right) \left(\bar{L_{\bot}} + \Delta L_{\bot}\right)\right] \\
+                        &= K \times \hat{I}\left[f\left(\Theta\right) \left(\bar{L_{\bot}} + \Delta L_{\bot}\right)\right] \\
+                        &= K \times \left[\hat{I}\left(f\left(\Theta\right)\bar{L_{\bot}}\right) + \hat{I}\left(f\left(\Theta\right)\Delta L_{\bot}\right)\right] \\ 
+                        &= K \times \hat{I}\left(f\left(\Theta\right)\bar{L_{\bot}}\right) + K \times \hat{I}\left(f\left(\Theta\right) \Delta L_{\bot}\right) \\
+                        &= \tilde{I}\left(f\left(\Theta\right)\bar{L_{\bot}}\right) + \tilde{I}\left(f\left(\Theta\right) \Delta L_{\bot}\right) \\
+                        &= I\left(f\left(\Theta\right)\bar{L_{\bot}}\right) + \tilde{I}\left(f\left(\Theta\right) \Delta L_{\bot}\right)
 \end{align*}$$
 
 上記の結果は、平均放射照度が正しく計算されること、つまり $I(f(\Theta)\bar{L_{\bot}})$ を示しています。
 
-この近似について考える方法は、放射輝度 $L_{\bot}$ を2つの部分、平均 $\bar{L_{\bot}}$ と平均からのデルタ $\DeltaL_{\bot}$ に分割し、平均部分の正しい積分を計算してから、デルタ部分の簡略化された積分を追加することです。
+この近似について考える方法は、放射輝度 $L_{\bot}$ を2つの部分、平均 $\bar{L_{\bot}}$ と平均からのデルタ $\Delta L_{\bot}$ に分割し、平均部分の正しい積分を計算してから、デルタ部分の簡略化された積分を追加することです。
 
 $$
 approximation(L_{\bot}) = correct(\bar{L_{\bot}}) + simplified(L_{\bot} - \bar{L_{\bot}})
@@ -218,7 +221,6 @@ I(f(n, v, \alpha))        = \int_\Omega f(l, n, v, \alpha)     \left< n \cdot l 
 $$
 
 これら3つの方程式はすべて、以下で説明するように、簡単に事前計算してルックアップテーブルに格納できます。
- 
 
 #### 離散領域
 
@@ -318,19 +320,25 @@ $$
 
 $DFG_1$ と $DFG_2$ の両方は、$(n \cdot v, \alpha)$ でインデックス付けされた通常の2Dテクスチャで事前計算してバイリニアサンプリングするか、表面の分析近似を使用して実行時に計算できます。付録のサンプルコードを参照してください。事前計算されたテクスチャは、表 [textureDFG] に示されています。事前計算のC++実装は、[画像ベース照明のためのLの事前計算]セクションにあります。
 
-| $DFG_1$ | $DFG_2$ | ${ DFG_1, DFG_2, 0 }$ |
-| --- | --- | --- |
-| ![](/images/filament-md-ja/ibl/dfg1.png) | ![](/images/filament-md-ja/ibl/dfg2.png) | ![](/images/filament-md-ja/ibl/dfg.png) |
-*表 [textureDFG]: Y軸：$\alpha$。X軸：$cos \theta$*
+![](/images/filament-md-ja/ibl/dfg1.png)
+*$DFG_1$*
+![](/images/filament-md-ja/ibl/dfg2.png)
+*$DFG_2$*
+![](/images/filament-md-ja/ibl/dfg.png)
+*${ DFG_1, DFG_2, 0 }$*
+*表 [textureDFG]: Y軸：$\alpha$。X軸：$\cos\theta$*
 
 $DFG_1$ と $DFG_2$ は便利なことに $[0, 1]$ の範囲内にありますが、8ビットテクスチャには十分な精度がなく、問題を引き起こします。残念ながら、モバイルでは16ビットまたは浮動小数点テクスチャは普遍的ではなく、サンプラーの数が限られています。テクスチャを使用するシェーダーコードの魅力的な単純さにもかかわらず、分析近似を使用する方が良いかもしれません。ただし、2つの項のみを格納する必要があるため、OpenGL ES 3.0のRG16Fテクスチャ形式が良い候補です。
 
 このような分析近似は [#Karis14] で説明されており、それ自体は [#Lazarov13] に基づいています。[#Narkowicz14] も別の興味深い近似です。これら2つの近似は、[マルチスキャタリングの事前積分]セクションで提示されるエネルギー補償項と互換性がないことに注意してください。表 [textureApproxDFG] は、これらの近似の視覚的表現を示しています。
 
-| $DFG_1$ | $DFG_2$ | ${ DFG_1, DFG_2, 0 }$ |
-| --- | --- | --- |
-| ![](/images/filament-md-ja/ibl/dfg1_approx.png) | ![](/images/filament-md-ja/ibl/dfg2_approx.png) | ![](/images/filament-md-ja/ibl/dfg_approx.png) |
-*表 [textureApproxDFG]: Y軸：$\alpha$。X軸：$cos \theta$*
+![](/images/filament-md-ja/ibl/dfg1_approx.png)
+*$DFG_1$（近似）*
+![](/images/filament-md-ja/ibl/dfg2_approx.png)
+*$DFG_2$（近似）*
+![](/images/filament-md-ja/ibl/dfg_approx.png)
+*${ DFG_1, DFG_2, 0 }$（近似）*
+*表 [textureApproxDFG]: Y軸：$\alpha$。X軸：$\cos\theta$*
 
 ### $LD$ 項の視覚化
 
@@ -345,17 +353,23 @@ $$
 
 以下の例を参照してください。
 
-![$\alpha=0.0$](/images/filament-md-ja/ibl/ibl_river_roughness_m0.png style="max-width:100%;")
-![$\alpha=0.2$](/images/filament-md-ja/ibl/ibl_river_roughness_m1.png style="max-width:100%;")
-![$\alpha=0.4$](/images/filament-md-ja/ibl/ibl_river_roughness_m2.png style="max-width:100%;")
-![$0.6$](/images/filament-md-ja/ibl/ibl_river_roughness_m3.png style="max-width:100%;")
-![$0.8$](/images/filament-md-ja/ibl/ibl_river_roughness_m4.png style="max-width:100%;")
+![](/images/filament-md-ja/ibl/ibl_river_roughness_m0.png)
+*$\alpha=0.0$*
+![](/images/filament-md-ja/ibl/ibl_river_roughness_m1.png)
+*$\alpha=0.2$*
+![](/images/filament-md-ja/ibl/ibl_river_roughness_m2.png)
+*$\alpha=0.4$*
+![](/images/filament-md-ja/ibl/ibl_river_roughness_m3.png)
+*$\alpha=0.6$*
+![](/images/filament-md-ja/ibl/ibl_river_roughness_m4.png)
+*$\alpha=0.8$*
 
 ### 間接鏡面と間接拡散コンポーネントの視覚化
 
 図 [iblVisualized] は、間接照明が誘電体と導体とどのように相互作用するかを示しています。説明のため、直接照明は削除されました。
 
-![図 [iblVisualized]: 間接拡散と鏡面の分解](/images/filament-md-ja/ibl/ibl_visualization.jpg)
+![](/images/filament-md-ja/ibl/ibl_visualization.jpg)
+*図 [iblVisualized]: 間接拡散と鏡面の分解*
 
 ### IBL評価の実装
 
@@ -528,9 +542,10 @@ iblSpecular += specularIBL(r, clearCoatPerceptualRoughness) * Fc;
 
 [#McAuley15] は、[#Revie12] に基づく「曲がった反射ベクトル」と呼ばれる技術について説明しています。曲がった反射ベクトルは異方性照明の大まかな近似ですが、代替手段は重点サンプリングを使用することです。この近似は計算が十分に安価で、図 [anisotropicIBL1] と図 [anisotropicIBL2] に示すように良好な結果を提供します。
 
-![図 [anisotropicIBL1]: 曲がった法線を使用した異方性間接鏡面反射（左：粗さ0.3、右：粗さ：0.0；両方：異方性1.0）](/images/filament-md-ja/screenshot_anisotropic_ibl1.jpg)
-
-![図 [anisotropicIBL2]: さまざまな粗さ、金属性などを持つ異方性反射](/images/filament-md-ja/screenshot_anisotropic_ibl2.jpg)
+![](/images/filament-md-ja/screenshot_anisotropic_ibl1.jpg)
+*図 [anisotropicIBL1]: 曲がった法線を使用した異方性間接鏡面反射（左：粗さ0.3、右：粗さ：0.0；両方：異方性1.0）*
+![](/images/filament-md-ja/screenshot_anisotropic_ibl2.jpg)
+*図 [anisotropicIBL2]: さまざまな粗さ、金属性などを持つ異方性反射*
 
 この技術の実装は、リスト [bentReflectionVector] で示されるように簡単です。
 
@@ -555,7 +570,8 @@ vec3 r = reflect(-v, bentNormal);
 
 図 [anisotropicDirection] は、この変更された実装を実際に示しています。
 
-![図 [anisotropicDirection]: 正（左）と負（右）の値を使用した異方性方向の制御](/images/filament-md-ja/screenshot_anisotropy_direction.png)
+![](/images/filament-md-ja/screenshot_anisotropy_direction.png)
+*図 [anisotropicDirection]: 正（左）と負（右）の値を使用した異方性方向の制御*
 
 ## サブサーフェス
 
@@ -567,7 +583,8 @@ vec3 r = reflect(-v, bentNormal);
 
 DG項は、[#Estevez17] で推奨されているように一様サンプリングを使用して生成されます。一様サンプリングでは、$pdf$ は単に $\frac{1}{2\pi}$ であり、ヤコビアン $\frac{1}{4\left< v \cdot h \right>}$ を使用する必要があります。
 
-![図 [dfgClothLUT]: クロスBRDFのDG項をエンコードする第3チャンネルを持つDFG LUT](/images/filament-md-ja/ibl/dfg_cloth.png)
+![](/images/filament-md-ja/ibl/dfg_cloth.png)
+*図 [dfgClothLUT]: クロスBRDFのDG項をエンコードする第3チャンネルを持つDFG LUT*
 
 画像ベース照明実装の残りの部分は、オプションのサブサーフェススキャタリング項とそのラップディフューズコンポーネントを含め、通常のライトの実装と同じステップに従います。クリアコートIBL実装と同様に、半球上で積分できず、ラップディフューズコンポーネントを計算するための支配的な光の方向としてビュー方向を使用します。
 

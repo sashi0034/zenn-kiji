@@ -155,7 +155,8 @@ Fresnel 効果は、物理ベースマテリアルの外観において重要な
 
 反射される光の量は、視聴角度だけでなく、マテリアルの屈折率（IOR）にも依存します。垂直入射（サーフェスに垂直、または 0 度の角度）では、反射される光の量は $f_{0}$ と表記され、セクション [Reflectance remapping] で見るように IOR から導出できます。掠角で反射される光の量は $f_{90}$ と表記され、滑らかなマテリアルでは 100% に近づきます。
 
-![図 [fresnelLake]: Fresnel 効果は大きな水域で特に顕著](/images/filament-md-ja/photo_fresnel_lake.jpg)
+![](/images/filament-md-ja/photo_fresnel_lake.jpg)
+*図 [fresnelLake]: Fresnel 効果は大きな水域で特に顕著*
 
 より正式には、Fresnel 項は、2 つの異なる媒体間の界面で光がどのように反射および屈折するか、または反射および透過エネルギーの比率を定義します。[#Schlick94] は、Cook-Torrance Specular BRDF の Fresnel 項の安価な近似を説明しています。
 

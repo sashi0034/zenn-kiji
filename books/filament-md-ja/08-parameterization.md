@@ -20,7 +20,8 @@ title: "パラメータ化"
 
 図 [material_parameters] は、metallic、roughness、reflectance パラメータがサーフェスの外観にどのように影響するかを示しています。
 
-![図 [material_parameters]: 上から下へ: metallic の変化、誘電体 roughness の変化、金属 roughness の変化、reflectance の変化](/images/filament-md-ja/material_parameters.png)
+![](/images/filament-md-ja/material_parameters.png)
+*図 [material_parameters]: 上から下へ: metallic の変化、誘電体 roughness の変化、金属 roughness の変化、reflectance の変化*
 
 ## 型と範囲
 
@@ -69,7 +70,8 @@ $$
 
 目標は、一般的な誘電体サーフェス（4% reflectance）と宝石（8% から 16%）の両方の Fresnel 値を表現できる範囲に $f_{0}$ をマップすることです。マッピング関数は、入力 reflectance が 0.5（または線形 RGB グレースケールで 128）の場合に 4% の Fresnel reflectance 値を生成するように選択されています。図 [reflectance] は、これらの一般的な値と、それらがマッピング関数にどのように関連しているかを示しています。
 
-![図 [reflectance]: 一般的な reflectance 値](/images/filament-md-ja/diagram_reflectance.png)
+![](/images/filament-md-ja/diagram_reflectance.png)
+*図 [reflectance]: 一般的な reflectance 値*
 
 屈折率がわかっている場合（例えば、空気と水の界面の IOR は 1.33）、Fresnel reflectance は次のように計算できます。
 
@@ -122,7 +124,8 @@ $$
 
 図 [grazing_reflectance] は赤いプラスチックのボールを示しています。球体の端を注意深く見ると、掠角での無彩色の specular reflectance に気付くことができるでしょう。
 
-![図 [grazing_reflectance]: specular reflectance は掠角で無彩色になる](/images/filament-md-ja/material_grazing_reflectance.png)
+![](/images/filament-md-ja/material_grazing_reflectance.png)
+*図 [grazing_reflectance]: specular reflectance は掠角で無彩色になる*
 
 **導体**
 
@@ -149,7 +152,8 @@ $$
 
 図 [roughness_remap] は、変更されていない roughness 値（下）とリマップされた値（上）を使用して、roughness を増加させた（0.0 から 1.0 まで）銀の金属サーフェスを示しています。
 
-![図 [roughness_remap]: Roughness リマッピングの比較: 知覚的に線形な roughness（上）と roughness（下）](/images/filament-md-ja/material_roughness_remap.png)
+![](/images/filament-md-ja/material_roughness_remap.png)
+*図 [roughness_remap]: Roughness リマッピングの比較: 知覚的に線形な roughness（上）と roughness（下）*
 
 この視覚的比較を使用すると、リマップされた roughness がアーティストと開発者にとって理解しやすいことは明らかです。このリマッピングがないと、光沢のある金属サーフェスは 0.0 から 0.05 の間の非常に小さな範囲に限定されなければなりません。
 
@@ -171,11 +175,13 @@ Brent Burley は彼のプレゼンテーション [#Burley12] で同様の観察
 
 例えば、図 [materialBlending] は、スタジオ Ready at Dawn が _The Order: 1886_ でマテリアルブレンディングとレイヤリングを使用して、単純なマテリアル（金、銅、木、錆など）のライブラリから複雑な外観を作成した方法を示しています。
 
-![図 [materialBlending]: マテリアルブレンディングとレイヤリング。出典: Ready at Dawn Studios](/images/filament-md-ja/material_blending.png)
+![](/images/filament-md-ja/material_blending.png)
+*図 [materialBlending]: マテリアルブレンディングとレイヤリング。出典: Ready at Dawn Studios*
 
 マテリアルのブレンディングとレイヤリングは、実質的にマテリアルモデルのさまざまなパラメータの補間です。図 [material_interpolation] は、光沢のある金属クロームと粗い赤いプラスチックの間の補間を示しています。中間のブレンドされたマテリアルは物理的にはあまり意味がありませんが、もっともらしく見えます。
 
-![図 [material_interpolation]: 光沢のあるクロム（左）から粗い赤いプラスチック（右）への補間](/images/filament-md-ja/material_interpolation.png)
+![](/images/filament-md-ja/material_interpolation.png)
+*図 [material_interpolation]: 光沢のあるクロム（左）から粗い赤いプラスチック（右）への補間*
 
 ## 物理ベースマテリアルの作成
 
@@ -183,7 +189,8 @@ Brent Burley は彼のプレゼンテーション [#Burley12] で同様の観察
 
 アーティストと開発者が独自の物理ベースマテリアルを作成するのに役立つ[便利なチャート/リファレンスガイド](./Material%20Properties.pdf)を提供しています。
 
-![物理ベースマテリアルの作成](/images/filament-md-ja/material_chart.jpg)
+![](/images/filament-md-ja/material_chart.jpg)
+*物理ベースマテリアルの作成*
 
 さらに、マテリアルモデルの使用方法の簡単な要約を以下に示します。
 

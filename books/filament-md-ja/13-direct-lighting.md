@@ -12,7 +12,8 @@ $$
 
 指向性ライトの主な目的は、屋外環境における重要な光源、すなわち太陽や月を再現することです。指向性ライトは物理世界には真には存在しませんが、光受容体から十分に離れた光源は指向性であると仮定できます（つまり、図 [directionalLight] に示すように、すべての入射光線が平行です）。
 
-![図 [directionalLight]: 指向性ライトと表面の相互作用。光源は方向のみで表現できる仮想的な構造です](/images/filament-md-ja/diagram_directional_light.png)
+![](/images/filament-md-ja/diagram_directional_light.png)
+*図 [directionalLight]: 指向性ライトと表面の相互作用。光源は方向のみで表現できる仮想的な構造です*
 
 この近似は、表面の拡散応答に対しては非常にうまく機能しますが、鏡面応答は正確ではありません。Frostbite エンジンは、「太陽」の指向性ライトをディスクエリアライトとして扱うことでこの問題を解決しています。しかし、私たちのテストでは、品質の向上が追加の計算コストを正当化しないことが示されています。
 
@@ -48,7 +49,8 @@ vec3 luminance = BSDF(v, l) * illuminance;
 
 図 [directionalLightTest] は、正午の太陽を近似するように設定した指向性ライト（照度を 110,000 $lx$ に設定）でシンプルなシーンを照明した効果を示しています。説明のため、直接照明のみを表示しています。
 
-![図 [directionalLightTest]: 指向性ライト下でのさまざまな粗さの誘電体材料のシリーズ](/images/filament-md-ja/screenshot_directional_light.png)
+![](/images/filament-md-ja/screenshot_directional_light.png)
+*図 [directionalLightTest]: 指向性ライト下でのさまざまな粗さの誘電体材料のシリーズ*
 
 [^illuminanceMeasures]: 入射光測定器（Sekonic L-478D）で測定
 
@@ -75,7 +77,8 @@ $$
 
 ポイントライトは、図 [pointLight] に示すように、空間内の位置のみで定義されます。
 
-![図 [pointLight]: ポイントライトと表面の相互作用。減衰は光源までの距離にのみ依存します](/images/filament-md-ja/diagram_point_light.png)
+![](/images/filament-md-ja/diagram_point_light.png)
+*図 [pointLight]: ポイントライトと表面の相互作用。減衰は光源までの距離にのみ依存します*
 
 ポイントライトの光束は、式 `pointLightLuminousPower` に示すように、光の立体角で光度を積分することによって計算されます。光度は光束から簡単に導出できます。
 
@@ -92,13 +95,15 @@ $$
 
 図 [pointLightTest] は、距離減衰の影響を受けるポイントライトでシンプルなシーンを照明した効果を示しています。説明のため、光の減衰が誇張されています。
 
-![図 [pointLightTest]: ポイントライト評価に適用された逆二乗則](/images/filament-md-ja/screenshot_point_light.png)
+![](/images/filament-md-ja/screenshot_point_light.png)
+*図 [pointLightTest]: ポイントライト評価に適用された逆二乗則*
 
 ### スポットライト
 
 スポットライトは、空間内の位置、方向ベクトル、2つの円錐角 $ \theta_{inner} $ と $ \theta_{outer} $ で定義されます（図 [spotLight] 参照）。これら2つの角度は、スポットライトの角度減衰を定義するために使用されます。したがって、スポットライトのライト評価関数は、輝度減衰を適切に評価するために、逆二乗則とこれら2つの角度の両方を考慮する必要があります。
 
-![図 [spotLight]: スポットライトと表面の相互作用。減衰は光源までの距離と、表面とスポットライトの方向ベクトル間の角度に依存します](/images/filament-md-ja/diagram_spot_light.png)
+![](/images/filament-md-ja/diagram_spot_light.png)
+*図 [spotLight]: スポットライトと表面の相互作用。減衰は光源までの距離と、表面とスポットライトの方向ベクトル間の角度に依存します*
 
 式 $ `spotLightLuminousPower` $ は、ポイントライトと同様の方法でスポットライトの光束を計算する方法を説明しており、スポットライトの円錐の外角 $ \theta_{outer} $ を [0..$\pi$] の範囲で使用します。
 
@@ -109,7 +114,8 @@ $$
 
 この定式化は物理的に正しいものの、スポットライトを少し使いにくくします：円錐の外角を変更すると照明レベルが変化します。図 [spotLightTestFocused] は、外角が55度と15度のスポットライトで照明された同じシーンを示しています。円錐の開口が減少するにつれて照明レベルが増加することに注目してください。
 
-![図 [spotLightTestFocused]: スポットライトの外角の比較、55度（左）と15度（右）](/images/filament-md-ja/screenshot_spot_light_focused.png)
+![](/images/filament-md-ja/screenshot_spot_light_focused.png)
+*図 [spotLightTestFocused]: スポットライトの外角の比較、55度（左）と15度（右）*
 
 照明と外円錐の結合は、アーティストがスポットライトの影響範囲を調整する際に、知覚される照明も変更してしまうことを意味します。したがって、この結合を無効にするパラメータをアーティストに提供することが理にかなっています。式 $ `spotLightLuminousPowerB` $ は、その目的のために光束を定式化する方法を示しています。
 
@@ -120,7 +126,8 @@ $$
 
 この新しい定式化で光度を計算すると、図 [spotLightTest] のテストシーンは、両方の円錐開口で同様の照明レベルを示します。
 
-![図 [spotLightTest]: スポットライトの外角の比較、55度（左）と15度（右）](/images/filament-md-ja/screenshot_spot_light.png)
+![](/images/filament-md-ja/screenshot_spot_light.png)
+*図 [spotLightTest]: スポットライトの外角の比較、55度（左）と15度（右）*
 
 この新しい定式化は、スポットの反射板を完全に光を吸収するマットな拡散マスクに置き換えた場合にも、物理ベースと見なすことができます。
 
@@ -210,21 +217,25 @@ vec3 evaluatePunctualLight() {
 
 これまでに説明した照明システムは、最初の2点に簡単に対処できますが、空間内の光の分布を定義する方法が必要です。光の分布は、屋内シーンや一部の屋外シーン、さらには道路照明にとって特に重要です。図 [lightDistributionTest] は、アーティストが光の分布を制御するシーンを示しています。このタイプの分布制御は、オブジェクトを展示する際（例えば、博物館、店舗、ギャラリー）に広く使用されています。
 
-![図 [lightDistributionTest]: ポイントライトの分布の制御](/images/filament-md-ja/screenshot_photometric_lights.png)
+![](/images/filament-md-ja/screenshot_photometric_lights.png)
+*図 [lightDistributionTest]: ポイントライトの分布の制御*
 
 測光ライトは、測光プロファイルを使用して強度分布を記述します。一般的に使用される形式は2つあり、IES（Illuminating Engineering Society）とEULUMDAT（European Lumen Data format）ですが、ここでは前者に焦点を当てます。IESプロファイルは、Unreal Engine 4、Frostbite、Renderman、Maya、Killzoneなど、多くのツールやエンジンでサポートされています。さらに、IESライトプロファイルは、電球や照明器具メーカーによって一般的に提供されています（例えば、Philipsは[豊富なIESファイル](http://www.usa.lighting.philips.com/connect/tools_literature/photometric_data_1.wpd)をダウンロード用に提供しています）。測光プロファイルは、光源が部分的に覆われている照明器具やライトフィクスチャを測定する場合に特に有用です。照明器具は特定の方向に放射される光を遮断し、光の分布を形作ります。
 
-![実世界の照明器具の例。測光プロファイルで記述できます](/images/filament-md-ja/photo_photometric_lights.jpg)
+![](/images/filament-md-ja/photo_photometric_lights.jpg)
+*実世界の照明器具の例。測光プロファイルで記述できます*
 
 IESプロファイルは、測定された光源を囲む球上のさまざまな角度の光度を格納します。この球面座標系は通常、測光ウェブと呼ばれ、[IESviewer](http://www.photometricviewer.com/)などの専用ツールを使用して視覚化できます。図 [xarrow] は、[Pixarが提供する](http://renderman.pixar.com/view/DP25764)XArrow IESプロファイルの測光ウェブと、私たちのツール `lightgen` による3D空間でのレンダリングを示しています。
 
-![図 [xarrow]: 測光ウェブとして、および3D空間のポイントライトとしてレンダリングされたXArrow IESプロファイル](/images/filament-md-ja/screenshot_xarrow.png)
+![](/images/filament-md-ja/screenshot_xarrow.png)
+*図 [xarrow]: 測光ウェブとして、および3D空間のポイントライトとしてレンダリングされたXArrow IESプロファイル*
 
 IES形式は文書化が不十分で、インターネット上で見つかるファイル間で構文のバリエーションが見られることは珍しくありません。IESプロファイルを理解するための最良のリソースは、Ian Ashdownの「Parsing the IESNA LM-63 photometric data file」ドキュメント [#Ashdown98] です。簡潔に言えば、IESプロファイルは、光源周りのさまざまな角度でのカンデラ単位の光度を格納します。測定された各水平角度について、異なる垂直角度での一連の光度が提供されます。ただし、測定された光源が水平方向に対称であることは一般的です。上記のXArrowプロファイルは良い例です：強度は垂直角度（垂直軸）によって変化しますが、水平軸上では対称です。IESプロファイルの垂直角度の範囲は0〜180度で、水平角度の範囲は0〜360度です。
 
 図 [lightenSamples] は、私たちの `lightgen` ツールを使用してレンダリングされた、PixarがRenderman用に提供する一連のIESプロファイルを示しています。
 
-![図 [lightenSamples]: lightgenでレンダリングされた一連のIESライトプロファイル](/images/filament-md-ja/screenshot_lightgen_samples.png)
+![](/images/filament-md-ja/screenshot_lightgen_samples.png)
+*図 [lightenSamples]: lightgenでレンダリングされた一連のIESライトプロファイル*
 
 IESプロファイルは、ポイントライトまたはスポットライトの任意の点光源に直接適用できます。これを行うには、まずIESプロファイルを処理し、測光プロファイルをテクスチャとして生成する必要があります。パフォーマンス上の考慮事項から、私たちが生成する測光プロファイルは、特定の垂直角度でのすべての水平角度の平均光度を表す1Dテクスチャです（つまり、各ピクセルは垂直角度を表します）。測光ライトを真に表現するには2Dテクスチャを使用する必要がありますが、ほとんどのライトが水平面上で完全にまたはほぼ対称であるため、この近似を受け入れることができます。テクスチャに格納される値は、IESプロファイルで定義された最大強度の逆数で正規化されます。これにより、任意の浮動小数点形式、または精度を犠牲にして輝度8ビットテクスチャ（グレースケールPNGなど）にテクスチャを簡単に格納できます。正規化された値を格納することで、測光プロファイルをマスクとして扱うこともできます。
 
@@ -328,7 +339,8 @@ float lightIntensity = photometricLight.getMaxIntensity() * multiplier;
 
 温度からRGB値を計算するには、図 [planckianLocus] に示されるプランクの軌跡を使用できます。この軌跡は、黒体の温度が変化するにつれて、白熱黒体の色が色度空間で辿る経路です。
 
-![図 [planckianLocus]: CIE 1931色度図上に視覚化されたプランクの軌跡（出典：Wikipedia）](/images/filament-md-ja/diagram_planckian_locus.png)
+![](/images/filament-md-ja/diagram_planckian_locus.png)
+*図 [planckianLocus]: CIE 1931色度図上に視覚化されたプランクの軌跡（出典：Wikipedia）*
 
 この軌跡からRGB値を計算する最も簡単な方法は、[#Krystek85] で説明されている式を使用することです。Krystekのアルゴリズム（式 `krystek`）はCIE 1960（UCS）空間で機能し、次の式を使用します。ここで $T$ は目的の温度、$u$ と $v$ はUCS内の座標です。
 
@@ -388,15 +400,18 @@ $$
 
 便宜上、図 [colorTemperatureScaleCCT] は、1,000K〜12,500Kの相関色温度の範囲を示しています。以下で使用されるすべての色は、白色点としてCIE $ D_{65} $ を想定しています（sRGB色空間の場合と同様）。
 
-![図 [colorTemperatureScaleCCT]: 相関色温度のスケール](/images/filament-md-ja/diagram_color_temperature_cct.png)
+![](/images/filament-md-ja/diagram_color_temperature_cct.png)
+*図 [colorTemperatureScaleCCT]: 相関色温度のスケール*
 
 同様に、図 [colorTemperatureScaleCIE] は、1,000K〜12,500KのCIE標準光源シリーズDの範囲を示しています。
 
-![図 [colorTemperatureScaleCIE]: CIE標準光源シリーズDのスケール](/images/filament-md-ja/diagram_color_temperature_cie.png)
+![](/images/filament-md-ja/diagram_color_temperature_cie.png)
+*図 [colorTemperatureScaleCIE]: CIE標準光源シリーズDのスケール*
 
 参考のため、図 [colorTemperatureScaleCCTClamped] は、式 `normalizedRGB` で示した正規化ステップなしの相関色温度の範囲を示しています。
 
-![図 [colorTemperatureScaleCCTClamped]: 正規化されていない相関色温度のスケール](/images/filament-md-ja/diagram_color_temperature_cct_clamped.png)
+![](/images/filament-md-ja/diagram_color_temperature_cct_clamped.png)
+*図 [colorTemperatureScaleCCTClamped]: 正規化されていない相関色温度のスケール*
 
 表 [colorTemperatureSamples] は、さまざまな一般的な光源の相関色温度をsRGB色見本として示しています。これらの色は $ D_{65} $ 白色点に対する相対的なものであるため、ディスプレイの白色点によって知覚される色相が異なる場合があります。詳細については、[What colour is the Sun?](http://jila.colorado.edu/~ajsh/colour/Tspectrum.html) を参照してください。
 

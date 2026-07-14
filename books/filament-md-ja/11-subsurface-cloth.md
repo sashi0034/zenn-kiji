@@ -20,11 +20,13 @@ title: "Subsurface / Cloth モデル"
 
 図 [materialCloth] は、伝統的なマイクロファセット BRDF がデニム布地のサンプルの外観を捉えることに失敗する様子を示しています。サーフェスは硬く（ほぼプラスチックのように）見え、衣服の一部というよりもタープに近い印象です。この図は、吸収と散乱によって引き起こされる柔らかい specular lobe が、布地の忠実な再現にとっていかに重要であるかも示しています。
 
-![図 [materialCloth]: 伝統的なマイクロファセット BRDF（左）と私たちの cloth BRDF（右）を使用してレンダリングされたデニム布地の比較](/images/filament-md-ja/screenshot_cloth.png)
+![](/images/filament-md-ja/screenshot_cloth.png)
+*図 [materialCloth]: 伝統的なマイクロファセット BRDF（左）と私たちの cloth BRDF（右）を使用してレンダリングされたデニム布地の比較*
 
 ベルベットは、cloth マテリアルモデルにとって興味深いユースケースです。図 [materialVelvet] に示すように、このタイプの布地は、前方および後方散乱による強いリムライティングを示します。これらの散乱イベントは、布地の表面で垂直に立っている繊維によって引き起こされます。入射光がビュー方向と反対の方向から来る場合、繊維は光を前方散乱します。同様に、入射光がビュー方向と同じ方向から来る場合、繊維は光を後方散乱します。
 
-![図 [materialVelvet]: 前方および後方散乱を示すベルベット布地](/images/filament-md-ja/screenshot_cloth_velvet.png)
+![](/images/filament-md-ja/screenshot_cloth_velvet.png)
+*図 [materialVelvet]: 前方および後方散乱を示すベルベット布地*
 
 繊維は柔軟であるため、理論的にはサーフェスをグルーミングする能力をモデル化する必要があります。私たちのモデルはこの特性を再現しませんが、繊維の方向のランダムな分散に起因する、可視的な正面の specular 寄与をモデル化しています。
 
@@ -89,7 +91,8 @@ float D_Charlie(float roughness, float NoH) {
 
 布地の外観をより良く制御し、ユーザーに 2 トーンの specular マテリアルを再現する能力を与えるために、specular reflectance を直接変更する機能を導入します。図 [materialClothSheen] は、私たちが「sheen color」と呼ぶパラメータを使用した例を示しています。
 
-![図 [materialClothSheen]: sheen なし（左）と sheen あり（右）の青い布地](/images/filament-md-ja/screenshot_cloth_sheen.png)
+![](/images/filament-md-ja/screenshot_cloth_sheen.png)
+*図 [materialClothSheen]: sheen なし（左）と sheen あり（右）の青い布地*
 
 ### Cloth diffuse BRDF
 
@@ -111,7 +114,8 @@ $$
 
 ここで、$w$ は 0 から 1 の間の値で、diffuse light がターミネーターの周りでどの程度ラップするかを定義します。別のパラメータを導入しないように、$w = 0.5$ に固定します。ラップ diffuse ライティングでは、diffuse 項に $n \cdot l$ を掛けてはいけないことに注意してください。この安価な subsurface scattering 近似の効果は、図 [materialClothSubsurface] で見ることができます。
 
-![図 [materialClothSubsurface]: 白い布地（左列）と茶色の subsurface scattering を持つ白い布地（右）](/images/filament-md-ja/screenshot_cloth_subsurface.png)
+![](/images/filament-md-ja/screenshot_cloth_subsurface.png)
+*図 [materialClothSubsurface]: 白い布地（左列）と茶色の subsurface scattering を持つ白い布地（右）*
 
 sheen color とオプションの subsurface scattering を含む、私たちの cloth BRDF の完全な実装は、リスト [clothFullBRDF] にあります。
 

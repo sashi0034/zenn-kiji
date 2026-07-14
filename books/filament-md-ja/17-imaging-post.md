@@ -8,7 +8,8 @@ title: "Imaging pipeline — ポストプロセス / ライトパス / 検証"
 
 [TODO]
 
-![図 [fringing]: 色収差の例：左の耳や下の顎を見てください](/images/filament-md-ja/screenshot_fringing.jpg)
+![](/images/filament-md-ja/screenshot_fringing.jpg)
+*図 [fringing]: 色収差の例：左の耳や下の顎を見てください*
 
 ### レンズフレア
 
@@ -51,11 +52,13 @@ title: "Imaging pipeline — ポストプロセス / ライトパス / 検証"
 
 図 [sponza] に表示されるシーンは、クラスタードフォワードレンダリングを使用してレンダリングされました。
 
-![図 [sponza]: 数十の動的ライトとMSAAを使用したクラスタードフォワードレンダリング](/images/filament-md-ja/screenshot_sponza.jpg)
+![](/images/filament-md-ja/screenshot_sponza.jpg)
+*図 [sponza]: 数十の動的ライトとMSAAを使用したクラスタードフォワードレンダリング*
 
 図 [sponzaTiles] は、同じシーンをタイルに分割したもの（この場合、1280x720のレンダーターゲットで80x80pxタイル）を示しています。
 
-![図 [sponzaTiles]: タイルドシェーディング（16x9タイル）](/images/filament-md-ja/screenshot_sponza_tiles.jpg)
+![](/images/filament-md-ja/screenshot_sponza_tiles.jpg)
+*図 [sponzaTiles]: タイルドシェーディング（16x9タイル）*
 
 ### クラスタードフォワードレンダリング
 
@@ -63,13 +66,15 @@ title: "Imaging pipeline — ポストプロセス / ライトパス / 検証"
 
 フラスタムは、図 [sponzaSlices] に示すように、最初に深度軸でスライスされます。
 
-![図 [sponzaSlices]: 深度スライス（16スライス）](/images/filament-md-ja/screenshot_sponza_slices.jpg)
+![](/images/filament-md-ja/screenshot_sponza_slices.jpg)
+*図 [sponzaSlices]: 深度スライス（16スライス）*
 
 そして、深度スライスは画面タイルと組み合わされて、フラスタムを「ボクセル化」します。各クラスターをfroxelと呼びます。これは、それらが何を表すか（フラスタム空間のボクセル）を明確にするためです。「フロクセル化」パスの結果は、図 [froxel1] と図 [froxel2] に示されています。
 
-![図 [froxel1]: フラスタムのボクセル化（5x3タイル、8深度スライス）](/images/filament-md-ja/screenshot_sponza_froxels1.jpg)
-
-![図 [froxel2]: フラスタムのボクセル化（5x3タイル、8深度スライス）](/images/filament-md-ja/screenshot_sponza_froxels2.jpg)
+![](/images/filament-md-ja/screenshot_sponza_froxels1.jpg)
+*図 [froxel1]: フラスタムのボクセル化（5x3タイル、8深度スライス）*
+![](/images/filament-md-ja/screenshot_sponza_froxels2.jpg)
+*図 [froxel2]: フラスタムのボクセル化（5x3タイル、8深度スライス）*
 
 フレームをレンダリングする前に、シーン内の各ライトは、それが交差するfroxelに割り当てられます。ライト割り当てパスの結果は、各froxelのライトのリストです。レンダリングパス中に、フラグメントが属するfroxelのIDを計算でき、したがってそのフラグメントに影響を与える可能性のあるライトのリストを計算できます。
 
@@ -77,17 +82,20 @@ title: "Imaging pipeline — ポストプロセス / ライトパス / 検証"
 
 図 [froxelDistribution] は、指数スライシングを使用した場合、各深度スライスが使用するワールド空間単位の量を示しています。
 
-![図 [froxelDistribution]: 近：0.1m、遠：100m、16スライス](/images/filament-md-ja/diagram_froxels1.png)
+![](/images/filament-md-ja/diagram_froxels1.png)
+*図 [froxelDistribution]: 近：0.1m、遠：100m、16スライス*
 
 ただし、単純な指数ボクセル化だけでは十分ではありません。上のグラフはワールド空間がスライス全体にどのように分布しているかを明確に示していますが、近平面の近くで何が起こるかを示していません。同じ分布をより小さな範囲（0.1mから7m）で調べると、図 [froxelDistributionClose] に示すように、興味深い問題が現れます。
 
-![図 [froxelDistributionClose]: 0.1〜7m範囲での深度分布](/images/filament-md-ja/diagram_froxels2.png)
+![](/images/filament-md-ja/diagram_froxels2.png)
+*図 [froxelDistributionClose]: 0.1〜7m範囲での深度分布*
 
 このグラフは、単純な指数分布がカメラに非常に近い場所でスライスの半分を使い果たすことを示しています。この特定のケースでは、最初の5メートルで16スライスのうち8スライスを使用しています。動的ワールドライトはポイントライト（球）またはスポットライト（円錐）のいずれかであるため、近平面の近くではこのような細かい解像度は完全に不要です。
 
 私たちの解決策は、シーンと近平面および遠平面に応じて、最初のfroxelのサイズを手動で調整することです。そうすることで、残りのfroxelをフラスタム全体により適切に分散できます。図 [froxelDistributionExp] は、たとえば0.1mから5mの間に特別なfroxelを使用した場合に何が起こるかを示しています。
 
-![図 [froxelDistributionExp]: 近：0.1、遠：100m、16スライス、特別なfroxel：0.1〜5m](/images/filament-md-ja/diagram_froxels3.png)
+![](/images/filament-md-ja/diagram_froxels3.png)
+*図 [froxelDistributionExp]: 近：0.1、遠：100m、16スライス、特別なfroxel：0.1〜5m*
 
 この新しい分布ははるかに効率的で、フラスタム全体を通してライトをより適切に割り当てることができます。
 
@@ -217,7 +225,8 @@ $i=0$ の場合、z値は0です。この式の結果は [0..1] 範囲にあり�
 
 発光マテリアルとIBLを使用すると、トーンマッピングと量子化後は観察が困難ですが、シーン参照空間ではかなり明白な、スペキュラーハイライトが見かけ上のキャスターよりも明るいシーンを簡単に取得できます。図 [luminanceViz] は、リスト [tonemapLuminanceViz] で説明されているカスタムオペレーターがシーンの露出輝度を表示するためにどのように使用されるかを示しています。
 
-![図 [luminanceViz]: 輝度を色でコード化してストップを視覚化：シアンはミドルグレー、青は1ストップ暗く、緑は1ストップ明るいなど](/images/filament-md-ja/screenshot_luminance_debug.png)
+![](/images/filament-md-ja/screenshot_luminance_debug.png)
+*図 [luminanceViz]: 輝度を色でコード化してストップを視覚化：シアンはミドルグレー、青は1ストップ暗く、緑は1ストップ明るいなど*
 
 ```glsl
 vec3 Tonemap_DisplayRange(const vec3 x) {
@@ -256,9 +265,10 @@ const vec3 debugColors[16] = vec3[](
 
 図 [mitsubaReference] と図 [filamentReference] は、完全に滑らかな誘電体球である単純なシーンを、それぞれMitsubaとFilamentでレンダリングしたものを示しています。
 
-![図 [mitsubaReference]: 12コア2013 MacProで2048x1440を1分42秒でレンダリング](/images/filament-md-ja/screenshot_ref_mitsuba.jpg)
-
-![図 [filamentReference]: Nexus 9デバイス（Tegra K1 GPU）で2048x1440をMSAA 4xで60 fpsでレンダリング](/images/filament-md-ja/screenshot_ref_filament.jpg)
+![](/images/filament-md-ja/screenshot_ref_mitsuba.jpg)
+*図 [mitsubaReference]: 12コア2013 MacProで2048x1440を1分42秒でレンダリング*
+![](/images/filament-md-ja/screenshot_ref_filament.jpg)
+*図 [filamentReference]: Nexus 9デバイス（Tegra K1 GPU）で2048x1440をMSAA 4xで60 fpsでレンダリング*
 
 両方のシーンをレンダリングするために使用されたパラメータは次のとおりです：
 
@@ -305,7 +315,8 @@ const vec3 debugColors[16] = vec3[](
 
 図 [referenceComparison] は、両方のエンジンによって生成された画像の輝度グラデーションを示しています。比較はLDR画像で実行されました。
 
-![図 [referenceComparison]: Mitsuba（左）とFilament（右）の輝度グラデーション](/images/filament-md-ja/screenshot_ref_comparison.png)
+![](/images/filament-md-ja/screenshot_ref_comparison.png)
+*図 [referenceComparison]: Mitsuba（左）とFilament（右）の輝度グラデーション*
 
 最大の違いは放射角で見られます。これはおそらく、FilamentがLambertian diffuse項を使用していることで説明されます。Disney diffuse項とそのgrazing retro-reflectionsにより、FilamentはMitsubaに近づくでしょう。
 
@@ -315,7 +326,8 @@ const vec3 debugColors[16] = vec3[](
 
 FilamentはY軸上向き、右手座標系を使用します。
 
-![図 [coordinates]: 赤 +X、緑 +Y、青 +Z（Marmoset Toolbagでレンダリング）](/images/filament-md-ja/screenshot_coordinates.jpg)
+![](/images/filament-md-ja/screenshot_coordinates.jpg)
+*図 [coordinates]: 赤 +X、緑 +Y、青 +Z（Marmoset Toolbagでレンダリング）*
 
 ### カメラ座標系
 
@@ -325,7 +337,8 @@ FilamentのカメラはローカルのZ軸に向かって見ます。つまり�
 
 Filamentで使用されるすべてのキューブマップは、図 [cubemapCoordinates] に示すように、フェイスアライメントのOpenGL規約に従います。
 
-![図 [cubemapCoordinates]: OpenGLフェイスアライメント規約に従ったキューブマップの水平クロス表現](/images/filament-md-ja/screenshot_cubemap_coordinates.png)
+![](/images/filament-md-ja/screenshot_cubemap_coordinates.png)
+*図 [cubemapCoordinates]: OpenGLフェイスアライメント規約に従ったキューブマップの水平クロス表現*
 
 環境背景とリフレクションプローブはミラーリングされていることに注意してください（[ミラーリング](#ミラーリング) セクションを参照）。
 

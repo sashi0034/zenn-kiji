@@ -3,6 +3,7 @@ title: "このドキュメントについて"
 ---
 
 ![](/images/filament-md-ja/filament_logo.png)
+*Filament ロゴ*
 
 **Physically Based Rendering in Filament**（日本語訳）
 

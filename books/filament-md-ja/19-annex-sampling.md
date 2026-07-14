@@ -70,23 +70,40 @@ K &= 4.0 \\
 
 表 [importanceSamplingViz] は、図 [importanceSamplingRef] に適用した場合の、importance samplingとpre-filtered importance samplingの比較を示しています。
 
-![図 [importanceSamplingRef]: Importance samplingの画像リファレンス](/images/filament-md-ja/image_is_original.png)
-
-| サンプル数 | Importance sampling | Pre-filtered importance sampling |
-| --- | --- | --- |
-| 4096 | ![](/images/filament-md-ja/image_is_4096.png) | &nbsp; |
-| 1024 | ![](/images/filament-md-ja/image_is_1024.png) | ![](/images/filament-md-ja/image_fis_1024.png) |
-| 32 | ![](/images/filament-md-ja/image_is_32.png) | ![](/images/filament-md-ja/image_fis_32.png) |
-*表 [importanceSamplingViz]: $\alpha = 0.4$ でのImportance sampling vs pre-filtered importance sampling*
+![](/images/filament-md-ja/image_is_original.png)
+*図 [importanceSamplingRef]: Importance samplingの画像リファレンス*
+![](/images/filament-md-ja/image_is_4096.png)
+*Importance sampling（4096 samples）*
+![](/images/filament-md-ja/image_is_1024.png)
+*Importance sampling（1024 samples）*
+![](/images/filament-md-ja/image_fis_1024.png)
+*Pre-filtered importance sampling（1024 samples）*
+![](/images/filament-md-ja/image_is_32.png)
+*Importance sampling（32 samples）*
+![](/images/filament-md-ja/image_fis_32.png)
+*Pre-filtered importance sampling（32 samples）*
+*表 [importanceSamplingViz]: $\alpha = 0.4$ での Importance sampling vs pre-filtered importance sampling*
 
 以下の比較で使用されるリファレンスレンダラーは、近似を行いません。特に、$v = n$ を仮定せず、split sum近似も実行しません。pre-filteredレンダラーは、このセクションで説明したすべての手法を使用します：pre-filteredキューブマップ、DFG項の分析的定式化、そしてもちろんsplit sum近似です。
 
 左：リファレンスレンダラー、右：pre-filtered importance sampling。
 
-![](/images/filament-md-ja/image_is_ref_1.png) ![](/images/filament-md-ja/image_filtered_1.png)
-![](/images/filament-md-ja/image_is_ref_2.png) ![](/images/filament-md-ja/image_filtered_2.png)
-![](/images/filament-md-ja/image_is_ref_3.png) ![](/images/filament-md-ja/image_filtered_3.png)
-![](/images/filament-md-ja/image_is_ref_4.png) ![](/images/filament-md-ja/image_filtered_4.png)
+![](/images/filament-md-ja/image_is_ref_1.png)
+*比較 1：リファレンス*
+![](/images/filament-md-ja/image_filtered_1.png)
+*比較 1：pre-filtered*
+![](/images/filament-md-ja/image_is_ref_2.png)
+*比較 2：リファレンス*
+![](/images/filament-md-ja/image_filtered_2.png)
+*比較 2：pre-filtered*
+![](/images/filament-md-ja/image_is_ref_3.png)
+*比較 3：リファレンス*
+![](/images/filament-md-ja/image_filtered_3.png)
+*比較 3：pre-filtered*
+![](/images/filament-md-ja/image_is_ref_4.png)
+*比較 4：リファレンス*
+![](/images/filament-md-ja/image_filtered_4.png)
+*比較 4：pre-filtered*
 
 ## BRDFをサンプリングするための重要な方向の選択
 

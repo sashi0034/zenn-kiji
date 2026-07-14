@@ -14,9 +14,10 @@ title: "その他のライティング / ボリューム / AA"
 
 透明な表面を適切に照明するには、まずマテリアルの不透明度がどのように適用されるかを理解する必要があります。窓を観察すると、拡散反射率が透明であることがわかります。一方、鏡面反射率が明るいほど、窓の不透明度は低く見えます。この効果は図 [cameraTransparency] で見ることができます：シーンはガラス表面に適切に反射されていますが、太陽の鏡面ハイライトは不透明に見えるほど十分に明るいです。
 
-![図 [cameraTransparency]: 照明された表面の透明度が重要な役割を果たす複雑なオブジェクトの例](/images/filament-md-ja/screenshot_camera_transparency.jpg)
-
-![図 [litCar]: 照明された表面の透明度が重要な役割を果たす複雑なオブジェクトの例](/images/filament-md-ja/screenshot_car.jpg)
+![](/images/filament-md-ja/screenshot_camera_transparency.jpg)
+*図 [cameraTransparency]: 照明された表面の透明度が重要な役割を果たす複雑なオブジェクトの例*
+![](/images/filament-md-ja/screenshot_car.jpg)
+*図 [litCar]: 照明された表面の透明度が重要な役割を果たす複雑なオブジェクトの例*
 
 不透明度を適切に実装するために、事前乗算アルファ形式を使用します。目的の不透明度を $ \alpha_{opacity} $、拡散色を $ \sigma $（線形、非事前乗算）とすると、フラグメントの有効不透明度を計算できます。
 
@@ -57,7 +58,8 @@ vec4 shadeSurface(vec4 baseColor) {
 
 [TODO] 表面半透明度（BRDF+BTDF、BSSRDF）
 
-![図 [translucency]: 前面照明された半透明オブジェクト（左）と背面照明された半透明オブジェクト（右）、近似BTDFとBSSRDFを使用。モデル：スタンフォード大学コンピュータグラフィックス研究所のLucy](/images/filament-md-ja/screenshot_translucency.png)
+![](/images/filament-md-ja/screenshot_translucency.png)
+*図 [translucency]: 前面照明された半透明オブジェクト（左）と背面照明された半透明オブジェクト（右）、近似BTDFとBSSRDFを使用。モデル：スタンフォード大学コンピュータグラフィックス研究所のLucy*
 
 ## オクルージョン
 
@@ -113,7 +115,8 @@ $$
 
 図 [aoComparison] は、拡散アンビエントオクルージョンなしとありの2つの異なるマテリアルを示しています。マテリアルアンビエントオクルージョンが異なるタイル間で発生する自然なシャドウイングを再現するために使用されていることに注意してください。アンビエントオクルージョンがないと、両方のマテリアルは平坦すぎるように見えます。
 
-![図 [aoComparison]: 拡散アンビエントオクルージョンなし（左）とあり（右）のマテリアルの比較](/images/filament-md-ja/screenshot_ao.jpg)
+![](/images/filament-md-ja/screenshot_ao.jpg)
+*図 [aoComparison]: 拡散アンビエントオクルージョンなし（左）とあり（右）のマテリアルの比較*
 
 焼き込まれた拡散アンビエントオクルージョンをGLSLシェーダーで適用することは、リスト [bakedDiffuseAO] に示すように簡単です。
 
@@ -181,13 +184,15 @@ indirectSpecular *= horizon * horizon;
 
 タフテッドレザーで覆われた家具を想像してみましょう。タフテッドパターンを正確に表現するためにジオメトリをモデリングすると、三角形が多すぎる必要があるため、代わりに高ポリゴンメッシュを法線マップに焼き込みます。ベースマップが簡略化されたメッシュ（この場合は四角形）に適用されると、図 [normalMapped] の結果が得られます。この効果を作成するために使用されるベースマップは、図 [baseNormalMap] に示されています。
 
-![図 [normalMapped]: 法線マッピングなし（左）とあり（右）の低ポリゴンメッシュ](/images/filament-md-ja/screenshot_normal_mapping.jpg)
-
-![図 [baseNormalMap]: ベースマップとして使用される法線マップ](/images/filament-md-ja/screenshot_normal_map.jpg)
+![](/images/filament-md-ja/screenshot_normal_mapping.jpg)
+*図 [normalMapped]: 法線マッピングなし（左）とあり（右）の低ポリゴンメッシュ*
+![](/images/filament-md-ja/screenshot_normal_map.jpg)
+*図 [baseNormalMap]: ベースマップとして使用される法線マップ*
 
 ここで、このベースマップを第2の法線マップと組み合わせたい場合、単純な問題が発生します。たとえば、図 [detailNormalMap] に示されているディテールマップを使用して、レザーにひび割れを追加しましょう。
 
-![図 [detailNormalMap]: ディテールマップとして使用される法線マップ](/images/filament-md-ja/screenshot_normal_map_detail.jpg)
+![](/images/filament-md-ja/screenshot_normal_map_detail.jpg)
+*図 [detailNormalMap]: ディテールマップとして使用される法線マップ*
 
 法線マップの性質（タンジェント空間に格納されたXYZコンポーネント）を考えると、線形ブレンディングやオーバーレイブレンディングなどの単純なアプローチが機能しないことはかなり明白です。数学的に正しい技術と、リアルタイムシェーディングに適した近似の2つのより高度な技術を使用します。
 
@@ -211,7 +216,8 @@ return r;
 
 この技術は以下で説明する技術よりもわずかに高価であるため、主にオフラインで使用します。したがって、2つの法線マップを結合する単純なオフラインツールを提供します。図 [blendedNormalMaps] は、前述のベースマップとディテールマップを使用したツールの出力を示しています。
 
-![図 [blendedNormalMaps]: ブレンドされた法線とディテールマップ（左）と、拡散マップと組み合わせた場合の結果レンダリング（右）](/images/filament-md-ja/screenshot_normal_map_blended.jpg)
+![](/images/filament-md-ja/screenshot_normal_map_blended.jpg)
+*図 [blendedNormalMaps]: ブレンドされた法線とディテールマップ（左）と、拡散マップと組み合わせた場合の結果レンダリング（右）*
 
 ### UDNブレンディング
 
@@ -227,15 +233,17 @@ return r;
 
 結果は再方向付け法線マッピングに視覚的に近いですが、データを注意深く比較すると、UDNは実際にはあまり正確ではないことがわかります。図 [blendedNormalMapsUDN] は、前の例と同じソースデータを使用したUDNブレンディングアプローチの結果を示しています。
 
-![図 [blendedNormalMapsUDN]: UDNブレンディング技術を使用してブレンドされた法線とディテールマップ](/images/filament-md-ja/screenshot_normal_map_blended_udn.jpg)
+![](/images/filament-md-ja/screenshot_normal_map_blended_udn.jpg)
+*図 [blendedNormalMapsUDN]: UDNブレンディング技術を使用してブレンドされた法線とディテールマップ*
 
 # ボリューメトリック効果
 
 ## 指数高さフォグ
 
-![図 [exponentialHeightFog1]: 指数高さフォグを使用した方向性イン散乱の例](/images/filament-md-ja/screenshot_fog1.jpg)
-
-![図 [exponentialHeightFog2]: 指数高さフォグを使用した方向性イン散乱の例](/images/filament-md-ja/screenshot_fog2.jpg)
+![](/images/filament-md-ja/screenshot_fog1.jpg)
+*図 [exponentialHeightFog1]: 指数高さフォグを使用した方向性イン散乱の例*
+![](/images/filament-md-ja/screenshot_fog2.jpg)
+*図 [exponentialHeightFog2]: 指数高さフォグを使用した方向性イン散乱の例*
 
 # アンチエイリアシング
 

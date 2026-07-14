@@ -6,13 +6,15 @@ title: "Clear coat モデル"
 
 これまでに説明した[標準マテリアルモデル](./04-material-standard)は、単一レイヤーで構成される等方性サーフェスに適しています。しかし残念ながら、複数レイヤーで構成されるマテリアル、特に標準レイヤーの上に薄い半透明レイヤーが乗っているマテリアルは非常に一般的です。このようなマテリアルの実例としては、車の塗装、ソーダ缶、ラッカー塗装された木材、アクリルなどがあります。
 
-![図 [materialClearCoat]: 標準マテリアルモデル（左）と clear coat モデル（右）での青い金属表面の比較](/images/filament-md-ja/material_clear_coat.png)
+![](/images/filament-md-ja/material_clear_coat.png)
+*図 [materialClearCoat]: 標準マテリアルモデル（左）と clear coat モデル（右）での青い金属表面の比較*
 
 clear coat レイヤーは、2 つ目の specular lobe を追加することで標準マテリアルモデルの拡張としてシミュレートできます。これは 2 つ目の specular BRDF を評価することを意味します。実装とパラメータ化を簡素化するため、clear coat レイヤーは常に等方性かつ誘電体とします。ベースレイヤーは標準モデルで許可されているもの（誘電体または導体）であれば何でも構いません。
 
 入射光が clear coat レイヤーを通過するため、図 [clearCoatModel] に示すように、エネルギーの損失も考慮する必要があります。ただし、私たちのモデルでは相互反射と屈折の挙動はシミュレートしません。
 
-![図 [clearCoatModel]: Clear coat サーフェスモデル](/images/filament-md-ja/diagram_clear_coat.png)
+![](/images/filament-md-ja/diagram_clear_coat.png)
+*図 [clearCoatModel]: Clear coat サーフェスモデル*
 
 ### Clear coat specular BRDF
 
@@ -69,9 +71,10 @@ clear coat の粗さパラメータは、標準マテリアルの粗さパラメ
 
 図 [clearCoat] と図 [clearCoatRoughness] は、clear coat パラメータがサーフェスの外観にどのように影響するかを示しています。
 
-![図 [clearCoat]: Clear coat を 0.0（左）から 1.0（右）まで変化させた様子（metallic を 1.0、roughness を 0.8 に設定）](/images/filament-md-ja/material_clear_coat1.png)
-
-![図 [clearCoatRoughness]: Clear coat roughness を 0.0（左）から 1.0（右）まで変化させた様子（metallic を 1.0、roughness を 0.8、clear coat を 1.0 に設定）](/images/filament-md-ja/material_clear_coat2.png)
+![](/images/filament-md-ja/material_clear_coat1.png)
+*図 [clearCoat]: Clear coat を 0.0（左）から 1.0（右）まで変化させた様子（metallic を 1.0、roughness を 0.8 に設定）*
+![](/images/filament-md-ja/material_clear_coat2.png)
+*図 [clearCoatRoughness]: Clear coat roughness を 0.0（左）から 1.0（右）まで変化させた様子（metallic を 1.0、roughness を 0.8、clear coat を 1.0 に設定）*
 
 リスト [clearCoatBRDF] は、リマップ、パラメータ化、および標準サーフェスレスポンスへの統合後の clear coat マテリアルモデルの GLSL 実装を示しています。
 

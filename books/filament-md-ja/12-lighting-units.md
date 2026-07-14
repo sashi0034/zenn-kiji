@@ -83,13 +83,15 @@ $$
 
 入射光メーターは、白い拡散ドームを使用してサーフェスに到達する照度をキャプチャします。目的の測定に応じて、ドームを適切に向けることが重要です。例えば、明るく晴れた日に太陽に垂直にドームを向けると、ドームを水平に向けた場合とは非常に異なる結果が得られます。
 
-![図 [sekonic]: Sekonic L-478D 入射光メーター](/images/filament-md-ja/photo_light_meter.jpg)
+![](/images/filament-md-ja/photo_light_meter.jpg)
+*図 [sekonic]: Sekonic L-478D 入射光メーター*
 
 #### 輝度
 
 サーフェスの輝度、または入射光とサーフェスの積は、輝度計を使用して測定できます。輝度計はスポットメーターとも呼ばれることがよくあります。入射光メーターが拡散半球を使用してすべての方向から光をキャプチャするのに対し、スポットメーターはシールドを使用して単一の方向からの入射光を測定します。私たちのテストでは、L-478D の拡散板を置き換えて 5 度の円錐内の輝度を測定できる [Sekonic 5 degree Viewfinder](http://www.sekonic.com/products/l-478dr/accessories/np-finder-5-degree-for-l-478.aspx) を使用します。
 
-![特別なビューファインダーを使用して輝度計として機能する Sekonic L-478D](/images/filament-md-ja/photo_incident_light_meter.jpg)
+![](/images/filament-md-ja/photo_incident_light_meter.jpg)
+*特別なビューファインダーを使用して輝度計として機能する Sekonic L-478D*
 
 #### 光度
 

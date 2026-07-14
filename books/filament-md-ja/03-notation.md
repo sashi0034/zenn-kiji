@@ -22,7 +22,6 @@ title: "記法"
 | $n_{ior}$ | 界面の屈折率（IOR） |
 | $\left< n \cdot l \right>$ | [0..1] にクランプされた内積 |
 | $\left< a \right>$ | 飽和値（[0..1] にクランプ） |
-
 *表 [symbols]: 記号の定義*
 
 ---

@@ -58,7 +58,8 @@ float Fd_Burley(float NoV, float NoL, float LoH, float roughness) {
 
 図 [lambert_vs_disney] は、完全に粗い誘電体マテリアルを使用した、単純な Lambertian diffuse BRDF と高品質な Disney diffuse BRDF の比較を示しています。比較のため、右側の球体はミラーリングされています。サーフェス応答は両方の BRDF で非常に似ていますが、Disney のものは掠角で素敵な retro-reflection を示しています（球体の左端を注意深く見てください）。
 
-![図 [lambert_vs_disney]: Lambertian diffuse BRDF（左）と Disney diffuse BRDF（右）の比較](/images/filament-md-ja/diagram_lambert_vs_disney.png)
+![](/images/filament-md-ja/diagram_lambert_vs_disney.png)
+*図 [lambert_vs_disney]: Lambertian diffuse BRDF（左）と Disney diffuse BRDF（右）の比較*
 
 アーティスト/開発者が望む品質とターゲットデバイスのパフォーマンスに応じて、Disney diffuse BRDF を選択できるようにすることもできます。ただし、ここで表現されているように、Disney diffuse BRDF はエネルギー保存則に従っていないことに注意することが重要です。
 
