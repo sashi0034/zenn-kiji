@@ -187,7 +187,7 @@ Brent Burley は彼のプレゼンテーション [#Burley12] で同様の観察
 
 物理ベースマテリアルの設計は、4 つの主要なパラメータの性質を理解すれば、かなり簡単です。base color、metallic、roughness、reflectance です。
 
-アーティストと開発者が独自の物理ベースマテリアルを作成するのに役立つ[便利なチャート/リファレンスガイド](./Material%20Properties.pdf)を提供しています。
+アーティストと開発者が独自の物理ベースマテリアルを作成するのに役立つ[便利なチャート/リファレンスガイド](https://google.github.io/filament/Material%20Properties.pdf)を提供しています。
 
 ![](/images/filament-md-ja/material_chart.jpg)
 *物理ベースマテリアルの作成*

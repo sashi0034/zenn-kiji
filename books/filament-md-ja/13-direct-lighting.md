@@ -65,7 +65,7 @@ vec3 luminance = BSDF(v, l) * illuminance;
 
 2番目の問題は簡単に修正できます。与えられた点光源について、知覚される強度は視点（より正確には光受容体）からの距離の二乗に反比例して減少します。
 
-逆二乗則に従う点光源の場合、式 $ `luminanceEquation` $ の項 $E$ は式 `punctualLightEquation` で表され、ここで $d$ は表面上の点から光源までの距離です。
+逆二乗則に従う点光源の場合、式 `luminanceEquation` の項 $E$ は式 `punctualLightEquation` で表され、ここで $d$ は表面上の点から光源までの距離です。
 
 $$
 E = L_{in} \left< n \cdot l \right> = \frac{I}{d^2} \left< n \cdot l \right>
@@ -87,7 +87,7 @@ $$
 I = \frac{\Phi}{4 \pi}
 $$
 
-`punctualLightEquation` の $I$ と $ `luminanceEquation` $ の $E$ を単純に代入することで、ポイントライトの輝度方程式を光束の関数として定式化できます（$ `pointLightLuminanceEquation` $ 参照）。
+`punctualLightEquation` の $I$ と `luminanceEquation` の $E$ を単純に代入することで、ポイントライトの輝度方程式を光束の関数として定式化できます（`pointLightLuminanceEquation` 参照）。
 
 $$
 L_{out} = f(v,l) \frac{\Phi}{4 \pi d^2} \left< n \cdot l \right>
@@ -105,7 +105,7 @@ $$
 ![](/images/filament-md-ja/diagram_spot_light.png)
 *図 [spotLight]: スポットライトと表面の相互作用。減衰は光源までの距離と、表面とスポットライトの方向ベクトル間の角度に依存します*
 
-式 $ `spotLightLuminousPower` $ は、ポイントライトと同様の方法でスポットライトの光束を計算する方法を説明しており、スポットライトの円錐の外角 $ \theta_{outer} $ を [0..$\pi$] の範囲で使用します。
+式 `spotLightLuminousPower` は、ポイントライトと同様の方法でスポットライトの光束を計算する方法を説明しており、スポットライトの円錐の外角 $ \theta_{outer} $ を [0..$\pi$] の範囲で使用します。
 
 $$
 \Phi = \int_{\Omega} I dl = \int_{0}^{2\pi} \int_{0}^{\theta_{outer}} I d\theta d\phi = 2 \pi (1 - cos\frac{\theta_{outer}}{2})I \\
@@ -117,7 +117,7 @@ $$
 ![](/images/filament-md-ja/screenshot_spot_light_focused.png)
 *図 [spotLightTestFocused]: スポットライトの外角の比較、55度（左）と15度（右）*
 
-照明と外円錐の結合は、アーティストがスポットライトの影響範囲を調整する際に、知覚される照明も変更してしまうことを意味します。したがって、この結合を無効にするパラメータをアーティストに提供することが理にかなっています。式 $ `spotLightLuminousPowerB` $ は、その目的のために光束を定式化する方法を示しています。
+照明と外円錐の結合は、アーティストがスポットライトの影響範囲を調整する際に、知覚される照明も変更してしまうことを意味します。したがって、この結合を無効にするパラメータをアーティストに提供することが理にかなっています。式 `spotLightLuminousPowerB` は、その目的のために光束を定式化する方法を示しています。
 
 $$
 \Phi = \pi I \\
@@ -142,7 +142,7 @@ $$
 L_{out} = f(v,l) \frac{\Phi}{2 \pi (1 - cos\frac{\theta_{outer}}{2}) d^2} \left< n \cdot l \right> \lambda(l)
 $$
 
-式 $ `spotAbsorber` $ と $ `spotReflector` $ の項 $ \lambda(l) $ は、以下の式 $ `spotAngleAtt` $ で説明されるスポットの角度減衰係数です。
+式 `spotAbsorber` と `spotReflector` の項 $ \lambda(l) $ は、以下の式 `spotAngleAtt` で説明されるスポットの角度減衰係数です。
 
 $$
 \lambda(l) = \frac{l \cdot spotDirection - cos\theta_{outer}}{cos\theta_{inner} - cos\theta_{outer}}
@@ -247,7 +247,7 @@ IESプロファイルは、ポイントライトまたはスポットライト�
 
 光度はプロファイル自体から来ます。1Dテクスチャからサンプリングされたすべての値は、単に最大強度で乗算されます。便宜上、乗数も提供します。
 
-測光プロファイルは、レンダリング時に単純な減衰として適用できます。輝度方程式 $ `photometricLightEvaluation` $ は、測光ポイントライト評価関数を説明しています。
+測光プロファイルは、レンダリング時に単純な減衰として適用できます。輝度方程式 `photometricLightEvaluation` は、測光ポイントライト評価関数を説明しています。
 
 $$
 L_{out} = f(v,l) \frac{I}{d^2} \left< n \cdot l \right> \Psi(l)
@@ -379,7 +379,7 @@ $$
 \left[ \begin{matrix} R \\ G \\ B \end{matrix} \right] = M^{-1} \left[ \begin{matrix} X \\ Y \\ Z \end{matrix} \right]
 $$
 
-変換行列Mは、ターゲットRGB色空間の原色から計算されます。式 $ `XYZtoRGBValues` $ は、sRGB色空間の逆行列を使用した変換を示しています。
+変換行列Mは、ターゲットRGB色空間の原色から計算されます。式 `XYZtoRGBValues` は、sRGB色空間の逆行列を使用した変換を示しています。
 
 $$
 \left[ \begin{matrix} R \\ G \\ B \end{matrix} \right] = \left[ \begin{matrix} 3.2404542 & -1.5371385 & -0.4985314 \\ -0.9692660 & 1.8760108 & 0.0415560 \\ 0.0556434 & -0.2040259 & 1.0572252 \end{matrix} \right] \left[ \begin{matrix} X \\ Y \\ Z \end{matrix} \right]
@@ -391,7 +391,7 @@ $$
 \hat{C}_{linear} = \frac{C_{linear}}{max(C_{linear})}
 $$
 
-最後に、表示可能な値を取得するために、sRGB光電子変換関数（OECF、式 $ `OECFsRGB` $ に示す）を適用する必要があります（シェーディングのためにレンダラーに渡す場合は、値は線形のままにする必要があります）。
+最後に、表示可能な値を取得するために、sRGB光電子変換関数（OECF、式 `OECFsRGB` に示す）を適用する必要があります（シェーディングのためにレンダラーに渡す場合は、値は線形のままにする必要があります）。
 
 $$
 C_{sRGB} = \begin{cases} 12.92 \times \hat{C}_{linear} & \hat{C}_{linear} \le 0.0031308 \\
