@@ -132,6 +132,8 @@ https://fonts.google.com/specimen/Zen+Old+Mincho
 
 BOOX の内蔵ストレージ直下の `Fonts` に入れれば BOOX が認識してくれます。
 
+BOOX は Wi-Fi 経由でファイルを転送できるので便利です。
+
 
 # 辞書
 
